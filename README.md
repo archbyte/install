@@ -1,4 +1,4 @@
-## USE WITH CAUTION. THIS MAY LEAVE YOUR SYSTEM IN AN UNUSABLE STATE.
+## Use this guide at your own risk.
 
 **Boot into the arch install media and run the following commands.**
 
