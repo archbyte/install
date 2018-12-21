@@ -1,4 +1,4 @@
-## Use this guide only if you know what the scripts do.
+## Use these scripts only if you know how to manually install Arch. 
 
 **Boot into the arch install media and run the following commands.**
 
