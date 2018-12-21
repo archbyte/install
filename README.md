@@ -8,9 +8,9 @@ pacman -Sy reflector git
 
 reflector --verbose --latest 100 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
-git clone https://github.com/customlinux/arch
+git clone https://github.com/archbyte/install
 
-mv arch/archinstall $PWD
+mv install/ $PWD
 
 chmod +x archinstall
 
