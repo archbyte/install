@@ -10,15 +10,15 @@ reflector --verbose --latest 100 --protocol http --protocol https --sort rate --
 
 git clone https://github.com/archbyte/install
 
-mv install/ $PWD
+mv install/arch $PWD
 
-chmod +x archinstall
+chmod +x arch
 
-./archinstall
+./arch
 
 **When in  chroot, run the below commands.**
 
-./chrootinstall
+./chroot
 
 exit
 
@@ -26,7 +26,7 @@ reboot
 
 **Login by entering your username and password.**
 
-./postinstall
+./post
 
 
 ## Welcome to Arch Linux.
