@@ -1,4 +1,4 @@
-## Use this guide at your own risk.
+## Use this guide only if you know what the scripts do.
 
 **Boot into the arch install media and run the following commands.**
 
