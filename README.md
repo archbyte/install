@@ -10,11 +10,7 @@ reflector --verbose --latest 100 --protocol http --protocol https --sort rate --
 
 git clone https://github.com/archbyte/install
 
-mv install/arch $PWD
-
-chmod +x arch
-
-./arch
+/bin/bash $PWD/install/arch
 
 **When in  chroot, run the below commands.**
 
