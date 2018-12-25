@@ -1,7 +1,4 @@
 #!/bin/bash
-echo
-echo "arch-install-script 1.0"
-echo 
 echo "Press 'Ctrl+c' to exit OR 'Enter' to continue"
 read
 #------------------------------------------------------------------------------------------------------------------------------------------
@@ -67,11 +64,11 @@ genfstab -U /mnt >> /mnt/etc/fstab
 echo
 cat /mnt/etc/fstab
 #------------------------------------------------------------------------------------------------------------------------------------------
-cp /root/arch/chrootinstall /mnt
-cp /root/arch/postinstall /mnt
-chmod +x /mnt/chrootinstall
-chmod +x /mnt/postinstall
-rm -r /root/arch
+cp /root/install/chroot /mnt
+cp /root/install/de /mnt
+chmod +x /mnt/chroot
+chmod +x /mnt/de
+rm -r /root/install
 #------------------------------------------------------------------------------------------------------------------------------------------
 mkdir /mnt/hostlvm
 mount --bind /run/lvm /mnt/hostlvm
