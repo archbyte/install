@@ -22,7 +22,6 @@ reboot
 
 **Login by entering your username and password.**
 
-./post
-
+./de
 
 ## Welcome to Arch Linux.
