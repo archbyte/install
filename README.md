@@ -1,6 +1,7 @@
 ## Use only if you know how to manually install Arch. 
 
-**My setup: 1TB SSD (GPT-UEFI) | Dual Boot: Windows 10 LTSC + Arch Linux**##
+**My setup: 1TB SSD (GPT-UEFI) | Dual Boot: Windows 10 LTSC + Arch Linux**
+
 **Boot into the arch install media and run the following commands.**
 
 wifi-menu (for wifi)
