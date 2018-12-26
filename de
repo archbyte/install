@@ -13,7 +13,8 @@ echo
 echo -ne '\n' | sudo pacman -Syu
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
-echo -ne '\n' | sudo pacman -S --needed xorg-server xorg-xinit xorg-xprop gnome-shell nautilus gnome-system-monitor chrome-gnome-shell gnome-tweak-tool gnome-screenshot gnome-control-center gnome-backgrounds chromium eog xdg-user-dirs git xdotool wmctrl plank synergy qt5-base tree neofetch gdm gparted
+#echo -ne '\n' | 
+sudo pacman -S --needed xorg-server xorg-xinit xorg-xprop gnome-shell nautilus gnome-system-monitor chrome-gnome-shell gnome-tweak-tool gnome-screenshot gnome-control-center gnome-backgrounds chromium eog xdg-user-dirs git xdotool wmctrl plank synergy qt5-base tree neofetch gdm gparted
 #------------------------------------------------------------------------------------------------------------------------------------------
 git clone https://aur.archlinux.org/yay.git
 cd yay
