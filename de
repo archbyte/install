@@ -10,19 +10,14 @@ read -p "Enter your wifi password: " wifipass
 nmcli device wifi connect $ssid password $wifipass
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
-echo -ne '\n' | sudo pacman -Syu
-echo
-#------------------------------------------------------------------------------------------------------------------------------------------
-#echo -ne '\n' | 
-sudo pacman -S --needed xorg-server xorg-xinit xorg-xprop gnome-shell nautilus gnome-system-monitor chrome-gnome-shell gnome-tweak-tool gnome-screenshot gnome-control-center gnome-backgrounds chromium eog xdg-user-dirs git xdotool wmctrl plank synergy qt5-base tree neofetch gdm gparted
+sudo pacman -S --needed xorg-server xorg-xinit xorg-xprop gnome-shell nautilus gnome-system-monitor chrome-gnome-shell gnome-tweak-tool gnome-screenshot gnome-control-center gnome-backgrounds chromium eog xdg-user-dirs git xdotool wmctrl plank synergy qt5-base tree neofetch gdm reflector gparted
 #------------------------------------------------------------------------------------------------------------------------------------------
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 cd /home/$USER
 sudo rm -r yay
-echo -ne '\n' | yay -S pamac
-echo -ne '\n' | yay -S nautilus-admin gnome-terminal-transparency sublime-text-dev libinput-gestures
+yay -S pamac nautilus-admin gnome-terminal-transparency sublime-text-dev libinput-gestures
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
 echo "Enabling gdm service..."
@@ -50,4 +45,4 @@ sudo update-desktop-database
 cd /home/$USER
 sudo rm -r yay
 sudo rm -- "$0"
-#sudo reboot
+sudo reboot
