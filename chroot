@@ -49,7 +49,7 @@ mkdir /boot/efi
 mount $efipartition /boot/efi
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
-pacman -S --needed intel-ucode grub efibootmgr os-prober sudo
+echo -ne '\n' | pacman -S --needed intel-ucode grub efibootmgr os-prober sudo
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=$bootloaderid
@@ -58,7 +58,7 @@ echo
 grub-mkconfig -o /boot/grub/grub.cfg
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
-pacman -S --needed networkmanager
+echo -ne '\n' | pacman -S --needed networkmanager
 #------------------------------------------------------------------------------------------------------------------------------------------
 systemctl enable NetworkManager
 #------------------------------------------------------------------------------------------------------------------------------------------
