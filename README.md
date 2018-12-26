@@ -10,7 +10,7 @@ pacman -Sy reflector git
 
 reflector --verbose --latest 200 -p http -p https --sort rate --save /etc/pacman.d/mirrorlist
 
-git clone https://github.com/archbyte/install
+git clone https://github.com/archbyte/install --branch testing
 
 /bin/bash $PWD/install/arch
 
