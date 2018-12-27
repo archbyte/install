@@ -1,6 +1,6 @@
 ## Use only if you know how to manually install Arch. 
 
-**My testing setup: 1TB SSD (GPT-UEFI) | Dual Boot: Windows 10 LTSC + Arch Linux**
+**My bios testing setup: 1TB SSD (GPT-UEFI) | Dual Boot: Windows 10 LTSC + Arch Linux**
 
 **Boot into the arch install media and run the following commands.**
 
