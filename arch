@@ -73,5 +73,4 @@ mkdir /mnt/hostlvm
 mount --bind /run/lvm /mnt/hostlvm
 #------------------------------------------------------------------------------------------------------------------------------------------
 echo "arch-chroot /mnt"
-read
 arch-chroot /mnt
