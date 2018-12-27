@@ -62,5 +62,6 @@ mv /de /home/$username
 echo "Reboot after exiting arch-chroot."
 echo "Press enter to exit from chroot script."
 read
+umount -a
 rm -- "$0"
 exit
