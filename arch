@@ -6,8 +6,9 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 #------------------------------------------------------------------------------------------------------------------------------------------
-echo "ls /sys/firmware/efi/efivars"
+echo "ls /sys/firmware/efi/efivars - should not see directories"
 ls /sys/firmware/efi/efivars
+timedatectl set-ntp true
 echo
 echo "Press 'Ctrl+c' to exit OR 'Enter' to continue"
 read
@@ -32,26 +33,28 @@ fdisk -l
 lsblk
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
-read -p "efipartition (/dev/sdax) = " efipartition
-echo $efipartition
+read -p "rootpartition(bootable) (/dev/sdax) = " rootpartition
+echo $rootpartition
 echo
-read -p "ospartition (/dev/sdax) = " ospartition
-echo $ospartition
-echo
-#------------------------------------------------------------------------------------------------------------------------------------------
-echo mkfs.fat -F32 $efipartition
-mkfs.fat -F32 $efipartition
+read -p "swappartition (/dev/sdax) = " swappartition
+echo $swappartition
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
-echo mkfs.ext4 $ospartition
-mkfs.ext4 $ospartition
+echo mkfs.ext4 $rootpartition
+mkfs.ext4 $rootpartition
+echo
+#------------------------------------------------------------------------------------------------------------------------------------------
+echo mkswap $swappartition
+echo swapon $swappartition
+mkswap $swappartition
+swapon $swappartition
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
 fdisk -l
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
-echo mount $ospartition /mnt
-mount $ospartition /mnt
+echo mount $rootpartition /mnt
+mount $rootpartition /mnt
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
 echo "pacstrap /mnt base base-devel"
@@ -61,16 +64,13 @@ echo
 echo "Generate fstab."
 genfstab -U /mnt >> /mnt/etc/fstab
 echo
-cat /mnt/etc/fstab
+nano /mnt/etc/fstab
 #------------------------------------------------------------------------------------------------------------------------------------------
 cp /root/install/chroot /mnt
 cp /root/install/de /mnt
 chmod +x /mnt/chroot
 chmod +x /mnt/de
 rm -r /root/install
-#------------------------------------------------------------------------------------------------------------------------------------------
-mkdir /mnt/hostlvm
-mount --bind /run/lvm /mnt/hostlvm
 #------------------------------------------------------------------------------------------------------------------------------------------
 echo "arch-chroot /mnt"
 arch-chroot /mnt
