@@ -64,7 +64,7 @@ echo
 echo "Generate fstab."
 genfstab -U /mnt >> /mnt/etc/fstab
 echo
-nano /mnt/etc/fstab
+cat /mnt/etc/fstab
 #------------------------------------------------------------------------------------------------------------------------------------------
 cp /root/install/chroot /mnt
 cp /root/install/de /mnt
