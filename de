@@ -45,4 +45,4 @@ sudo update-desktop-database
 cd /home/$USER
 sudo rm -r yay
 sudo rm -- "$0"
-sudo reboot
+#sudo reboot
