@@ -19,7 +19,6 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 cd /home/$USER
-sudo rm -r yay
 yay -S pamac
 yay -S nautilus-admin gnome-terminal-transparency sublime-text-dev libinput-gestures
 echo
