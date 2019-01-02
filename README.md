@@ -8,11 +8,11 @@ wifi-menu (for wifi)
 
 pacman -Sy reflector git
 
-reflector --verbose --latest 200 -p http -p https --sort rate --save /etc/pacman.d/mirrorlist
+reflector --verbose -l 200 -p http -p https --sort rate --save /etc/pacman.d/mirrorlist
 
 git clone https://github.com/archbyte/install
 
-/bin/bash $PWD/install/arch
+/bin/bash install/arch
 
 **When in  chroot, run the below commands.**
 
