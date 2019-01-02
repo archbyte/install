@@ -1,0 +1,14 @@
+#!/bin/bash
+echo
+echo "Press 'Ctrl+c' to exit OR 'Enter' to continue"
+read
+#------------------------------------------------------------------------------------------------------------------------------------------
+sudo rm -r /usr/share/backgrounds/gnome
+sudo rm -r /usr/share/gnome-background-properties
+#------------------------------------------------------------------------------------------------------------------------------------------
+sudo git clone https://github.com/archbyte/mojave /usr/share/backgrounds/gnome
+sudo rm -r /usr/share/backgrounds/gnome/.git
+#------------------------------------------------------------------------------------------------------------------------------------------
+sudo mkdir /usr/share/gnome-background-properties
+sudo mv /usr/share/backgrounds/gnome/gnome-background-properties /usr/share/gnome-background-properties
+#------------------------------------------------------------------------------------------------------------------------------------------
