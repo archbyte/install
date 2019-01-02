@@ -3,6 +3,7 @@ echo
 echo "Press 'Ctrl+c' to exit OR 'Enter' to continue"
 read
 #------------------------------------------------------------------------------------------------------------------------------------------
+sudo rm /chroot
 nmcli device wifi list
 echo
 read -p "Enter your wifi SSID: " ssid
@@ -10,17 +11,13 @@ read -p "Enter your wifi password: " wifipass
 nmcli device wifi connect $ssid password $wifipass
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
-sudo pacman -Syu
-echo
-#------------------------------------------------------------------------------------------------------------------------------------------
-sudo pacman -S --needed xorg-server xorg-xinit xorg-xprop gnome-shell nautilus gnome-system-monitor chrome-gnome-shell gnome-tweak-tool gnome-screenshot gnome-control-center gnome-backgrounds chromium eog xdg-user-dirs git xdotool wmctrl plank synergy qt5-base tree neofetch gdm gparted
+sudo pacman -S --needed xorg-server xorg-xinit xorg-xprop gnome-shell nautilus gnome-system-monitor chrome-gnome-shell gnome-tweak-tool gnome-screenshot gnome-control-center gnome-backgrounds gnome-power-manager chromium eog xdg-user-dirs git xdotool wmctrl plank synergy qt5-base tree neofetch gdm reflector gparted
 #------------------------------------------------------------------------------------------------------------------------------------------
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 cd /home/$USER
-yay -S pamac
-yay -S nautilus-admin gnome-terminal-transparency sublime-text-dev libinput-gestures
+yay -S pamac nautilus-admin sublime-text-dev libinput-gestures automathemely
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
 echo "Enabling gdm service..."
@@ -36,6 +33,7 @@ mkdir /home/$USER/.config/autostart
 cp /usr/share/applications/libinput-gestures.desktop /home/$USER/.config/autostart
 cp /usr/share/applications/plank.desktop /home/$USER/.config/autostart
 cp /usr/share/applications/synergy.desktop /home/$USER/.config/autostart
+cp /usr/share/applications/automathemely.desktop /home/$USER/.config/autostart
 #------------------------------------------------------------------------------------------------------------------------------------------
 sudo ln -sf /dev/null /etc/systemd/system/avahi-daemon.service
 sudo ln -sf /dev/null /etc/systemd/system/avahi-daemon.socket
