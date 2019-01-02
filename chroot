@@ -49,7 +49,7 @@ mkdir /boot/efi
 mount $efipartition /boot/efi
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
-pacman -S --needed intel-ucode grub efibootmgr os-prober sudo
+pacman -S --needed intel-ucode grub efibootmgr os-prober sudo networkmanager
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=$bootloaderid
@@ -57,8 +57,6 @@ echo
 #------------------------------------------------------------------------------------------------------------------------------------------
 grub-mkconfig -o /boot/grub/grub.cfg
 echo
-#------------------------------------------------------------------------------------------------------------------------------------------
-pacman -S --needed networkmanager
 #------------------------------------------------------------------------------------------------------------------------------------------
 systemctl enable NetworkManager
 #------------------------------------------------------------------------------------------------------------------------------------------
@@ -69,10 +67,8 @@ echo Enter your user password.
 passwd $username
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
-echo EDITOR=nano visudo
-echo Uncomment the wheel group line.
-read
-EDITOR=nano visudo
+echo "Uncommenting the wheel group line."
+sudo sed -i '/# %wheel ALL=(ALL) ALL/s/^#//g' /etc/sudoers
 #------------------------------------------------------------------------------------------------------------------------------------------
 mv /de /home/$username
 #------------------------------------------------------------------------------------------------------------------------------------------
@@ -80,5 +76,5 @@ umount /run/lvm
 echo "Reboot after exiting arch-chroot."
 echo "Press enter to exit from chroot script."
 read
-rm -- "$0"
+umount -a
 exit
