@@ -3,7 +3,6 @@ echo
 echo "Press 'Ctrl+c' to exit OR 'Enter' to continue"
 read
 #------------------------------------------------------------------------------------------------------------------------------------------
-sudo rm /chroot
 nmcli device wifi list
 echo
 read -p "Enter your wifi SSID: " ssid
@@ -45,5 +44,6 @@ sudo update-desktop-database
 #------------------------------------------------------------------------------------------------------------------------------------------
 cd /home/$USER
 sudo rm -r yay
+sudo rm /chroot
 sudo rm -- "$0"
 sudo reboot
