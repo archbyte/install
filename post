@@ -14,10 +14,22 @@ sudo mv /usr/share/backgrounds/gnome/gnome-backgrounds.xml /usr/share/gnome-back
 #------------------------------------------------------------------------------------------------------------------------------------------
 sudo git clone https://github.com/EliverLara/Ant-Nebula --branch slim /usr/share/themes/Ant-Nebula
 sudo git clone https://github.com/EliverLara/Ant-Dracula --branch slim /usr/share/themes/Ant-Dracula
-gsettings set org.gnome.desktop.interface gtk-theme "Ant-Nebula"
-gsettings set org.gnome.desktop.wm.preferences theme "Ant-Nebula"
+#gsettings set org.gnome.desktop.interface gtk-theme "Ant-Nebula"
+#gsettings set org.gnome.desktop.wm.preferences theme "Ant-Nebula"
 gsettings set org.gnome.desktop.interface icon-theme 'la-capitaine'
 gsettings set org.gnome.desktop.interface cursor-theme 'capitaine-cursors'
+#------------------------------------------------------------------------------------------------------------------------------------------
+automathemely --setting themes.light=Ant-Nebula
+automathemely --setting themes.dark=Ant-Dracula
+automathemely --setting offset.sunrise=0
+automathemely --setting offset.sunset=0
+automathemely --setting location.auto_enabled=true
+automathemely --setting misc.notifications=false
+automathemely --setting extras.atom.enabled=false
+automathemely --setting extras.vscode.enabled=false
+automathemely --update
+automathemely --restart
+cp /usr/share/applications/automathemely.desktop /home/$USER/.config/autostart
 #------------------------------------------------------------------------------------------------------------------------------------------
 sudo pacman -S --needed ruby ruby-docs rubygems
 sudo gem install rdoc
