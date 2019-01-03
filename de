@@ -52,5 +52,4 @@ nano ~/.bashrc
 cd /home/$USER
 sudo rm -r yay
 sudo rm /chroot
-sudo rm -- "$0"
 sudo reboot
