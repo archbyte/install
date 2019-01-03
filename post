@@ -27,3 +27,5 @@ cd /usr/share/themes/Ant-Dracula/gtk-3.20/
 sudo sed -i '22s/ff79c6/00b0ff/' /usr/share/themes/Ant-Dracula/gtk-3.20/_colors.scss
 sudo sass gtk.scss gtk.css
 #------------------------------------------------------------------------------------------------------------------------------------------
+sudo rm /home/$USER/de
+sudo rm /home/$USER/post
