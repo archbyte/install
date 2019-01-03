@@ -12,3 +12,8 @@ sudo rm -r /usr/share/backgrounds/gnome/.git
 sudo mkdir /usr/share/gnome-background-properties
 sudo mv /usr/share/backgrounds/gnome/gnome-background-properties /usr/share/gnome-background-properties
 #------------------------------------------------------------------------------------------------------------------------------------------
+sudo git clone https://github.com/EliverLara/Ant-Nebula --branch slim /usr/share/themes/
+sudo git clone https://github.com/EliverLara/Ant-Dracula --branch slim /usr/share/themes/
+gsettings set org.gnome.desktop.interface gtk-theme "Ant-Nebula"
+gsettings set org.gnome.desktop.wm.preferences theme "Ant-Nebula"
+#------------------------------------------------------------------------------------------------------------------------------------------
