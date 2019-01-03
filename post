@@ -17,3 +17,12 @@ sudo git clone https://github.com/EliverLara/Ant-Dracula --branch slim /usr/shar
 gsettings set org.gnome.desktop.interface gtk-theme "Ant-Nebula"
 gsettings set org.gnome.desktop.wm.preferences theme "Ant-Nebula"
 #------------------------------------------------------------------------------------------------------------------------------------------
+sudo pacman -S --needed ruby ruby-docs rubygems
+gem install sass -v 3.5.3
+echo "export PATH=doublequotes/home/$USER/.gem/ruby/2.5.0/bin:dollarsignPATHdoublequotes" >> ~/.bashrc
+nano ~/.bashrc
+exec bash
+cd /usr/share/themes/Ant-Dracula/gtk-3.20/
+sudo sed -i '22s/ff79c6/00b0ff/' /usr/share/themes/Ant-Dracula/gtk-3.20/_colors.scss
+sass gtk.scss gtk.css
+#------------------------------------------------------------------------------------------------------------------------------------------
