@@ -16,7 +16,6 @@ sudo git clone https://github.com/EliverLara/Ant-Nebula --branch slim /usr/share
 sudo git clone https://github.com/EliverLara/Ant-Dracula --branch slim /usr/share/themes/Ant-Dracula
 gsettings set org.gnome.desktop.interface gtk-theme "Ant-Nebula"
 gsettings set org.gnome.desktop.wm.preferences theme "Ant-Nebula"
-gsettings set org.gnome.shell.extensions.user-theme name "Ant-Nebula"
 gsettings set org.gnome.desktop.interface icon-theme 'la-capitaine'
 gsettings set org.gnome.desktop.interface cursor-theme 'capitaine-cursors'
 #------------------------------------------------------------------------------------------------------------------------------------------
