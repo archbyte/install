@@ -27,3 +27,5 @@ reboot
 ./de
 
 ## Welcome to Arch Linux.
+
+./post
