@@ -48,6 +48,9 @@ sudo update-desktop-database
 echo "export PATH=doublequotes/root/.gem/ruby/2.5.0/bin:dollarsignPATHdoublequotes" >> ~/.bashrc
 nano ~/.bashrc
 #------------------------------------------------------------------------------------------------------------------------------------------
+sudo nano /etc/default/grub
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+#------------------------------------------------------------------------------------------------------------------------------------------
 cd /home/$USER
 sudo rm -r yay
 sudo rm /chroot
