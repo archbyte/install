@@ -10,7 +10,7 @@ read -p "Enter your wifi password: " wifipass
 nmcli device wifi connect $ssid password $wifipass
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
-sudo pacman -S --needed xorg-server xorg-xinit xorg-xprop gnome-shell nautilus gnome-system-monitor chrome-gnome-shell gnome-tweak-tool gnome-screenshot gnome-control-center gnome-backgrounds gnome-power-manager chromium eog xdg-user-dirs git xdotool wmctrl plank synergy qt5-base tree neofetch gdm reflector gparted
+sudo pacman -S --needed xorg-server xorg-xinit xorg-xprop gnome-shell nautilus gnome-system-monitor chrome-gnome-shell gnome-tweak-tool gnome-screenshot gnome-control-center gnome-terminal gnome-backgrounds gnome-power-manager chromium eog xdg-user-dirs git xdotool wmctrl plank synergy qt5-base tree neofetch gdm reflector gparted
 #------------------------------------------------------------------------------------------------------------------------------------------
 git clone https://aur.archlinux.org/yay.git
 cd yay
