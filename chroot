@@ -71,6 +71,7 @@ echo "Uncommenting the wheel group line."
 sudo sed -i '/# %wheel ALL=(ALL) ALL/s/^#//g' /etc/sudoers
 #------------------------------------------------------------------------------------------------------------------------------------------
 mv /de /home/$username
+mv /post /home/$username
 #------------------------------------------------------------------------------------------------------------------------------------------
 umount /run/lvm
 echo "Reboot after exiting arch-chroot."
