@@ -46,7 +46,7 @@ sudo bash -c "echo 'NoDisplay=true' >> /usr/share/applications/bssh.desktop"
 sudo bash -c "echo 'NoDisplay=true' >> /usr/share/applications/bvnc.desktop"
 sudo update-desktop-database
 #------------------------------------------------------------------------------------------------------------------------------------------
-echo "export PATH=doublequotes/home/$USER/.gem/ruby/2.5.0/bin:dollarsignPATHdoublequotes" >> ~/.bashrc
+echo "export PATH=doublequotes/root/.gem/ruby/2.5.0/bin:dollarsignPATHdoublequotes" >> ~/.bashrc
 nano ~/.bashrc
 #------------------------------------------------------------------------------------------------------------------------------------------
 cd /home/$USER
