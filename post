@@ -1,23 +1,10 @@
 #!/bin/bash
 echo
 echo "Press 'Ctrl+c' to exit OR 'Enter' to continue"
+echo "Sublime Text will open as it is needed to generate initial config files. You may close it after it opens."
 read
 #
-cat << EOT >> /home/$USER/.config/sublime-text-3/Local/License.sublime_license
------ BEGIN LICENSE -----
-sgbteam
-Single User License
-EA7E-1153259
-8891CBB9 F1513E4F 1A3405C1 A865D53F
-115F202E 7B91AB2D 0D2A40ED 352B269B
-76E84F0B CD69BFC7 59F2DFEF E267328F
-215652A3 E88F9D8F 4C38E3BA 5B2DAAE4
-969624E7 DC9CD4D5 717FB40C 1B9738CF
-20B3C4F1 E917B5B3 87C38D9C ACCE7DD8
-5F7EF854 86B9743C FADC04AA FB0DA5C0
-F913BE58 42FEA319 F954EFDD AE881E0B
------- END LICENSE ------
-EOT
+subl3
 #------------------------------------------------------------------------------------------------------------------------------------------
 automathemely
 #------------------------------------------------------------------------------------------------------------------------------------------
@@ -60,5 +47,37 @@ sudo gem install sass
 cd /usr/share/themes/Ant-Dracula/gtk-3.20/
 sudo sed -i '22s/ff79c6/00b0ff/' _colors.scss
 sudo sass gtk.scss gtk.css
+#
+cat << EOT >> /home/$USER/.config/sublime-text-3/Local/License.sublime_license
+----- BEGIN LICENSE -----
+sgbteam
+Single User License
+EA7E-1153259
+8891CBB9 F1513E4F 1A3405C1 A865D53F
+115F202E 7B91AB2D 0D2A40ED 352B269B
+76E84F0B CD69BFC7 59F2DFEF E267328F
+215652A3 E88F9D8F 4C38E3BA 5B2DAAE4
+969624E7 DC9CD4D5 717FB40C 1B9738CF
+20B3C4F1 E917B5B3 87C38D9C ACCE7DD8
+5F7EF854 86B9743C FADC04AA FB0DA5C0
+F913BE58 42FEA319 F954EFDD AE881E0B
+------ END LICENSE ------
+EOT
 #------------------------------------------------------------------------------------------------------------------------------------------
+sudo pacman -S fprintd
+sudo sed -i.bkp '/#%PAM-1.0/a auth       sufficient   pam_fprintd.so' /etc/pam.d/polkit-1
+#
+fprintd-enroll
+#
+sudo sed -i.bkp '/auth		sufficient	pam_rootok.so/a auth            sufficient      pam_fprintd.so' /etc/pam.d/su
+sudo sed -i.bkp '/#%PAM-1.0/a auth            sufficient      pam_fprintd.so' /etc/pam.d/sudo
+#
+cat << EOT >> /etc/polkit-1/rules.d/50-net.reactivated.fprint.device.enroll.rules
+polkit.addRule(function (action, subject) {
+  if (action.id == "net.reactivated.fprint.device.enroll") {
+    return subject.user == "root" ? polkit.Result.YES : polkit.result.NO
+  }
+})
+EOT
+#
 sudo rm /home/$USER/de
