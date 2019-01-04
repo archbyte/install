@@ -8,7 +8,7 @@ wifi-menu (for wifi)
 
 pacman -Sy reflector git
 
-reflector --verbose -l 200 -p http -p https --sort rate --save /etc/pacman.d/mirrorlist
+reflector --verbose -l 100 -p http -p https --sort rate --save /etc/pacman.d/mirrorlist
 
 git clone https://github.com/archbyte/install
 
