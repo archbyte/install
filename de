@@ -49,7 +49,6 @@ echo "export PATH=doublequotes/root/.gem/ruby/2.5.0/bin:dollarsignPATHdoublequot
 nano ~/.bashrc
 #------------------------------------------------------------------------------------------------------------------------------------------
 sudo sed -i '4s/5/0/' /etc/default/grub
-sudo nano /etc/default/grub
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 #------------------------------------------------------------------------------------------------------------------------------------------
 cd /home/$USER
