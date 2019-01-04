@@ -35,6 +35,8 @@ automathemely --setting extras.vscode.enabled=false
 automathemely --update
 automathemely --restart
 cp /usr/share/applications/automathemely.desktop /home/$USER/.config/autostart
+#
+gsettings set org.gnome.desktop.wm.preferences button-layout 'close,minimize,maximize:'
 #------------------------------------------------------------------------------------------------------------------------------------------
 sudo pacman -S --needed ruby ruby-docs rubygems
 sudo gem install rdoc
