@@ -48,9 +48,6 @@ sudo update-desktop-database
 echo "export PATH=doublequotes/root/.gem/ruby/2.5.0/bin:dollarsignPATHdoublequotes" >> ~/.bashrc
 nano ~/.bashrc
 #------------------------------------------------------------------------------------------------------------------------------------------
-sudo sed -i '4s/5/0/' /etc/default/grub
-sudo grub-mkconfig -o /boot/grub/grub.cfg
-#------------------------------------------------------------------------------------------------------------------------------------------
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 gsettings set org.gnome.desktop.interface clock-format 12h
 #------------------------------------------------------------------------------------------------------------------------------------------
