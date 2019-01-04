@@ -51,6 +51,8 @@ nano ~/.bashrc
 sudo sed -i '4s/5/0/' /etc/default/grub
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 #------------------------------------------------------------------------------------------------------------------------------------------
+gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+#------------------------------------------------------------------------------------------------------------------------------------------
 cd /home/$USER
 sudo rm -r yay
 sudo rm /chroot
