@@ -45,8 +45,8 @@ sed -i '50s/.*/gesture swipe up 4 _internal ws_up/' ~/.config/libinput-gestures.
 sed -i '63s/.*/gesture swipe down 4 _internal ws_down/' ~/.config/libinput-gestures.conf
 sed -i '67s/.*/gesture swipe left 4 xdotool key alt+Right/' ~/.config/libinput-gestures.conf
 sed -i '70s/.*/gesture swipe right 4 xdotool key alt+Left/' ~/.config/libinput-gestures.conf
-sed -i '118s/.*/gesture pinch in 2 xdotool key super+s/' ~/.config/libinput-gestures.conf
-sed -i '119s/.*/gesture pinch out 2	xdotool key super+a/' ~/.config/libinput-gestures.conf
+sed -i '118s/.*/gesture swipe left_up 4 xdotool key super+a/' ~/.config/libinput-gestures.conf
+sed -i '119s/.*/gesture swipe left_down 4 xdotool key super+s/' ~/.config/libinput-gestures.conf
 #------------------------------------------------------------------------------------------------------------------------------------------
 sudo gpasswd -a $USER input
 mkdir /home/$USER/.config/autostart
