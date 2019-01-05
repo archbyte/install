@@ -26,6 +26,14 @@ sudo systemctl enable gdm
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
 sudo sed -i '/WaylandEnable=false/s/^#//' /etc/gdm/custom.conf
+echo '# Enable automatic login for user' | sudo tee --append /etc/gdm/custom.conf
+echo '[daemon]' | sudo tee --append /etc/gdm/custom.conf
+echo 'AutomaticLogin=navtoj' | sudo tee --append /etc/gdm/custom.conf
+echo 'AutomaticLoginEnable=True' | sudo tee --append /etc/gdm/custom.conf
+#
+echo Replace "navtoj" with your username in the following file. Press ENTER to continue.
+read
+sudo nano /etc/gdm/custom.conf
 sudo -u gdm dbus-launch gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 #------------------------------------------------------------------------------------------------------------------------------------------
 echo "Editing /etc/hosts file for sublime text..."
