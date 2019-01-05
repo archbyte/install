@@ -66,12 +66,9 @@ EOT
 #------------------------------------------------------------------------------------------------------------------------------------------
 #sudo pacman -S fprintd
 #sudo sed -i.bkp '/#%PAM-1.0/a auth       sufficient   pam_fprintd.so' /etc/pam.d/polkit-1
-#
 #fprintd-enroll
-#
 #sudo sed -i.bkp '/auth		sufficient	pam_rootok.so/a auth            sufficient      pam_fprintd.so' /etc/pam.d/su
 #sudo sed -i.bkp '/#%PAM-1.0/a auth            sufficient      pam_fprintd.so' /etc/pam.d/sudo
-#
 #sudo cat << EOT >> /etc/polkit-1/rules.d/50-net.reactivated.fprint.device.enroll.rules
 #polkit.addRule(function (action, subject) {
 #  if (action.id == "net.reactivated.fprint.device.enroll") {
@@ -79,5 +76,5 @@ EOT
 #  }
 #})
 #EOT
-#
+#------------------------------------------------------------------------------------------------------------------------------------------
 sudo rm /home/$USER/de
