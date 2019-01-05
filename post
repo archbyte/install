@@ -64,6 +64,9 @@ F913BE58 42FEA319 F954EFDD AE881E0B
 ------ END LICENSE ------
 EOT
 #------------------------------------------------------------------------------------------------------------------------------------------
+git clone https://github.com/rockon999/dynamic-panel-transparency.git
+mv dynamic-panel-transparency/dynamic-panel-transparency@rockon999.github.io ~/.local/share/gnome-shell/extensions/
+#------------------------------------------------------------------------------------------------------------------------------------------
 #sudo pacman -S fprintd
 #sudo sed -i.bkp '/#%PAM-1.0/a auth       sufficient   pam_fprintd.so' /etc/pam.d/polkit-1
 #fprintd-enroll
