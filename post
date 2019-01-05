@@ -72,7 +72,7 @@ fprintd-enroll
 sudo sed -i.bkp '/auth		sufficient	pam_rootok.so/a auth            sufficient      pam_fprintd.so' /etc/pam.d/su
 sudo sed -i.bkp '/#%PAM-1.0/a auth            sufficient      pam_fprintd.so' /etc/pam.d/sudo
 #
-cat << EOT >> /etc/polkit-1/rules.d/50-net.reactivated.fprint.device.enroll.rules
+sudo cat << EOT >> /etc/polkit-1/rules.d/50-net.reactivated.fprint.device.enroll.rules
 polkit.addRule(function (action, subject) {
   if (action.id == "net.reactivated.fprint.device.enroll") {
     return subject.user == "root" ? polkit.Result.YES : polkit.result.NO
