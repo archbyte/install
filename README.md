@@ -26,6 +26,6 @@ reboot
 
 ./de
 
-## Welcome to Arch Linux.
+**After reboot, login and enter the below commands.**
 
 ./post
