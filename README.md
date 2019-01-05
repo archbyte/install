@@ -1,6 +1,6 @@
 ## Use only if you know how to manually install Arch. 
 
-**My setup: 500GB HD (GPT-UEFI) | Dual Boot: Windows 10 LTSC + Arch Linux**
+**My setup: Lenovo X1 Carbon 120GB SSD (GPT-UEFI)
 
 **Boot into the arch install media and run the following commands.**
 
