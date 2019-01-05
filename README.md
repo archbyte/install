@@ -28,4 +28,4 @@ reboot
 
 ## Welcome to Arch Linux.
 
-sudo ./post
+./post
