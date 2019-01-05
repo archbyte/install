@@ -30,6 +30,7 @@ echo '# Enable automatic login for user' | sudo tee --append /etc/gdm/custom.con
 echo '[daemon]' | sudo tee --append /etc/gdm/custom.conf
 echo 'AutomaticLogin=navtoj' | sudo tee --append /etc/gdm/custom.conf
 echo 'AutomaticLoginEnable=True' | sudo tee --append /etc/gdm/custom.conf
+echo
 #
 echo Replace "navtoj" with your username in the following file. Press ENTER to continue.
 read
