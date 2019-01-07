@@ -46,8 +46,9 @@ cd /usr/share/themes/Ant-Dracula/gtk-3.20/
 sudo sed -i '22s/ff79c6/00b0ff/' _colors.scss
 sudo sass gtk.scss gtk.css
 #------------------------------------------------------------------------------------------------------------------------------------------
-git clone https://github.com/rockon999/dynamic-panel-transparency.git
-mv dynamic-panel-transparency/dynamic-panel-transparency@rockon999.github.io ~/.local/share/gnome-shell/extensions/
+sudo git clone https://github.com/rockon999/dynamic-panel-transparency.git
+sudo mv dynamic-panel-transparency/dynamic-panel-transparency@rockon999.github.io ~/.local/share/gnome-shell/extensions/
+sudo rm -r dynamic-panel-transparency
 #------------------------------------------------------------------------------------------------------------------------------------------
 #sudo pacman -S fprintd
 #sudo sed -i.bkp '/#%PAM-1.0/a auth       sufficient   pam_fprintd.so' /etc/pam.d/polkit-1
