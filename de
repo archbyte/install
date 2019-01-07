@@ -95,4 +95,4 @@ EOT
 cd /home/$USER
 sudo rm -r pikaur
 sudo rm /chroot
-sudo reboot
+#sudo reboot
