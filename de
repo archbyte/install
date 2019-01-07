@@ -72,11 +72,14 @@ sudo sed -i '10s/doublequotes/"/' ~/.bashrc
 sudo sed -i '10s/dollarsign/$/' ~/.bashrc
 #------------------------------------------------------------------------------------------------------------------------------------------
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
-gsettings set org.gnome.desktop.interface clock-format 12h
 gsettings set org.gnome.Terminal.Legacy.Settings default-show-menubar false
 gsettings set org.gnome.Terminal.Legacy.Keybindings toggle-menubar '<Alt>m'
 gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing 'rgba'
 gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
+gsettings set org.gnome.mutter attach-modal-dialogs false
+gsettings set org.gnome.mutter center-new-windows true
+gsettings set org.gnome.mutter edge-tiling true
+gsettings set org.gnome.desktop.wm.preferences resize-with-right-button false
 gsettings set org.gnome.nautilus.window-state sidebar-width 157
  gsettings set org.gnome.nautilus.window-state initial-size '(794, 485)'
 gsettings set org.gnome.desktop.interface show-battery-percentage true
@@ -84,6 +87,7 @@ gsettings set org.gnome.desktop.interface clock-show-date true
 gsettings set org.gnome.desktop.interface clock-show-seconds true
 gsettings set org.gnome.desktop.datetime automatic-timezone true
 timedatectl set-ntp 1
+gsettings set org.gnome.desktop.interface clock-format 12h
 gsettings set org.gnome.desktop.interface font-name 'Clear Sans Medium, Medium 11'
 gsettings set org.gnome.desktop.interface document-font-name 'Clear Sans 11'
 gsettings set org.gnome.desktop.interface monospace-font-name 'Clear Sans Thin, weight=255 11'
