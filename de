@@ -12,13 +12,13 @@ echo
 #------------------------------------------------------------------------------------------------------------------------------------------
 sudo pacman -Syu
 #------------------------------------------------------------------------------------------------------------------------------------------
-sudo pacman -S --needed xorg-server xorg-xinit xorg-xprop gnome-shell nautilus gnome-system-monitor chrome-gnome-shell gnome-tweak-tool gnome-screenshot gnome-control-center gnome-terminal gnome-backgrounds gnome-power-manager chromium eog xdg-user-dirs git xdotool wmctrl plank synergy qt5-base tree neofetch gdm reflector gparted
+sudo pacman -S --needed base-devel git xorg-server xorg-xinit xorg-xprop gnome-shell nautilus gnome-system-monitor chrome-gnome-shell gnome-tweak-tool gnome-screenshot gnome-control-center gnome-terminal gnome-backgrounds gnome-power-manager chromium eog xdg-user-dirs xdotool wmctrl plank synergy qt5-base tree neofetch gdm reflector gparted
 #------------------------------------------------------------------------------------------------------------------------------------------
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si
+git clone https://aur.archlinux.org/pikaur.git
+cd pikaur
+makepkg -fsri
 cd /home/$USER
-yay -S pamac nautilus-admin sublime-text-dev libinput-gestures automathemely la-capitaine-icon-theme capitaine-cursors
+pakaur -S pamac-aur nautilus-admin sublime-text-dev libinput-gestures automathemely la-capitaine-icon-theme capitaine-cursors
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
 echo "Enabling gdm service..."
@@ -29,12 +29,13 @@ sudo sed -i '/WaylandEnable=false/s/^#//' /etc/gdm/custom.conf
 echo '# Enable automatic login for user' | sudo tee --append /etc/gdm/custom.conf
 echo '[daemon]' | sudo tee --append /etc/gdm/custom.conf
 echo 'AutomaticLogin=navtoj' | sudo tee --append /etc/gdm/custom.conf
-echo 'AutomaticLoginEnable=True' | sudo tee --append /etc/gdm/custom.conf
-echo
 #
 echo Replace "navtoj" with your username in the following file. Press ENTER to continue.
 read
 sudo nano /etc/gdm/custom.conf
+#
+echo 'AutomaticLoginEnable=True' | sudo tee --append /etc/gdm/custom.conf
+echo
 sudo -u gdm dbus-launch gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 #------------------------------------------------------------------------------------------------------------------------------------------
 echo "Editing /etc/hosts file for sublime text..."
@@ -70,8 +71,26 @@ sudo sed -i '10s/dollarsign/$/' ~/.bashrc
 #------------------------------------------------------------------------------------------------------------------------------------------
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 gsettings set org.gnome.desktop.interface clock-format 12h
+#
+subl3
+#
+cat << EOT >> /home/$USER/.config/sublime-text-3/Local/License.sublime_license
+----- BEGIN LICENSE -----
+sgbteam
+Single User License
+EA7E-1153259
+8891CBB9 F1513E4F 1A3405C1 A865D53F
+115F202E 7B91AB2D 0D2A40ED 352B269B
+76E84F0B CD69BFC7 59F2DFEF E267328F
+215652A3 E88F9D8F 4C38E3BA 5B2DAAE4
+969624E7 DC9CD4D5 717FB40C 1B9738CF
+20B3C4F1 E917B5B3 87C38D9C ACCE7DD8
+5F7EF854 86B9743C FADC04AA FB0DA5C0
+F913BE58 42FEA319 F954EFDD AE881E0B
+------ END LICENSE ------
+EOT
 #------------------------------------------------------------------------------------------------------------------------------------------
 cd /home/$USER
-sudo rm -r yay
+sudo rm -r pikaur
 sudo rm /chroot
 sudo reboot
