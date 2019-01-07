@@ -18,7 +18,7 @@ git clone https://aur.archlinux.org/pikaur.git
 cd pikaur
 makepkg -fsri
 cd /home/$USER
-pakaur -S pamac-aur nautilus-admin sublime-text-dev libinput-gestures automathemely la-capitaine-icon-theme capitaine-cursors
+pikaur -S ttf-clear-sans pamac-aur nautilus-admin sublime-text-dev libinput-gestures automathemely la-capitaine-icon-theme capitaine-cursors
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
 echo "Enabling gdm service..."
@@ -30,7 +30,9 @@ echo '# Enable automatic login for user' | sudo tee --append /etc/gdm/custom.con
 echo '[daemon]' | sudo tee --append /etc/gdm/custom.conf
 echo 'AutomaticLogin=navtoj' | sudo tee --append /etc/gdm/custom.conf
 #
-echo Replace "navtoj" with your username in the following file. Press ENTER to continue.
+echo Replace "navtoj" with your username in the following file. 
+echo
+echo Press ENTER to continue.
 read
 sudo nano /etc/gdm/custom.conf
 #
