@@ -74,5 +74,6 @@ automathemely
 EOT
 chmod +x /home/$USER/.config/autostart/automathemely
 #------------------------------------------------------------------------------------------------------------------------------------------
+sudo rm /home/$USER/.config/autostart/post
 sudo rm /home/$USER/de
 sudo reboot
