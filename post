@@ -64,16 +64,21 @@ automathemely --setting themes.gnome.dark.gtk=Ant-Dracula
 automathemely --setting themes.gnome.dark.icons=la-capitaine
 automathemely --setting themes.gnome.dark.shell=Ant-Nebula
 automathemely --setting location.auto_enabled=True
-#automathemely --setting misc.notifications=False
+automathemely --setting misc.notifications=False
 automathemely --update
 automathemely --restart
 #------------------------------------------------------------------------------------------------------------------------------------------
-cat << EOT >> /home/$USER/.config/autostart/automathemely
-#!/bin/bash
-automathemely
+cat << EOT >> /home/$USER/.config/autostart/automathemely.desktop
+[Desktop Entry]
+Name=automathemely
+GenericName=Script
+Type=Application
+Exec=automathemely
+Terminal=false
+NoDisplay=false
 EOT
 chmod +x /home/$USER/.config/autostart/automathemely
 #------------------------------------------------------------------------------------------------------------------------------------------
-sudo rm /home/$USER/.config/autostart/post
+sudo rm /home/$USER/post
 sudo rm /home/$USER/de
 sudo reboot
