@@ -24,23 +24,19 @@ echo
 echo "Enabling gdm service..."
 sudo systemctl enable gdm
 echo
-#
-subl3
 #------------------------------------------------------------------------------------------------------------------------------------------
 sudo sed -i '/WaylandEnable=false/s/^#//' /etc/gdm/custom.conf
 echo '# Enable automatic login for user' | sudo tee --append /etc/gdm/custom.conf
 echo '[daemon]' | sudo tee --append /etc/gdm/custom.conf
 echo 'AutomaticLogin=navtoj' | sudo tee --append /etc/gdm/custom.conf
+echo 'AutomaticLoginEnable=True' | sudo tee --append /etc/gdm/custom.conf
+echo
 #
 echo Replace "navtoj" with your username in the following file. 
 echo
 echo Press ENTER to continue.
 read
 sudo nano /etc/gdm/custom.conf
-#
-echo 'AutomaticLoginEnable=True' | sudo tee --append /etc/gdm/custom.conf
-echo
-#sudo -u gdm dbus-launch gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 #------------------------------------------------------------------------------------------------------------------------------------------
 echo "Editing /etc/hosts file for sublime text..."
 echo '127.0.0.1       www.sublimetext.com' | sudo tee --append /etc/hosts
@@ -54,11 +50,39 @@ sed -i '70s/.*/gesture swipe right 4 xdotool key alt+Left/' ~/.config/libinput-g
 sed -i '118s/.*/gesture swipe left_up 4 xdotool key super+a/' ~/.config/libinput-gestures.conf
 sed -i '119s/.*/gesture swipe left_down 4 xdotool key super+s/' ~/.config/libinput-gestures.conf
 #------------------------------------------------------------------------------------------------------------------------------------------
+echo "export PATH=doublequotes/root/.gem/ruby/2.5.0/bin:dollarsignPATHdoublequotes" >> ~/.bashrc
+sudo sed -i '10s/doublequotes/"/' ~/.bashrc
+sudo sed -i '10s/doublequotes/"/' ~/.bashrc
+sudo sed -i '10s/dollarsign/$/' ~/.bashrc
+#------------------------------------------------------------------------------------------------------------------------------------------
+subl3
+automathemely
+#
 sudo gpasswd -a $USER input
 mkdir /home/$USER/.config/autostart
 cp /usr/share/applications/libinput-gestures.desktop /home/$USER/.config/autostart
 cp /usr/share/applications/plank.desktop /home/$USER/.config/autostart
 cp /usr/share/applications/synergy.desktop /home/$USER/.config/autostart
+cp /usr/share/applications/automathemely.desktop /home/$USER/.config/autostart
+#------------------------------------------------------------------------------------------------------------------------------------------
+sudo rm -r /usr/share/backgrounds/gnome
+sudo rm -r /usr/share/gnome-background-properties
+#
+sudo git clone https://github.com/archbyte/mojave /usr/share/backgrounds/gnome
+sudo rm -r /usr/share/backgrounds/gnome/.git
+#
+sudo mkdir /usr/share/gnome-background-properties
+sudo mv /usr/share/backgrounds/gnome/gnome-backgrounds.xml /usr/share/gnome-background-properties
+#------------------------------------------------------------------------------------------------------------------------------------------
+sudo git clone https://github.com/EliverLara/Ant-Nebula --branch slim /usr/share/themes/Ant-Nebula
+sudo git clone https://github.com/EliverLara/Ant-Dracula --branch slim /usr/share/themes/Ant-Dracula
+#
+sudo pacman -S --needed ruby ruby-docs rubygems
+sudo gem install rdoc
+sudo gem install sass
+cd /usr/share/themes/Ant-Dracula/gtk-3.20/
+sudo sed -i '22s/ff79c6/00b0ff/' _colors.scss
+sudo sass gtk.scss gtk.css
 #------------------------------------------------------------------------------------------------------------------------------------------
 sudo ln -sf /dev/null /etc/systemd/system/avahi-daemon.service
 sudo ln -sf /dev/null /etc/systemd/system/avahi-daemon.socket
@@ -68,11 +92,7 @@ sudo bash -c "echo 'NoDisplay=true' >> /usr/share/applications/bssh.desktop"
 sudo bash -c "echo 'NoDisplay=true' >> /usr/share/applications/bvnc.desktop"
 sudo update-desktop-database
 #------------------------------------------------------------------------------------------------------------------------------------------
-echo "export PATH=doublequotes/root/.gem/ruby/2.5.0/bin:dollarsignPATHdoublequotes" >> ~/.bashrc
-sudo sed -i '10s/doublequotes/"/' ~/.bashrc
-sudo sed -i '10s/doublequotes/"/' ~/.bashrc
-sudo sed -i '10s/dollarsign/$/' ~/.bashrc
-#------------------------------------------------------------------------------------------------------------------------------------------
+#sudo -u gdm dbus-launch gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 gsettings set org.gnome.Terminal.Legacy.Settings default-show-menubar false
 gsettings set org.gnome.Terminal.Legacy.Keybindings toggle-menubar '<Alt>m'
@@ -88,12 +108,17 @@ gsettings set org.gnome.desktop.interface show-battery-percentage true
 gsettings set org.gnome.desktop.interface clock-show-date true
 gsettings set org.gnome.desktop.interface clock-show-seconds true
 gsettings set org.gnome.desktop.datetime automatic-timezone true
-timedatectl set-ntp 1
 gsettings set org.gnome.desktop.interface clock-format 12h
 gsettings set org.gnome.desktop.interface font-name 'Clear Sans Medium, Medium 11'
 gsettings set org.gnome.desktop.interface document-font-name 'Clear Sans 11'
 gsettings set org.gnome.desktop.interface monospace-font-name 'Clear Sans Thin, weight=255 11'
 gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Clear Sans Bold 11'
+gsettings set org.gnome.desktop.wm.preferences button-layout 'close,minimize,maximize:'
+timedatectl set-ntp 1
+gsettings set org.gnome.desktop.interface icon-theme 'la-capitaine'
+gsettings set org.gnome.desktop.interface cursor-theme 'capitaine-cursors'
+gsettings set org.gnome.desktop.background picture-uri /usr/share/backgrounds/gnome/mojave-timed.xml
+gsettings set org.gnome.desktop.screensaver picture-uri /usr/share/backgrounds/gnome/mojave-timed.xml
 sudo cp /usr/share/plank/themes/Default/dock.theme /usr/share/plank/themes/Default/dockbackup.theme && sudo cp /usr/share/plank/themes/Transparent/dock.theme /usr/share/plank/themes/Default/dock.theme
 #
 automathemely --setting desktop_environment=gnome
@@ -105,6 +130,8 @@ automathemely --setting themes.gnome.dark.icons=la-capitaine
 automathemely --setting themes.gnome.dark.shell=Ant-Nebula
 automathemely --setting location.auto_enabled=True
 #automathemely --setting misc.notifications=False
+automathemely --update
+automathemely --restart
 #
 cat << EOT >> /home/$USER/.config/sublime-text-3/Local/License.sublime_license
 ----- BEGIN LICENSE -----
