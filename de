@@ -12,7 +12,7 @@ echo
 #------------------------------------------------------------------------------------------------------------------------------------------
 sudo pacman -Syu
 #------------------------------------------------------------------------------------------------------------------------------------------
-sudo pacman -S --needed base-devel git xorg-server xorg-xinit xorg-xprop gnome-shell nautilus gnome-system-monitor chrome-gnome-shell gnome-tweak-tool gnome-screenshot gnome-control-center gnome-terminal gnome-backgrounds gnome-power-manager chromium eog xdg-user-dirs xdotool wmctrl plank synergy qt5-base tree neofetch gdm reflector gparted
+sudo pacman -S --needed ruby ruby-docs rubygems base-devel git wget bash curl dbus perl less xorg-server xorg-xinit xorg-xprop gnome-shell nautilus gnome-system-monitor chrome-gnome-shell gnome-tweak-tool gnome-screenshot gnome-control-center gnome-terminal gnome-backgrounds gnome-power-manager chromium eog xdg-user-dirs xdotool wmctrl plank synergy qt5-base tree neofetch gdm reflector gparted
 #------------------------------------------------------------------------------------------------------------------------------------------
 git clone https://aur.archlinux.org/pikaur.git
 cd pikaur
@@ -21,10 +21,17 @@ cd /home/$USER
 pikaur -S ttf-clear-sans pamac-aur nautilus-admin sublime-text-dev libinput-gestures automathemely la-capitaine-icon-theme capitaine-cursors
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
+cd /home/$USER
+wget -O gnome-shell-extension-installer "https://github.com/brunelli/gnome-shell-extension-installer/raw/master/gnome-shell-extension-installer"
+chmod +x gnome-shell-extension-installer
+sudo mv gnome-shell-extension-installer /usr/bin/
+#
+gnome-shell-extension-installer 19 545 277 36 1303 118 1297 800 826
+#------------------------------------------------------------------------------------------------------------------------------------------
 echo "Enabling gdm service..."
 sudo systemctl enable gdm
 echo
-#------------------------------------------------------------------------------------------------------------------------------------------
+#
 sudo sed -i '/WaylandEnable=false/s/^#//' /etc/gdm/custom.conf
 echo '# Enable automatic login for user' | sudo tee --append /etc/gdm/custom.conf
 echo '[daemon]' | sudo tee --append /etc/gdm/custom.conf
@@ -65,6 +72,8 @@ cp /usr/share/applications/plank.desktop /home/$USER/.config/autostart
 cp /usr/share/applications/synergy.desktop /home/$USER/.config/autostart
 cp /usr/share/applications/automathemely.desktop /home/$USER/.config/autostart
 #------------------------------------------------------------------------------------------------------------------------------------------
+sudo cp /usr/share/plank/themes/Default/dock.theme /usr/share/plank/themes/Default/dockbackup.theme && sudo cp /usr/share/plank/themes/Transparent/dock.theme /usr/share/plank/themes/Default/dock.theme
+#
 sudo rm -r /usr/share/backgrounds/gnome
 sudo rm -r /usr/share/gnome-background-properties
 #
@@ -77,7 +86,6 @@ sudo mv /usr/share/backgrounds/gnome/gnome-backgrounds.xml /usr/share/gnome-back
 sudo git clone https://github.com/EliverLara/Ant-Nebula --branch slim /usr/share/themes/Ant-Nebula
 sudo git clone https://github.com/EliverLara/Ant-Dracula --branch slim /usr/share/themes/Ant-Dracula
 #
-sudo pacman -S --needed ruby ruby-docs rubygems
 sudo gem install rdoc
 sudo gem install sass
 cd /usr/share/themes/Ant-Dracula/gtk-3.20/
@@ -119,7 +127,6 @@ gsettings set org.gnome.desktop.interface icon-theme 'la-capitaine'
 gsettings set org.gnome.desktop.interface cursor-theme 'capitaine-cursors'
 gsettings set org.gnome.desktop.background picture-uri /usr/share/backgrounds/gnome/mojave-timed.xml
 gsettings set org.gnome.desktop.screensaver picture-uri /usr/share/backgrounds/gnome/mojave-timed.xml
-sudo cp /usr/share/plank/themes/Default/dock.theme /usr/share/plank/themes/Default/dockbackup.theme && sudo cp /usr/share/plank/themes/Transparent/dock.theme /usr/share/plank/themes/Default/dock.theme
 #
 automathemely --setting desktop_environment=gnome
 automathemely --setting themes.gnome.light.gtk=Ant-Nebula
