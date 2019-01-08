@@ -12,7 +12,9 @@ echo
 #------------------------------------------------------------------------------------------------------------------------------------------
 sudo pacman -Syu
 #------------------------------------------------------------------------------------------------------------------------------------------
-sudo pacman -S --needed ruby ruby-docs rubygems base-devel git wget bash curl dbus perl less xorg-server xorg-xinit xorg-xprop gnome-shell nautilus gnome-system-monitor chrome-gnome-shell gnome-tweak-tool gnome-screenshot gnome-control-center gnome-terminal gnome-backgrounds gnome-power-manager chromium eog xdg-user-dirs xdotool wmctrl plank synergy qt5-base tree neofetch gdm reflector gparted
+sudo pacman -S --needed ruby ruby-docs rubygems util-linux base-devel git wget bash curl dbus perl less xorg-server xorg-xinit xorg-xprop gnome-shell nautilus gnome-system-monitor chrome-gnome-shell gnome-tweak-tool gnome-screenshot gnome-control-center gnome-terminal gnome-backgrounds gnome-power-manager chromium eog xdg-user-dirs xdotool wmctrl plank synergy qt5-base tree neofetch gdm reflector gparted
+#
+sudo systemctl enable fstrim.timer
 #------------------------------------------------------------------------------------------------------------------------------------------
 git clone https://aur.archlinux.org/pikaur.git
 cd pikaur
