@@ -3,7 +3,7 @@ echo
 echo "Press 'Ctrl+c' to exit OR 'Enter' to continue"
 read
 #------------------------------------------------------------------------------------------------------------------------------------------
-#automathemely
+automathemely
 #------------------------------------------------------------------------------------------------------------------------------------------
 #sudo rm -r /usr/share/backgrounds/gnome
 #sudo rm -r /usr/share/gnome-background-properties
