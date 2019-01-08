@@ -3,47 +3,47 @@ echo
 echo "Press 'Ctrl+c' to exit OR 'Enter' to continue"
 read
 #------------------------------------------------------------------------------------------------------------------------------------------
-automathemely
+#automathemely
 #------------------------------------------------------------------------------------------------------------------------------------------
-sudo rm -r /usr/share/backgrounds/gnome
-sudo rm -r /usr/share/gnome-background-properties
+#sudo rm -r /usr/share/backgrounds/gnome
+#sudo rm -r /usr/share/gnome-background-properties
 #
-sudo git clone https://github.com/archbyte/mojave /usr/share/backgrounds/gnome
-sudo rm -r /usr/share/backgrounds/gnome/.git
+#sudo git clone https://github.com/archbyte/mojave /usr/share/backgrounds/gnome
+#sudo rm -r /usr/share/backgrounds/gnome/.git
 #
-sudo mkdir /usr/share/gnome-background-properties
-sudo mv /usr/share/backgrounds/gnome/gnome-backgrounds.xml /usr/share/gnome-background-properties
+#sudo mkdir /usr/share/gnome-background-properties
+#sudo mv /usr/share/backgrounds/gnome/gnome-backgrounds.xml /usr/share/gnome-background-properties
 #
-gsettings set org.gnome.desktop.background picture-uri /usr/share/backgrounds/gnome/mojave-timed.xml
-gsettings set org.gnome.desktop.screensaver picture-uri /usr/share/backgrounds/gnome/mojave-timed.xml
+#gsettings set org.gnome.desktop.background picture-uri /usr/share/backgrounds/gnome/mojave-timed.xml
+#gsettings set org.gnome.desktop.screensaver picture-uri /usr/share/backgrounds/gnome/mojave-timed.xml
 #------------------------------------------------------------------------------------------------------------------------------------------
-sudo git clone https://github.com/EliverLara/Ant-Nebula --branch slim /usr/share/themes/Ant-Nebula
-sudo git clone https://github.com/EliverLara/Ant-Dracula --branch slim /usr/share/themes/Ant-Dracula
+#sudo git clone https://github.com/EliverLara/Ant-Nebula --branch slim /usr/share/themes/Ant-Nebula
+#sudo git clone https://github.com/EliverLara/Ant-Dracula --branch slim /usr/share/themes/Ant-Dracula
 #gsettings set org.gnome.desktop.interface gtk-theme "Ant-Nebula"
 #gsettings set org.gnome.desktop.wm.preferences theme "Ant-Nebula"
-gsettings set org.gnome.desktop.interface icon-theme 'la-capitaine'
-gsettings set org.gnome.desktop.interface cursor-theme 'capitaine-cursors'
+#gsettings set org.gnome.desktop.interface icon-theme 'la-capitaine'
+#gsettings set org.gnome.desktop.interface cursor-theme 'capitaine-cursors'
 #
-automathemely --setting themes.light=Ant-Nebula
-automathemely --setting themes.dark=Ant-Dracula
-automathemely --setting offset.sunrise=0
-automathemely --setting offset.sunset=0
-automathemely --setting location.auto_enabled=true
-automathemely --setting misc.notifications=false
-automathemely --setting extras.atom.enabled=false
-automathemely --setting extras.vscode.enabled=false
-automathemely --update
-automathemely --restart
-cp /usr/share/applications/automathemely.desktop /home/$USER/.config/autostart
+#automathemely --setting themes.light=Ant-Nebula
+#automathemely --setting themes.dark=Ant-Dracula
+#automathemely --setting offset.sunrise=0
+#automathemely --setting offset.sunset=0
+#automathemely --setting location.auto_enabled=true
+#automathemely --setting misc.notifications=false
+#automathemely --setting extras.atom.enabled=false
+#automathemely --setting extras.vscode.enabled=false
+#automathemely --update
+#automathemely --restart
+#cp /usr/share/applications/automathemely.desktop /home/$USER/.config/autostart
 #
-gsettings set org.gnome.desktop.wm.preferences button-layout 'close,minimize,maximize:'
+#gsettings set org.gnome.desktop.wm.preferences button-layout 'close,minimize,maximize:'
 #------------------------------------------------------------------------------------------------------------------------------------------
-sudo pacman -S --needed ruby ruby-docs rubygems
-sudo gem install rdoc
-sudo gem install sass
-cd /usr/share/themes/Ant-Dracula/gtk-3.20/
-sudo sed -i '22s/ff79c6/00b0ff/' _colors.scss
-sudo sass gtk.scss gtk.css
+#sudo pacman -S --needed ruby ruby-docs rubygems
+#sudo gem install rdoc
+#sudo gem install sass
+#cd /usr/share/themes/Ant-Dracula/gtk-3.20/
+#sudo sed -i '22s/ff79c6/00b0ff/' _colors.scss
+#sudo sass gtk.scss gtk.css
 #------------------------------------------------------------------------------------------------------------------------------------------
 #sudo git clone https://github.com/rockon999/dynamic-panel-transparency.git
 #sudo mv dynamic-panel-transparency/dynamic-panel-transparency@rockon999.github.io ~/.local/share/gnome-shell/extensions/
