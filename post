@@ -62,4 +62,51 @@ read
 #})
 #EOT
 #------------------------------------------------------------------------------------------------------------------------------------------
+sudo pacman -S ruby ruby-docs rubygems
+sudo gem install rdoc
+sudo gem install sass
+cd /usr/share/themes/Ant-Dracula/gtk-3.20/
+sudo sed -i '22s/ff79c6/00b0ff/' _colors.scss
+sudo sass gtk.scss gtk.css
+#
+#sudo -u gdm dbus-launch gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+gsettings set org.gnome.Terminal.Legacy.Settings default-show-menubar false
+gsettings set org.gnome.Terminal.Legacy.Keybindings toggle-menubar '<Alt>m'
+gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing 'rgba'
+gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
+gsettings set org.gnome.mutter attach-modal-dialogs false
+gsettings set org.gnome.mutter center-new-windows true
+gsettings set org.gnome.mutter edge-tiling true
+gsettings set org.gnome.desktop.wm.preferences resize-with-right-button false
+gsettings set org.gnome.nautilus.window-state sidebar-width 157
+gsettings set org.gnome.nautilus.window-state initial-size '(794, 485)'
+gsettings set org.gnome.desktop.interface show-battery-percentage true
+gsettings set org.gnome.desktop.interface clock-show-date true
+gsettings set org.gnome.desktop.interface clock-show-seconds true
+gsettings set org.gnome.desktop.datetime automatic-timezone true
+gsettings set org.gnome.desktop.interface clock-format 12h
+gsettings set org.gnome.desktop.interface font-name 'Clear Sans Medium, Medium 11'
+gsettings set org.gnome.desktop.interface document-font-name 'Clear Sans 11'
+gsettings set org.gnome.desktop.interface monospace-font-name 'Clear Sans Thin, weight=255 11'
+gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Clear Sans Bold 11'
+gsettings set org.gnome.desktop.wm.preferences button-layout 'close,minimize,maximize:'
+gsettings set org.gnome.desktop.interface icon-theme 'la-capitaine'
+gsettings set org.gnome.desktop.interface cursor-theme 'capitaine-cursors'
+gsettings set org.gnome.desktop.background picture-uri /usr/share/backgrounds/gnome/mojave-timed.xml
+gsettings set org.gnome.desktop.screensaver picture-uri /usr/share/backgrounds/gnome/mojave-timed.xml
+#
+automathemely --setting desktop_environment=gnome
+automathemely --setting themes.gnome.light.gtk=Ant-Nebula
+automathemely --setting themes.gnome.light.icons=la-capitaine
+automathemely --setting themes.gnome.light.shell=Ant-Nebula
+automathemely --setting themes.gnome.dark.gtk=Ant-Dracula
+automathemely --setting themes.gnome.dark.icons=la-capitaine
+automathemely --setting themes.gnome.dark.shell=Ant-Nebula
+automathemely --setting location.auto_enabled=True
+#automathemely --setting misc.notifications=False
+automathemely --update
+automathemely --restart
+#------------------------------------------------------------------------------------------------------------------------------------------
 sudo rm /home/$USER/de
+sudo reboot
