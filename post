@@ -62,7 +62,7 @@ automathemely
 #})
 #EOT
 #------------------------------------------------------------------------------------------------------------------------------------------
-sudo pacman -S ruby ruby-docs rubygems
+sudo pacman -S --needed ruby ruby-docs rubygems
 sudo gem install rdoc
 sudo gem install sass
 cd /usr/share/themes/Ant-Dracula/gtk-3.20/
