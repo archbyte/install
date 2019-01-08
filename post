@@ -1,7 +1,6 @@
 #!/bin/bash
 echo
 echo "Press 'Ctrl+c' to exit OR 'Enter' to continue"
-echo "Sublime Text will open as it is needed to generate initial config files. You may close it after it opens."
 read
 #------------------------------------------------------------------------------------------------------------------------------------------
 automathemely
