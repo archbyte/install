@@ -38,7 +38,7 @@ sudo nano /etc/gdm/custom.conf
 #
 echo 'AutomaticLoginEnable=True' | sudo tee --append /etc/gdm/custom.conf
 echo
-sudo -u gdm dbus-launch gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+#sudo -u gdm dbus-launch gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 #------------------------------------------------------------------------------------------------------------------------------------------
 echo "Editing /etc/hosts file for sublime text..."
 echo '127.0.0.1       www.sublimetext.com' | sudo tee --append /etc/hosts
