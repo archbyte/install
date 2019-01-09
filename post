@@ -29,7 +29,6 @@ cd /usr/share/themes/Ant-Dracula/gtk-3.20/
 sudo sed -i '22s/ff79c6/00b0ff/' _colors.scss
 sudo sass gtk.scss gtk.css
 #
-#sudo -u gdm dbus-launch gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 gsettings set org.gnome.Terminal.Legacy.Settings default-show-menubar false
 #gsettings set org.gnome.Terminal.Legacy.Keybindings toggle-menubar '<Alt>m'
@@ -55,6 +54,7 @@ gsettings set org.gnome.desktop.interface icon-theme 'la-capitaine'
 gsettings set org.gnome.desktop.interface cursor-theme 'capitaine-cursors'
 gsettings set org.gnome.desktop.background picture-uri /usr/share/backgrounds/gnome/mojave-timed.xml
 gsettings set org.gnome.desktop.screensaver picture-uri /usr/share/backgrounds/gnome/mojave-timed.xml
+sudo -u gdm dbus-launch gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 #
 sudo sed -i '3s/custom/gnome/' ~/.config/automathemely/user_settings.json
 sudo sed -i '7s/""/"Ant-Nebula"/' ~/.config/automathemely/user_settings.json
@@ -76,14 +76,14 @@ sudo sed -i '65s/true/false/' ~/.config/automathemely/user_settings.json
 automathemely --update
 automathemely --restart
 #------------------------------------------------------------------------------------------------------------------------------------------
-cat << EOT >> /home/$USER/.config/autostart/automathemely.desktop
+cat << EOT >> /home/$USER/.config/autostart/automathemelyrunner.desktop
 [Desktop Entry]
 Name=automathemelyrunner
-GenericName=Script
 Type=Application
-Exec=automathemely
-Terminal=false
+Exec=python3 /usr/lib/python3.7/site-packages/automathemely/bin/autothscheduler.py
+Hidden=false
 NoDisplay=false
+X-GNOME-Autostart-enabled=true
 EOT
 chmod +x /home/$USER/.config/autostart/automathemely
 #------------------------------------------------------------------------------------------------------------------------------------------
