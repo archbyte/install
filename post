@@ -78,7 +78,7 @@ automathemely --restart
 #------------------------------------------------------------------------------------------------------------------------------------------
 cat << EOT >> /home/$USER/.config/autostart/automathemely.desktop
 [Desktop Entry]
-Name=automathemely
+Name=automathemelyrunner
 GenericName=Script
 Type=Application
 Exec=automathemely
