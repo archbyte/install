@@ -12,9 +12,9 @@ echo
 #------------------------------------------------------------------------------------------------------------------------------------------
 sudo pacman -Syu
 #------------------------------------------------------------------------------------------------------------------------------------------
-sudo pacman -S --needed util-linux base-devel git wget bash curl dbus perl less xorg-server xorg-xinit xorg-xprop gnome-shell nautilus gnome-system-monitor chrome-gnome-shell gnome-tweak-tool gnome-screenshot gnome-control-center gnome-terminal gnome-backgrounds gnome-power-manager chromium eog xdg-user-dirs xdotool wmctrl plank synergy qt5-base tree neofetch gdm reflector gparted
-#
-sudo systemctl enable fstrim.timer
+sudo pacman -S --needed base-devel git wget bash curl dbus perl less xorg-server xorg-xinit xorg-xprop gnome-shell nautilus gnome-system-monitor chrome-gnome-shell gnome-tweak-tool gnome-screenshot gnome-control-center gnome-terminal gnome-backgrounds gnome-power-manager chromium eog xdg-user-dirs xdotool wmctrl plank synergy qt5-base tree neofetch gdm reflector gparted
+#sudo pacman -S util-linux 
+#sudo systemctl enable fstrim.timer
 #------------------------------------------------------------------------------------------------------------------------------------------
 git clone https://aur.archlinux.org/pikaur.git
 cd pikaur
@@ -52,12 +52,12 @@ echo '127.0.0.1       www.sublimetext.com' | sudo tee --append /etc/hosts
 echo '127.0.0.1       license.sublimehq.com'| sudo tee --append /etc/hosts
 #------------------------------------------------------------------------------------------------------------------------------------------
 cp /etc/libinput-gestures.conf ~/.config/libinput-gestures.conf
-sed -i '50s/.*/gesture swipe up 4 _internal ws_up/' ~/.config/libinput-gestures.conf
-sed -i '63s/.*/gesture swipe down 4 _internal ws_down/' ~/.config/libinput-gestures.conf
-sed -i '67s/.*/gesture swipe left 4 xdotool key alt+Right/' ~/.config/libinput-gestures.conf
-sed -i '70s/.*/gesture swipe right 4 xdotool key alt+Left/' ~/.config/libinput-gestures.conf
-sed -i '118s/.*/gesture swipe left_up 4 xdotool key super+a/' ~/.config/libinput-gestures.conf
-sed -i '119s/.*/gesture swipe left_down 4 xdotool key super+s/' ~/.config/libinput-gestures.conf
+sed -i '50s/.*/gesture swipe up 3 _internal ws_up/' ~/.config/libinput-gestures.conf
+sed -i '63s/.*/gesture swipe down 3 _internal ws_down/' ~/.config/libinput-gestures.conf
+sed -i '67s/.*/gesture swipe left 3 xdotool key alt+Right/' ~/.config/libinput-gestures.conf
+sed -i '70s/.*/gesture swipe right 3 xdotool key alt+Left/' ~/.config/libinput-gestures.conf
+sed -i '118s/.*/gesture swipe left_up 3 xdotool key super+a/' ~/.config/libinput-gestures.conf
+sed -i '119s/.*/gesture swipe left_down 3 xdotool key super+s/' ~/.config/libinput-gestures.conf
 #------------------------------------------------------------------------------------------------------------------------------------------
 echo "export PATH=doublequotes/root/.gem/ruby/2.5.0/bin:dollarsignPATHdoublequotes" >> ~/.bashrc
 sudo sed -i '10s/doublequotes/"/' ~/.bashrc
