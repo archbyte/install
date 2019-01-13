@@ -73,6 +73,7 @@ sudo sed -i '65s/true/false/' ~/.config/automathemely/user_settings.json
 #automathemely --setting misc.notifications=False
 automathemely --update
 automathemely --restart
+automathemely
 #------------------------------------------------------------------------------------------------------------------------------------------
 cat << EOT >> /home/$USER/.config/autostart/automathemelyrunner.desktop
 [Desktop Entry]
