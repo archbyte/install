@@ -88,4 +88,4 @@ chmod +x /home/$USER/.config/autostart/automathemelyrunner
 sudo sed -i '144s/.xz//' /etc/makepkg.conf
 #
 sudo rm /home/$USER/post
-sudo rm /home/$USER/de
+#sudo rm /home/$USER/de
