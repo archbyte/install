@@ -83,9 +83,10 @@ Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
 EOT
-chmod +x /home/$USER/.config/autostart/automathemelyrunner
+chmod +x /home/$USER/.config/autostart/automathemelyrunner.desktop
 #------------------------------------------------------------------------------------------------------------------------------------------
 sudo sed -i '144s/.xz//' /etc/makepkg.conf
 #
-sudo rm /home/$USER/post
-#sudo rm /home/$USER/de
+sudo rm /home/$USER/de
+#sudo rm /home/$USER/post
+#sudo reboot
