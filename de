@@ -12,7 +12,7 @@ echo
 #------------------------------------------------------------------------------------------------------------------------------------------
 sudo pacman -Syu
 #------------------------------------------------------------------------------------------------------------------------------------------
-sudo pacman -S --needed base-devel git wget bash curl dbus perl less xorg-server xorg-xinit xorg-xprop gnome-shell nautilus gnome-system-monitor chrome-gnome-shell gnome-tweak-tool gnome-screenshot gnome-control-center gnome-terminal gnome-backgrounds gnome-power-manager chromium eog xdg-user-dirs xdotool wmctrl plank synergy qt5-base tree neofetch gdm reflector gparted
+sudo pacman -S --needed base-devel gtk-engine-murrine gtk-engines git wget bash curl dbus perl less xorg-server xorg-xinit xorg-xprop gnome-shell nautilus gnome-system-monitor chrome-gnome-shell gnome-tweak-tool gnome-screenshot gnome-control-center gnome-terminal gnome-backgrounds gnome-power-manager chromium eog xdg-user-dirs xdotool wmctrl plank synergy qt5-base tree neofetch gdm reflector gparted
 #sudo pacman -S util-linux 
 #sudo systemctl enable fstrim.timer
 #------------------------------------------------------------------------------------------------------------------------------------------
@@ -59,10 +59,10 @@ sed -i '70s/.*/gesture swipe right 3 xdotool key alt+Left/' ~/.config/libinput-g
 sed -i '118s/.*/gesture swipe left_up 3 xdotool key super+a/' ~/.config/libinput-gestures.conf
 sed -i '119s/.*/gesture swipe left_down 3 xdotool key super+s/' ~/.config/libinput-gestures.conf
 #------------------------------------------------------------------------------------------------------------------------------------------
-echo "export PATH=doublequotes/root/.gem/ruby/2.6.0/bin:dollarsignPATHdoublequotes" >> ~/.bashrc
-sudo sed -i '10s/doublequotes/"/' ~/.bashrc
-sudo sed -i '10s/doublequotes/"/' ~/.bashrc
-sudo sed -i '10s/dollarsign/$/' ~/.bashrc
+#echo "export PATH=doublequotes/root/.gem/ruby/2.6.0/bin:dollarsignPATHdoublequotes" >> ~/.bashrc
+#sudo sed -i '10s/doublequotes/"/' ~/.bashrc
+#sudo sed -i '10s/doublequotes/"/' ~/.bashrc
+#sudo sed -i '10s/dollarsign/$/' ~/.bashrc
 #------------------------------------------------------------------------------------------------------------------------------------------
 subl3
 #
@@ -85,7 +85,8 @@ sudo mkdir /usr/share/gnome-background-properties
 sudo mv /usr/share/backgrounds/gnome/gnome-backgrounds.xml /usr/share/gnome-background-properties
 #------------------------------------------------------------------------------------------------------------------------------------------
 sudo git clone https://github.com/EliverLara/Ant-Nebula --branch slim /usr/share/themes/Ant-Nebula
-sudo git clone https://github.com/EliverLara/Ant-Dracula --branch slim /usr/share/themes/Ant-Dracula
+#sudo git clone https://github.com/EliverLara/Ant-Dracula --branch slim /usr/share/themes/Ant-Dracula
+sudo git clone https://github.com/paullinuxthemer/Dark-Side /usr/share/themes/Dark-Side
 #------------------------------------------------------------------------------------------------------------------------------------------
 sudo ln -sf /dev/null /etc/systemd/system/avahi-daemon.service
 sudo ln -sf /dev/null /etc/systemd/system/avahi-daemon.socket
