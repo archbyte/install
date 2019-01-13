@@ -22,12 +22,12 @@ automathemely
 #})
 #EOT
 #------------------------------------------------------------------------------------------------------------------------------------------
-sudo pacman -S --needed ruby ruby-docs rubygems
-sudo gem install rdoc
-sudo gem install sass
-cd /usr/share/themes/Ant-Dracula/gtk-3.20/
-sudo sed -i '22s/ff79c6/00b0ff/' _colors.scss
-sudo sass gtk.scss gtk.css
+#sudo pacman -S --needed ruby ruby-docs rubygems
+#sudo gem install rdoc
+#sudo gem install sass
+#cd /usr/share/themes/Ant-Dracula/gtk-3.20/
+#sudo sed -i '22s/ff79c6/00b0ff/' _colors.scss
+#sudo sass gtk.scss gtk.css
 #
 gsettings set org.gnome.Terminal.Legacy.Settings default-show-menubar false
 #gsettings set org.gnome.Terminal.Legacy.Keybindings toggle-menubar '<Alt>m'
@@ -83,7 +83,7 @@ Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
 EOT
-chmod +x /home/$USER/.config/autostart/automathemely
+chmod +x /home/$USER/.config/autostart/automathemelyrunner
 #------------------------------------------------------------------------------------------------------------------------------------------
 sudo sed -i '144s/.xz//' /etc/makepkg.conf
 #
