@@ -59,7 +59,7 @@ sed -i '70s/.*/gesture swipe right 3 xdotool key alt+Left/' ~/.config/libinput-g
 sed -i '118s/.*/gesture swipe left_up 3 xdotool key super+a/' ~/.config/libinput-gestures.conf
 sed -i '119s/.*/gesture swipe left_down 3 xdotool key super+s/' ~/.config/libinput-gestures.conf
 #------------------------------------------------------------------------------------------------------------------------------------------
-echo "export PATH=doublequotes/root/.gem/ruby/2.5.0/bin:dollarsignPATHdoublequotes" >> ~/.bashrc
+echo "export PATH=doublequotes/root/.gem/ruby/2.6.0/bin:dollarsignPATHdoublequotes" >> ~/.bashrc
 sudo sed -i '10s/doublequotes/"/' ~/.bashrc
 sudo sed -i '10s/doublequotes/"/' ~/.bashrc
 sudo sed -i '10s/dollarsign/$/' ~/.bashrc
