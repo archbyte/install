@@ -113,6 +113,9 @@ F913BE58 42FEA319 F954EFDD AE881E0B
 ------ END LICENSE ------
 EOT
 #------------------------------------------------------------------------------------------------------------------------------------------
+#sudo -u gdm dbus-launch gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+#
 cd /home/$USER
 sudo rm -r pikaur
 sudo rm /chroot
