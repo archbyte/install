@@ -57,7 +57,12 @@ echo
 #------------------------------------------------------------------------------------------------------------------------------------------
 sudo sed -i '4s/5/0/' /etc/default/grub
 # Cursor jump: i8042.nomux=1
-#sudo sed -i '6s/quiet/quiet vga=current loglevel=3 i8042.nomux=1 i8042.reset/' /etc/default/grub
+# Read somewhere for general synaptics PS/2 port touchpad problems: i8042.reset
+# Worked for ubuntu in 2011: i8042.reset i8042.nomux i8042.nopnp i8042.noloop
+# dmesg - (did not work for X1 Gen5): psmouse.synaptics_intertouch=1
+#
+# sudo sed -i '6s/quiet/quiet vga=current loglevel=3 i8042.nomux=1 i8042.reset/' /etc/default/grub
+#
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
