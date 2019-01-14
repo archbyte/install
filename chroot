@@ -56,6 +56,7 @@ grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=$boot
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
 sudo sed -i '4s/5/0/' /etc/default/grub
+# Cursor jump: i8042.nomux=1
 #sudo sed -i '6s/quiet/quiet vga=current loglevel=3 i8042.nomux=1 i8042.reset/' /etc/default/grub
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 echo
