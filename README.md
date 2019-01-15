@@ -12,15 +12,15 @@ reflector --verbose -l 100 -p http -p https --sort rate --save /etc/pacman.d/mir
 
 git clone https://github.com/archbyte/install
 
-/bin/bash install/arch
+/bin/bash install/arch && reboot
 
 **When in  chroot, run the below commands.**
 
-./chroot
+./chroot && exit
 
-exit
+#exit
 
-reboot
+#reboot
 
 **Login by entering your username and password.**
 
