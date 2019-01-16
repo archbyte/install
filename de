@@ -12,7 +12,7 @@ echo
 #------------------------------------------------------------------------------------------------------------------------------------------
 sudo pacman -Syu
 #------------------------------------------------------------------------------------------------------------------------------------------
-sudo pacman -S --needed base-devel gtk-engine-murrine gtk-engines git wget bash curl dbus perl less xorg-server xorg-xinit xorg-xprop gnome-shell nautilus gnome-system-monitor chrome-gnome-shell gnome-tweak-tool gnome-screenshot gnome-control-center gnome-terminal gnome-backgrounds gnome-power-manager bluez-utils chromium eog xdg-user-dirs xdotool wmctrl plank synergy qt5-base tree neofetch gdm reflector gparted
+sudo pacman -S --needed base-devel netdata gtk-engine-murrine gtk-engines git wget bash curl dbus perl less xorg-server xorg-xinit xorg-xprop gnome-shell nautilus gnome-system-monitor chrome-gnome-shell gnome-tweak-tool gnome-screenshot gnome-control-center gnome-terminal gnome-backgrounds gnome-power-manager bluez-utils chromium eog xdg-user-dirs xdotool wmctrl plank synergy qt5-base tree neofetch gdm reflector gparted
 #sudo pacman -S util-linux 
 #sudo systemctl enable fstrim.timer
 #------------------------------------------------------------------------------------------------------------------------------------------
@@ -35,6 +35,9 @@ sudo systemctl enable gdm
 echo
 echo "Enabling bluetooth service..."
 sudo systemctl enable bluetooth
+echo
+echo "Enabling netdata service..."
+sudo systemctl enable netdata
 echo
 #
 sudo sed -i '/WaylandEnable=false/s/^#//' /etc/gdm/custom.conf
