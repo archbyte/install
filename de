@@ -33,6 +33,9 @@ gnome-shell-extension-installer 19 545 277 36 1303 118 1297 800 826 1031
 echo "Enabling gdm service..."
 sudo systemctl enable gdm
 echo
+echo "Enabling bluetooth service..."
+sudo systemctl enable bluetooth
+echo
 #
 sudo sed -i '/WaylandEnable=false/s/^#//' /etc/gdm/custom.conf
 echo '# Enable automatic login for user' | sudo tee --append /etc/gdm/custom.conf
