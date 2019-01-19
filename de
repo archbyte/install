@@ -12,11 +12,10 @@ echo
 #------------------------------------------------------------------------------------------------------------------------------------------
 sudo pacman -Syu
 #------------------------------------------------------------------------------------------------------------------------------------------
-sudo pacman -S --needed base-devel git bash curl dbus perl less bluez-utils gtk-engine-murrine gtk-engines wget xorg-server xorg-xinit xorg-xprop gnome-shell nautilus gnome-system-monitor chrome-gnome-shell gnome-tweak-tool gnome-screenshot gnome-control-center gnome-terminal gnome-backgrounds gnome-power-manager chromium eog xdg-user-dirs xdotool wmctrl plank synergy qt5-base tree neofetch gdm reflector gparted
-#                      |--pikaur---|^|gnome-extension-installer|-bluetooth-|-dark-side-theme--------------|-
-# netdata
-sudo pacman -S util-linux
-sudo systemctl enable fstrim.timer
+#-Package-Info------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--pikaur--|~~~|--gnome-extension-installer--|-bluetooth-|--------darkside-theme--------|touch-gestures|----synergy-----|browser-|dock-|dir-|-system-|mirrors--|-disks-|
+sudo pacman -S --needed xorg-server xorg-xinit xorg-xprop gnome-shell gdm nautilus gnome-system-monitor gnome-screenshot gnome-control-center gnome-terminal gnome-backgrounds gnome-power-manager eog gnome-tweak-tool chrome-gnome-shell xdg-user-dirs base-devel git bash curl dbus perl less wget bluez-utils gtk-engine-murrine gtk-engines xdotool wmctrl synergy qt5-base chromium plank tree neofetch reflector gparted
+#sudo pacman -S util-linux
+#sudo systemctl enable fstrim.timer
 #------------------------------------------------------------------------------------------------------------------------------------------
 git clone https://aur.archlinux.org/pikaur.git
 cd pikaur
@@ -38,9 +37,6 @@ echo
 echo "Enabling bluetooth service..."
 sudo systemctl enable bluetooth
 echo
-#echo "Enabling netdata service..."
-#sudo systemctl enable netdata
-#echo
 #
 sudo sed -i '/WaylandEnable=false/s/^#//' /etc/gdm/custom.conf
 echo '# Enable automatic login for user' | sudo tee --append /etc/gdm/custom.conf
@@ -49,7 +45,7 @@ echo 'AutomaticLogin=navtoj' | sudo tee --append /etc/gdm/custom.conf
 echo 'AutomaticLoginEnable=True' | sudo tee --append /etc/gdm/custom.conf
 echo
 #
-echo Replace "navtoj" with your username in the following file. 
+echo Replace "navtoj" with your username in the following file.
 echo
 echo Press ENTER to continue.
 read
@@ -66,12 +62,7 @@ sed -i '67s/.*/gesture swipe left 3 xdotool key alt+Right/' ~/.config/libinput-g
 sed -i '70s/.*/gesture swipe right 3 xdotool key alt+Left/' ~/.config/libinput-gestures.conf
 sed -i '118s/.*/gesture swipe left_up 3 xdotool key super+a/' ~/.config/libinput-gestures.conf
 sed -i '119s/.*/gesture swipe left_down 3 xdotool key super+s/' ~/.config/libinput-gestures.conf
-#------------------------------------------------------------------------------------------------------------------------------------------
-#echo "export PATH=doublequotes/root/.gem/ruby/2.6.0/bin:dollarsignPATHdoublequotes" >> ~/.bashrc
-#sudo sed -i '10s/doublequotes/"/' ~/.bashrc
-#sudo sed -i '10s/doublequotes/"/' ~/.bashrc
-#sudo sed -i '10s/dollarsign/$/' ~/.bashrc
-#------------------------------------------------------------------------------------------------------------------------------------------
+#
 subl3
 #
 sudo gpasswd -a $USER input
@@ -79,7 +70,6 @@ mkdir /home/$USER/.config/autostart
 cp /usr/share/applications/libinput-gestures.desktop /home/$USER/.config/autostart
 cp /usr/share/applications/plank.desktop /home/$USER/.config/autostart
 cp /usr/share/applications/synergy.desktop /home/$USER/.config/autostart
-#cp /usr/share/applications/automathemely.desktop /home/$USER/.config/autostart
 #------------------------------------------------------------------------------------------------------------------------------------------
 sudo cp /usr/share/plank/themes/Default/dock.theme /usr/share/plank/themes/Default/dockbackup.theme && sudo cp /usr/share/plank/themes/Transparent/dock.theme /usr/share/plank/themes/Default/dock.theme
 #
@@ -93,7 +83,6 @@ sudo mkdir /usr/share/gnome-background-properties
 sudo mv /usr/share/backgrounds/gnome/gnome-backgrounds.xml /usr/share/gnome-background-properties
 #------------------------------------------------------------------------------------------------------------------------------------------
 sudo git clone https://github.com/EliverLara/Ant-Nebula --branch slim /usr/share/themes/Ant-Nebula
-#sudo git clone https://github.com/EliverLara/Ant-Dracula --branch slim /usr/share/themes/Ant-Dracula
 sudo git clone https://github.com/paullinuxthemer/Dark-Side /usr/share/themes/Dark-Side
 #------------------------------------------------------------------------------------------------------------------------------------------
 sudo ln -sf /dev/null /etc/systemd/system/avahi-daemon.service
@@ -122,7 +111,6 @@ F913BE58 42FEA319 F954EFDD AE881E0B
 ------ END LICENSE ------
 EOT
 #------------------------------------------------------------------------------------------------------------------------------------------
-#sudo -u gdm dbus-launch gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 #
 cd /home/$USER
