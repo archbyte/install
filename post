@@ -5,32 +5,11 @@ read
 #------------------------------------------------------------------------------------------------------------------------------------------
 automathemely
 #------------------------------------------------------------------------------------------------------------------------------------------
-#sudo git clone https://github.com/rockon999/dynamic-panel-transparency.git
-#sudo mv dynamic-panel-transparency/dynamic-panel-transparency@rockon999.github.io ~/.local/share/gnome-shell/extensions/
-#sudo rm -r dynamic-panel-transparency
+sudo pacman -S util-linux
+sudo systemctl enable fstrim.timer
 #------------------------------------------------------------------------------------------------------------------------------------------
-#sudo pacman -S fprintd
-#sudo sed -i.bkp '/#%PAM-1.0/a auth       sufficient   pam_fprintd.so' /etc/pam.d/polkit-1
-#fprintd-enroll
-#sudo sed -i.bkp '/auth		sufficient	pam_rootok.so/a auth            sufficient      pam_fprintd.so' /etc/pam.d/su
-#sudo sed -i.bkp '/#%PAM-1.0/a auth            sufficient      pam_fprintd.so' /etc/pam.d/sudo
-#sudo cat << EOT >> /etc/polkit-1/rules.d/50-net.reactivated.fprint.device.enroll.rules
-#polkit.addRule(function (action, subject) {
-#  if (action.id == "net.reactivated.fprint.device.enroll") {
-#    return subject.user == "root" ? polkit.Result.YES : polkit.result.NO
-#  }
-#})
-#EOT
-#------------------------------------------------------------------------------------------------------------------------------------------
-#sudo pacman -S --needed ruby ruby-docs rubygems
-#sudo gem install rdoc
-#sudo gem install sass
-#cd /usr/share/themes/Ant-Dracula/gtk-3.20/
-#sudo sed -i '22s/ff79c6/00b0ff/' _colors.scss
-#sudo sass gtk.scss gtk.css
-#
-gsettings set org.gnome.Terminal.Legacy.Settings default-show-menubar false
 #gsettings set org.gnome.Terminal.Legacy.Keybindings toggle-menubar '<Alt>m'
+gsettings set org.gnome.Terminal.Legacy.Settings default-show-menubar false
 gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing 'rgba'
 gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
 gsettings set org.gnome.mutter attach-modal-dialogs false
@@ -54,14 +33,15 @@ gsettings set org.gnome.desktop.interface cursor-theme 'capitaine-cursors'
 gsettings set org.gnome.desktop.background picture-uri /usr/share/backgrounds/gnome/mojave-timed.xml
 gsettings set org.gnome.desktop.screensaver picture-uri /usr/share/backgrounds/gnome/mojave-timed.xml
 #
-sudo sed -i '3s/custom/gnome/' ~/.config/automathemely/user_settings.json
-sudo sed -i '7s/""/"Ant-Nebula"/' ~/.config/automathemely/user_settings.json
-sudo sed -i '8s/""/"la-capitaine"/' ~/.config/automathemely/user_settings.json
-sudo sed -i '9s/""/"Ant-Nebula"/' ~/.config/automathemely/user_settings.json
-sudo sed -i '12s/""/"Dark-Side"/' ~/.config/automathemely/user_settings.json
-sudo sed -i '13s/""/"la-capitaine"/' ~/.config/automathemely/user_settings.json
-sudo sed -i '14s/""/"Ant-Nebula"/' ~/.config/automathemely/user_settings.json
-sudo sed -i '65s/true/false/' ~/.config/automathemely/user_settings.json
+#sudo sed -i '3s/custom/gnome/' ~/.config/automathemely/user_settings.json
+#sudo sed -i '7s/""/"Ant-Nebula"/' ~/.config/automathemely/user_settings.json
+#sudo sed -i '8s/""/"la-capitaine"/' ~/.config/automathemely/user_settings.json
+#sudo sed -i '9s/""/"Ant-Nebula"/' ~/.config/automathemely/user_settings.json
+#sudo sed -i '12s/""/"Dark-Side"/' ~/.config/automathemely/user_settings.json
+#sudo sed -i '13s/""/"la-capitaine"/' ~/.config/automathemely/user_settings.json
+#sudo sed -i '14s/""/"Ant-Nebula"/' ~/.config/automathemely/user_settings.json
+#sudo sed -i '65s/true/false/' ~/.config/automathemely/user_settings.json
+#
 #automathemely --setting desktop_environment=gnome
 #automathemely --setting themes.gnome.light.gtk=Ant-Nebula
 #automathemely --setting themes.gnome.light.icons=la-capitaine
