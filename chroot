@@ -8,7 +8,7 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 #------------------------------------------------------------------------------------------------------------------------------------------
-ln -s /hostlvm /run/lvm
+#ln -s /hostlvm /run/lvm
 #------------------------------------------------------------------------------------------------------------------------------------------
 lsblk
 read -p "efipartition (/dev/sdax) = " efipartition
@@ -49,7 +49,8 @@ mkdir /boot/efi
 mount $efipartition /boot/efi
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
-pacman -S --needed intel-ucode grub efibootmgr os-prober sudo networkmanager
+pacman -S --needed intel-ucode grub efibootmgr sudo networkmanager
+# os-prober
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=$bootloaderid
@@ -81,7 +82,7 @@ sudo sed -i '/# %wheel ALL=(ALL) ALL/s/^#//g' /etc/sudoers
 mv /de /home/$username
 mv /post /home/$username
 #------------------------------------------------------------------------------------------------------------------------------------------
-umount /run/lvm
+#umount /run/lvm
 echo "Reboot after exiting arch-chroot."
 echo "Press enter to exit from chroot script."
 read
