@@ -68,8 +68,8 @@ chmod +x /mnt/de
 chmod +x /mnt/post
 rm -r /root/install
 #------------------------------------------------------------------------------------------------------------------------------------------
-mkdir /mnt/hostlvm
-mount --bind /run/lvm /mnt/hostlvm
+#mkdir /mnt/hostlvm
+#mount --bind /run/lvm /mnt/hostlvm
 #------------------------------------------------------------------------------------------------------------------------------------------
 echo "arch-chroot /mnt"
 arch-chroot /mnt
