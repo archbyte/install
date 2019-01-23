@@ -5,8 +5,8 @@ read
 #------------------------------------------------------------------------------------------------------------------------------------------
 automathemely
 #------------------------------------------------------------------------------------------------------------------------------------------
-sudo pacman -S --needed util-linux
-sudo systemctl enable fstrim.timer
+#sudo pacman -S --needed util-linux
+#sudo systemctl enable fstrim.timer
 #------------------------------------------------------------------------------------------------------------------------------------------
 #gsettings set org.gnome.Terminal.Legacy.Keybindings toggle-menubar '<Alt>m'
 gsettings set org.gnome.Terminal.Legacy.Settings default-show-menubar false
@@ -33,24 +33,24 @@ gsettings set org.gnome.desktop.interface cursor-theme 'capitaine-cursors'
 gsettings set org.gnome.desktop.background picture-uri /usr/share/backgrounds/gnome/mojave-timed.xml
 gsettings set org.gnome.desktop.screensaver picture-uri /usr/share/backgrounds/gnome/mojave-timed.xml
 #
-#sudo sed -i '3s/custom/gnome/' ~/.config/automathemely/user_settings.json
-#sudo sed -i '7s/""/"Ant-Nebula"/' ~/.config/automathemely/user_settings.json
-#sudo sed -i '8s/""/"la-capitaine"/' ~/.config/automathemely/user_settings.json
-#sudo sed -i '9s/""/"Ant-Nebula"/' ~/.config/automathemely/user_settings.json
-#sudo sed -i '12s/""/"Dark-Side"/' ~/.config/automathemely/user_settings.json
-#sudo sed -i '13s/""/"la-capitaine"/' ~/.config/automathemely/user_settings.json
-#sudo sed -i '14s/""/"Ant-Nebula"/' ~/.config/automathemely/user_settings.json
-#sudo sed -i '65s/true/false/' ~/.config/automathemely/user_settings.json
+sudo sed -i '3s/custom/gnome/' ~/.config/automathemely/user_settings.json
+sudo sed -i '7s/""/"Ant-Nebula"/' ~/.config/automathemely/user_settings.json
+sudo sed -i '8s/""/"la-capitaine"/' ~/.config/automathemely/user_settings.json
+sudo sed -i '9s/""/"Ant-Nebula"/' ~/.config/automathemely/user_settings.json
+sudo sed -i '12s/""/"Dark-Side"/' ~/.config/automathemely/user_settings.json
+sudo sed -i '13s/""/"la-capitaine"/' ~/.config/automathemely/user_settings.json
+sudo sed -i '14s/""/"Ant-Nebula"/' ~/.config/automathemely/user_settings.json
+sudo sed -i '65s/true/false/' ~/.config/automathemely/user_settings.json
 #
-automathemely --setting desktop_environment=gnome
-automathemely --setting themes.gnome.light.gtk=Ant-Nebula
-automathemely --setting themes.gnome.light.icons=la-capitaine
-automathemely --setting themes.gnome.light.shell=Ant-Nebula
-automathemely --setting themes.gnome.dark.gtk=Dark-Side
-automathemely --setting themes.gnome.dark.icons=la-capitaine
-automathemely --setting themes.gnome.dark.shell=Ant-Nebula
-automathemely --setting location.auto_enabled=True
-automathemely --setting misc.notifications=False
+#automathemely --setting desktop_environment=gnome
+#automathemely --setting themes.gnome.light.gtk=Ant-Nebula
+#automathemely --setting themes.gnome.light.icons=la-capitaine
+#automathemely --setting themes.gnome.light.shell=Ant-Nebula
+#automathemely --setting themes.gnome.dark.gtk=Dark-Side
+#automathemely --setting themes.gnome.dark.icons=la-capitaine
+#automathemely --setting themes.gnome.dark.shell=Ant-Nebula
+#automathemely --setting location.auto_enabled=True
+#automathemely --setting misc.notifications=False
 automathemely --update
 automathemely --restart
 automathemely
