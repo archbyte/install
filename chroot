@@ -49,8 +49,7 @@ mkdir /boot/efi
 mount $efipartition /boot/efi
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
-pacman -S --needed intel-ucode grub efibootmgr sudo networkmanager
-# os-prober
+pacman -S --needed intel-ucode grub efibootmgr sudo networkmanager os-prober
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=$bootloaderid
