@@ -27,7 +27,7 @@ wget -O gnome-shell-extension-installer "https://github.com/brunelli/gnome-shell
 chmod +x gnome-shell-extension-installer
 sudo mv gnome-shell-extension-installer /usr/bin/
 #
-gnome-shell-extension-installer 19 545 277 36 1303 118 1297 800 826 1236 1128 258 1497
+gnome-shell-extension-installer 19 545 277 36 1303 118 1297 800 826 1236 1128 258 1497 1328
 # TopIcons Plus: 1031 (not maintained | last checked 23/02/2019)
 # caffeine: 517 (not maintained | last checked 23/02/2019)
 # bottom panel: 949
