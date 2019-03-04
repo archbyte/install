@@ -34,31 +34,22 @@ fdisk -l
 lsblk
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
-#read -p "efipartition (/dev/sdax) = " efipartition
-#echo $efipartition
-#echo
-#read -p "ospartition (/dev/sdax) = " ospartition
-#echo $ospartition
-#echo
-#------------------------------------------------------------------------------------------------------------------------------------------
-#echo mkfs.fat -F32 $efipartition
-#mkfs.fat -F32 $efipartition
-#echo
-#------------------------------------------------------------------------------------------------------------------------------------------
-#echo mkfs.ext4 $ospartition
-#mkfs.ext4 $ospartition
-#echo
-#------------------------------------------------------------------------------------------------------------------------------------------
-read -p "rootpartition(bootable) (/dev/sdax) = " rootpartition
-echo $rootpartition
+read -p "efipartition (/dev/sdax) = " efipartition
+echo $efipartition
+echo
+read -p "ospartition (/dev/sdax) = " ospartition
+echo $ospartition
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
-echo mkfs.ext4 $rootpartition
-mkfs.ext4 $rootpartition
+echo mkfs.fat -F32 $efipartition
+mkfs.fat -F32 $efipartition
 echo
-
 #------------------------------------------------------------------------------------------------------------------------------------------
-mount $rootpartition /mnt
+echo mkfs.ext4 $ospartition
+mkfs.ext4 $ospartition
+echo
+#------------------------------------------------------------------------------------------------------------------------------------------
+mount $ospartition /mnt
 #------------------------------------------------------------------------------------------------------------------------------------------
 echo "pacstrap /mnt base base-devel"
 pacstrap /mnt base base-devel
