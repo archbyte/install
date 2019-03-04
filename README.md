@@ -10,7 +10,7 @@ pacman -Sy reflector git
 
 reflector --verbose -l 100 -p http -p https --sort rate --save /etc/pacman.d/mirrorlist
 
-git clone https://github.com/archbyte/install
+git clone https://github.com/archbyte/install --branch base
 
 /bin/bash install/arch
 
@@ -26,6 +26,4 @@ reboot
 
 ./de
 
-**After reboot, login and enter the below commands.**
-
-./post
+**Enjoy.**
