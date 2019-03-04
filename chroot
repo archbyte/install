@@ -10,13 +10,13 @@ fi
 #------------------------------------------------------------------------------------------------------------------------------------------
 #ln -s /hostlvm /run/lvm
 #------------------------------------------------------------------------------------------------------------------------------------------
-#-lsblk
-#-read -p "efipartition (/dev/sdax) = " efipartition
-#-echo $efipartition
-#-echo
+lsblk
+read -p "efipartition (/dev/sdax) = " efipartition
+echo $efipartition
+echo
 #------------------------------------------------------------------------------------------------------------------------------------------
-#-read -p "Enter your preferred bootloader-id: " bootloaderid
-#-echo
+read -p "Enter your preferred bootloader-id: " bootloaderid
+echo
 #------------------------------------------------------------------------------------------------------------------------------------------
 read -p "Enter your hostname: " hostname
 echo
@@ -44,20 +44,18 @@ echo "Enter root password."
 passwd
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
-#-mkdir /boot/efi
+mkdir /boot/efi
 #------------------------------------------------------------------------------------------------------------------------------------------
-#-mount $efipartition /boot/efi
-#-echo
-#------------------------------------------------------------------------------------------------------------------------------------------
-pacman -S --needed intel-ucode grub sudo networkmanager os-prober
-#-efibootmgr
+mount $efipartition /boot/efi
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
-#-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=$bootloaderid
-grub-install /dev/sda
+pacman -S --needed intel-ucode grub sudo networkmanager os-prober efibootmgr
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
-#-sudo sed -i '4s/5/0/' /etc/default/grub
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=$bootloaderid
+echo
+#------------------------------------------------------------------------------------------------------------------------------------------
+sudo sed -i '4s/5/0/' /etc/default/grub
 # Cursor jump: i8042.nomux=1
 # Read somewhere for general synaptics PS/2 port touchpad problems: i8042.reset
 # Worked for ubuntu in 2011: i8042.reset i8042.nomux i8042.nopnp i8042.noloop
