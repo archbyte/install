@@ -64,6 +64,10 @@ sudo sed -i '4s/5/3/' /etc/default/grub
 # sudo sed -i '6s/quiet/quiet vga=current loglevel=3 i8042.nomux=1 i8042.reset/' /etc/default/grub
 #
 sudo grub-mkconfig -o /boot/grub/grub.cfg
+# Grub Theme + NTFS-3G
+wget -O - https://github.com/shvchk/poly-dark/raw/master/install.sh | bash
+sudo pacman -S ntfs-3g
+sudo grub-mkconfig -o /boot/grub/grub.cfg
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
 systemctl enable NetworkManager
