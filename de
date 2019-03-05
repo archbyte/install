@@ -19,7 +19,7 @@ git clone https://aur.archlinux.org/pikaur.git
 cd pikaur
 makepkg -fsri
 cd /home/$USER
-pikaur -S ttf-clear-sans pamac-aur nautilus-admin sublime-text-dev libinput-gestures automathemely la-capitaine-icon-theme capitaine-cursors
+pikaur -S chromium-widevine ttf-clear-sans pamac-aur nautilus-admin sublime-text-dev libinput-gestures automathemely la-capitaine-icon-theme capitaine-cursors
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
 cd /home/$USER
@@ -27,7 +27,7 @@ wget -O gnome-shell-extension-installer "https://github.com/brunelli/gnome-shell
 chmod +x gnome-shell-extension-installer
 sudo mv gnome-shell-extension-installer /usr/bin/
 #
-gnome-shell-extension-installer 1328 1128 545 277 36 1303 118 1236 258 1297 800 826 1497 19 21
+gnome-shell-extension-installer 1328 1128 277 36 1303 118 1236 258 1297 800 826 1497 19 21
 # Hide Top Bar: 545 (not fully stable)
 # TopIcons Plus: 1031 (not maintained | last checked 23/02/2019)
 # caffeine: 517 (not maintained | last checked 23/02/2019)
@@ -42,16 +42,16 @@ echo
 #
 sudo sed -i '/WaylandEnable=false/s/^#//' /etc/gdm/custom.conf
 echo '# Enable automatic login for user' | sudo tee --append /etc/gdm/custom.conf
-echo '[daemon]' | sudo tee --append /etc/gdm/custom.conf
-echo 'AutomaticLogin=navtoj' | sudo tee --append /etc/gdm/custom.conf
-echo 'AutomaticLoginEnable=True' | sudo tee --append /etc/gdm/custom.conf
+echo '# [daemon]' | sudo tee --append /etc/gdm/custom.conf
+echo '# AutomaticLogin=navtoj' | sudo tee --append /etc/gdm/custom.conf
+echo '# AutomaticLoginEnable=True' | sudo tee --append /etc/gdm/custom.conf
 echo
 #
-echo Replace "navtoj" with your username in the following file.
-echo
-echo Press ENTER to continue.
-read
-sudo nano /etc/gdm/custom.conf
+#echo Replace "navtoj" with your username in the following file.
+#echo
+#echo Press ENTER to continue.
+#read
+#sudo nano /etc/gdm/custom.conf
 #------------------------------------------------------------------------------------------------------------------------------------------
 echo "Editing /etc/hosts file for sublime text..."
 echo '127.0.0.1       www.sublimetext.com' | sudo tee --append /etc/hosts
@@ -64,6 +64,9 @@ sed -i '67s/.*/gesture swipe left 3 xdotool key alt+Right/' ~/.config/libinput-g
 sed -i '70s/.*/gesture swipe right 3 xdotool key alt+Left/' ~/.config/libinput-gestures.conf
 sed -i '118s/.*/gesture swipe left_up 3 xdotool key super+a/' ~/.config/libinput-gestures.conf
 sed -i '119s/.*/gesture swipe left_down 3 xdotool key super+s/' ~/.config/libinput-gestures.conf
+sed -i '132s/.*/gesture pinch clockwise xdotool key super+Right/' ~/.config/libinput-gestures.conf
+sed -i '133s/.*/gesture pinch anticlockwise xdotool key super+Left/' ~/.config/libinput-gestures.conf
+
 #
 subl3
 #
