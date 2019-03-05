@@ -74,7 +74,7 @@ sudo gpasswd -a $USER input
 mkdir /home/$USER/.config/autostart
 cp /usr/share/applications/libinput-gestures.desktop /home/$USER/.config/autostart
 cp /usr/share/applications/plank.desktop /home/$USER/.config/autostart
-cp /usr/share/applications/synergy.desktop /home/$USER/.config/autostart
+#cp /usr/share/applications/synergy.desktop /home/$USER/.config/autostart
 #------------------------------------------------------------------------------------------------------------------------------------------
 sudo cp /usr/share/plank/themes/Default/dock.theme /usr/share/plank/themes/Default/dockbackup.theme && sudo cp /usr/share/plank/themes/Transparent/dock.theme /usr/share/plank/themes/Default/dock.theme
 #
