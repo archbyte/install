@@ -56,8 +56,6 @@ grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=$boot
 echo
 #------------------------------------------------------------------------------------------------------------------------------------------
 sudo sed -i '4s/5/3/' /etc/default/grub
-# Grub Theme
-wget -O - https://github.com/shvchk/poly-dark/raw/master/install.sh | bash
 #
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 echo
