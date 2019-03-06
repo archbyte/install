@@ -1,5 +1,6 @@
 #!/bin/bash
 #------------------------------------------------------------------------------------------------------------------------------------------
+echo "Press 'Enter' to continue"
 gnome-disks
 read
 automathemely
@@ -7,7 +8,6 @@ automathemely
 #sudo pacman -S --needed util-linux
 #sudo systemctl enable fstrim.timer
 #------------------------------------------------------------------------------------------------------------------------------------------
-#gsettings set org.gnome.Terminal.Legacy.Keybindings toggle-menubar '<Alt>m'
 gsettings set org.gnome.Terminal.Legacy.Settings default-show-menubar false
 gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing 'rgba'
 gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
@@ -15,8 +15,8 @@ gsettings set org.gnome.mutter attach-modal-dialogs false
 gsettings set org.gnome.mutter center-new-windows true
 gsettings set org.gnome.mutter edge-tiling true
 gsettings set org.gnome.desktop.wm.preferences resize-with-right-button false
-gsettings set org.gnome.nautilus.window-state sidebar-width 157
-gsettings set org.gnome.nautilus.window-state initial-size '(794, 485)'
+#gsettings set org.gnome.nautilus.window-state sidebar-width 157
+#gsettings set org.gnome.nautilus.window-state initial-size '(794, 485)'
 gsettings set org.gnome.desktop.interface show-battery-percentage true
 gsettings set org.gnome.desktop.interface clock-show-date true
 gsettings set org.gnome.desktop.interface clock-show-seconds true
@@ -31,6 +31,26 @@ gsettings set org.gnome.desktop.interface icon-theme 'la-capitaine'
 gsettings set org.gnome.desktop.interface cursor-theme 'capitaine-cursors'
 gsettings set org.gnome.desktop.background picture-uri /usr/share/backgrounds/gnome/mojave-timed.xml
 gsettings set org.gnome.desktop.screensaver picture-uri /usr/share/backgrounds/gnome/mojave-timed.xml
+#
+gsettings set org.gnome.desktop.wm.preferences action-double-click-titlebar 'none'
+gsettings set org.gnome.desktop.wm.preferences action-middle-click-titlebar 'toggle-maximize'
+dconf write /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/cursor-shape "'ibeam'"
+dconf write /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/font "'Source Code Pro 12'"
+dconf write /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/audible-bell false
+dconf write /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/use-theme-colors false
+dconf write /org/gnome/terminal/legacy/keybindings/toggle-menubar "'<Alt>m'"
+dconf write /org/gnome/shell/extensions/notifications-alert/color "'#00b1ff'"
+dconf write /org/gnome/shell/extensions/notifications-alert/blinkrate 0
+dconf write /net/launchpad/plank/docks/dock1/monitor "'eDP-1'"
+dconf write /net/launchpad/plank/docks/dock1/lock-items true
+dconf write /net/launchpad/plank/docks/dock1/hide-mode "'window-dodge'"
+# dconf write /net/launchpad/plank/docks/dock1/dock-items ['org.gnome.Nautilus.dockitem', 'chromium.dockitem', 'org.gnome.Terminal.dockitem', 'org.gnome.tweaks.dockitem', 'pamac-manager.dockitem', 'gnome-system-monitor.dockitem']
+dconf write /org/gnome/gnome-system-monitor/current-tab "'resources'"
+dconf write /org/gnome/nautilus/window-state/sidebar-width 151
+dconf write /org/gnome/nautilus/icon-view/default-zoom-level "'standard'"
+dconf write /org/gtk/settings/file-chooser/show-hidden true
+dconf write /org/gnome/nautilus/window-state/initial-size (727, 409)
+
 #
 sudo sed -i '3s/custom/gnome/' ~/.config/automathemely/user_settings.json
 sudo sed -i '7s/""/"Ant-Nebula"/' ~/.config/automathemely/user_settings.json
