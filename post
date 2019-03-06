@@ -64,6 +64,11 @@ EOT
 chmod +x /home/$USER/.config/autostart/automathemelyrunner.desktop
 #------------------------------------------------------------------------------------------------------------------------------------------
 sudo sed -i '144s/.xz//' /etc/makepkg.conf
+# Grub Theme
+wget -O - https://github.com/shvchk/poly-dark/raw/master/install.sh | bash
+#
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+echo
 #
 sudo rm /home/$USER/de
 sudo rm /home/$USER/post
