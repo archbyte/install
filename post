@@ -43,7 +43,7 @@ dconf write /org/gnome/terminal/legacy/keybindings/toggle-menubar "'<Alt>m'"
 dconf write /org/gnome/shell/extensions/notifications-alert/color "'#00b1ff'"
 dconf write /org/gnome/shell/extensions/notifications-alert/blinkrate 0
 dconf write /net/launchpad/plank/docks/dock1/monitor "'eDP-1'"
-dconf write /net/launchpad/plank/docks/dock1/lock-items true
+#dconf write /net/launchpad/plank/docks/dock1/lock-items true
 dconf write /net/launchpad/plank/docks/dock1/hide-mode "'window-dodge'"
 # dconf write /net/launchpad/plank/docks/dock1/dock-items ['org.gnome.Nautilus.dockitem', 'chromium.dockitem', 'org.gnome.Terminal.dockitem', 'org.gnome.tweaks.dockitem', 'pamac-manager.dockitem', 'gnome-system-monitor.dockitem']
 dconf write /org/gnome/gnome-system-monitor/current-tab "'resources'"
