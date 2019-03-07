@@ -35,6 +35,7 @@ gsettings set org.gnome.desktop.screensaver picture-uri /usr/share/backgrounds/g
 gsettings set org.gnome.desktop.wm.preferences action-double-click-titlebar 'none'
 gsettings set org.gnome.desktop.wm.preferences action-middle-click-titlebar 'toggle-maximize'
 dconf write /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/cursor-shape "'ibeam'"
+dconf write /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/use-system-font false
 dconf write /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/font "'Source Code Pro 12'"
 dconf write /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/audible-bell false
 dconf write /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/use-theme-colors false
@@ -49,7 +50,7 @@ dconf write /org/gnome/gnome-system-monitor/current-tab "'resources'"
 dconf write /org/gnome/nautilus/window-state/sidebar-width 151
 dconf write /org/gnome/nautilus/icon-view/default-zoom-level "'standard'"
 dconf write /org/gtk/settings/file-chooser/show-hidden true
-dconf write /org/gnome/nautilus/window-state/initial-size (727, 409)
+#dconf write /org/gnome/nautilus/window-state/initial-size (727, 409)
 # Set some automa themely settings
 sudo sed -i '3s/custom/gnome/' ~/.config/automathemely/user_settings.json
 sudo sed -i '7s/""/"Ant-Nebula"/' ~/.config/automathemely/user_settings.json
