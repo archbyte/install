@@ -1,0 +1,80 @@
+#!/bin/bash
+# Check for root user
+if [[ $EUID -ne 0 ]]; then
+    echo "You must be a root user to run this." 2>&1
+    exit 1
+fi
+#--------------------------------------------------------------------
+#ln -s /hostlvm /run/lvm
+#--------------------------------------------------------------------
+# List partitions and input location of efipartition
+lsblk
+read -p "efipartition (/dev/sdax) = " efipartition
+echo $efipartition
+echo
+# Input bootloader id
+read -p "Enter your preferred bootloader-id: " bootloaderid
+echo $bootloaderid
+echo
+# Input hostname
+read -p "Enter your hostname: " hostname
+echo $hostname
+echo
+# Input username
+read -p "Enter your preferred username: " username
+echo $username
+echo
+# Set the timezone to US-Pacific
+ln -sf /usr/share/zoneinfo/US/Pacific /etc/localtime
+# Generate /etc/adjtime
+hwclock --systohc --utc
+# Uncomment locale
+echo "nano /etc/locale.gen"
+echo "Setting locale: en_US.UTF-8 UTF-8 for American-English."
+sed -i '/#en_US.UTF-8 UTF-8/s/^#//g' /etc/locale.gen
+echo
+# Set the LANG variable
+echo "LANG=en_US.UTF-8"  > /etc/locale.conf
+# Generate locale
+locale-gen
+echo
+# Set hostname
+echo "$hostname" > /etc/hostname
+# Input root password
+echo "Enter root password."
+passwd
+echo
+# Create /boot/efi directory
+mkdir /boot/efi
+# Mount efi partition to the /boot/efi directory
+mount $efipartition /boot/efi
+echo
+# Install some required packages for booting and stuff
+pacman -S --needed intel-ucode grub efibootmgr sudo networkmanager os-prober wget
+echo
+# Install grub to /boot/efi
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=$bootloaderid
+echo
+# Change grub timeout to 3 and 
+sudo sed -i '4s/5/3/' /etc/default/grub
+# Generate grub config file
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+echo
+# Enable network manager
+systemctl enable NetworkManager
+# Create user
+useradd -m -g users -G wheel -s /bin/bash $username
+echo
+# Input user password
+echo Enter your user password.
+passwd $username
+echo
+# Set admin priviliges
+echo "Uncommenting the wheel group line."
+sudo sed -i '/# %wheel ALL=(ALL) ALL/s/^#//g' /etc/sudoers
+# Move remaining setup files to user home directory
+mv /de /home/$username
+mv /post /home/$username
+# Exit from chroot (or chroot script?)
+#umount /run/lvm
+exit

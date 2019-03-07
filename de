@@ -1,0 +1,139 @@
+#!/bin/bash
+# Connect to wifi
+nmcli device wifi list
+echo
+read -p "Enter your wifi SSID: " ssid
+read -p "Enter your wifi password: " wifipass
+nmcli device wifi connect $ssid password $wifipass
+echo
+# Update system
+sudo pacman -Syu
+# Install packages for gnome desktop environment and other cool stuff
+#-Package-Info------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--pikaur--|~~~|--gnome-extension-installer--|-bluetooth-|--------darkside-theme--------|touch-gestures|----synergy-----|browser-|dock-|dir-|-system-|mirrors--|-disks-|
+sudo pacman -S --needed gnome-disk-utility adobe-source-code-pro-fonts ntfs-3g xorg-server xorg-xinit xorg-xprop gnome-shell gdm nautilus gnome-system-monitor gnome-screenshot gnome-control-center gnome-terminal gnome-backgrounds gnome-power-manager eog gnome-tweak-tool chrome-gnome-shell xdg-user-dirs base-devel git bash curl dbus perl less wget bluez-utils gtk-engine-murrine gtk-engines xdotool wmctrl synergy qt5-base chromium plank tree neofetch reflector gparted
+# Install pikaur: an aur helper
+git clone https://aur.archlinux.org/pikaur.git
+cd pikaur
+makepkg -fsri
+cd /home/$USER
+pikaur -S chromium-widevine ttf-clear-sans pamac-aur nautilus-admin sublime-text-dev libinput-gestures automathemely la-capitaine-icon-theme capitaine-cursors
+echo
+# Install the gnome shell extension installer
+cd /home/$USER
+wget -O gnome-shell-extension-installer "https://github.com/brunelli/gnome-shell-extension-installer/raw/master/gnome-shell-extension-installer"
+chmod +x gnome-shell-extension-installer
+sudo mv gnome-shell-extension-installer /usr/bin/
+# Install some useful gnome extensions
+gnome-shell-extension-installer 1328 1128 277 36 1303 118 1236 258 1297 800 826 1497 19 21
+# Hide Top Bar: 545 (not fully stable)
+# TopIcons Plus: 1031 (not maintained | last checked 23/02/2019)
+# caffeine: 517 (not maintained | last checked 23/02/2019)
+# bottom panel: 949
+# Enable gnome display manager
+echo "Enabling gdm service..."
+sudo systemctl enable gdm
+echo
+# Enable the bluetooth service
+echo "Enabling bluetooth service..."
+sudo systemctl enable bluetooth
+echo
+# Disable wayland
+sudo sed -i '/WaylandEnable=false/s/^#//' /etc/gdm/custom.conf
+# For automatic login use the built in gnome settings
+#echo '# Enable automatic login for user' | sudo tee --append /etc/gdm/custom.conf
+#echo '# [daemon]' | sudo tee --append /etc/gdm/custom.conf
+#echo '# AutomaticLogin=navtoj' | sudo tee --append /etc/gdm/custom.conf
+#echo '# AutomaticLoginEnable=True' | sudo tee --append /etc/gdm/custom.conf
+#echo
+#
+#echo Replace "navtoj" with your username in the following file.
+#echo
+#echo Press ENTER to continue.
+#read
+#sudo nano /etc/gdm/custom.conf
+# Edit hosts file for sublime text
+echo "Editing /etc/hosts file for sublime text..."
+echo '127.0.0.1       www.sublimetext.com' | sudo tee --append /etc/hosts
+echo '127.0.0.1       license.sublimehq.com'| sudo tee --append /etc/hosts
+# Set custom touchpad gestures
+cp /etc/libinput-gestures.conf ~/.config/libinput-gestures.conf
+sed -i '50s/.*/gesture swipe up 3 _internal ws_up/' ~/.config/libinput-gestures.conf
+sed -i '63s/.*/gesture swipe down 3 _internal ws_down/' ~/.config/libinput-gestures.conf
+sed -i '67s/.*/gesture swipe left 3 xdotool key alt+Right/' ~/.config/libinput-gestures.conf
+sed -i '70s/.*/gesture swipe right 3 xdotool key alt+Left/' ~/.config/libinput-gestures.conf
+sed -i '118s/.*/gesture swipe left_up 3 xdotool key super+a/' ~/.config/libinput-gestures.conf
+sed -i '119s/.*/gesture swipe left_down 3 xdotool key super+s/' ~/.config/libinput-gestures.conf
+sed -i '132s/.*/gesture pinch clockwise xdotool key super+Right/' ~/.config/libinput-gestures.conf
+sed -i '133s/.*/gesture pinch anticlockwise xdotool key super+Left/' ~/.config/libinput-gestures.conf
+# Run sublime-text to generate some config data
+subl3
+# Set apps to autostart
+sudo gpasswd -a $USER input
+mkdir /home/$USER/.config/autostart
+cp /usr/share/applications/libinput-gestures.desktop /home/$USER/.config/autostart
+cp /usr/share/applications/plank.desktop /home/$USER/.config/autostart
+#cp /usr/share/applications/synergy.desktop /home/$USER/.config/autostart
+# Set plank theme
+sudo cp /usr/share/plank/themes/Default/dock.theme /usr/share/plank/themes/Default/dockbackup.theme && sudo cp /usr/share/plank/themes/Transparent/dock.theme /usr/share/plank/themes/Default/dock.theme
+# Set desktop and lock screen wallpaper to mojave
+sudo rm -r /usr/share/backgrounds/gnome
+sudo rm -r /usr/share/gnome-background-properties
+# ^
+sudo git clone https://github.com/archbyte/mojave /usr/share/backgrounds/gnome
+sudo rm -r /usr/share/backgrounds/gnome/.git
+# ^
+sudo mkdir /usr/share/gnome-background-properties
+sudo mv /usr/share/backgrounds/gnome/gnome-backgrounds.xml /usr/share/gnome-background-properties
+# Install some shell themes
+sudo git clone https://github.com/EliverLara/Ant-Nebula --branch slim /usr/share/themes/Ant-Nebula
+sudo git clone https://github.com/paullinuxthemer/Dark-Side /usr/share/themes/Dark-Side
+# Keep the avahi apps from showing up in the apps view
+sudo ln -sf /dev/null /etc/systemd/system/avahi-daemon.service
+sudo ln -sf /dev/null /etc/systemd/system/avahi-daemon.socket
+sudo ln -sf /dev/null /etc/systemd/system/dbus-org.freedesktop.Avahi.service
+sudo bash -c "echo 'NoDisplay=true' >> /usr/share/applications/avahi-discover.desktop"
+sudo bash -c "echo 'NoDisplay=true' >> /usr/share/applications/bssh.desktop"
+sudo bash -c "echo 'NoDisplay=true' >> /usr/share/applications/bvnc.desktop"
+sudo update-desktop-database
+# Do something related to time?
+timedatectl set-ntp 1
+# Enter sublime license
+cat << EOT >> /home/$USER/.config/sublime-text-3/Local/License.sublime_license
+----- BEGIN LICENSE -----
+sgbteam
+Single User License
+EA7E-1153259
+8891CBB9 F1513E4F 1A3405C1 A865D53F
+115F202E 7B91AB2D 0D2A40ED 352B269B
+76E84F0B CD69BFC7 59F2DFEF E267328F
+215652A3 E88F9D8F 4C38E3BA 5B2DAAE4
+969624E7 DC9CD4D5 717FB40C 1B9738CF
+20B3C4F1 E917B5B3 87C38D9C ACCE7DD8
+5F7EF854 86B9743C FADC04AA FB0DA5C0
+F913BE58 42FEA319 F954EFDD AE881E0B
+------ END LICENSE ------
+EOT
+# Enable tap to click
+gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+# Script to make the post script run after reboot
+cat << EOT >> /home/$USER/.config/autostart/postinstallscript.desktop
+[Desktop Entry]
+#
+Type=Application
+#
+Version=1.0
+#
+Name=postinstallscript
+#
+Exec=/home/$USER/post
+#
+Terminal=true
+EOT
+chmod +x /home/$USER/.config/autostart/postinstallscript.desktop
+#
+# Remove the pikaur folder and the chroot file
+cd /home/$USER
+sudo rm -r pikaur
+sudo rm /chroot
+# Reboot
+sudo reboot
