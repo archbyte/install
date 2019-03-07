@@ -95,3 +95,4 @@ echo
 sudo rm /home/$USER/de
 sudo rm /home/$USER/post
 sudo rm /home/$USER/.config/autostart/postinstallscript.desktop
+sudo reboot
