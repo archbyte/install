@@ -1,4 +1,4 @@
-## Use only if you fully understand what the script does. 
+## Use at your own risk. 
 
 **My setup: Lenovo X1 Carbon 120GB SSD (GPT-UEFI)**
 
