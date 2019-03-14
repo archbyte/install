@@ -51,6 +51,7 @@ dconf write /org/gnome/nautilus/window-state/sidebar-width 151
 dconf write /org/gnome/nautilus/icon-view/default-zoom-level "'standard'"
 dconf write /org/gtk/settings/file-chooser/show-hidden true
 #dconf write /org/gnome/nautilus/window-state/initial-size (727, 409)
+dconf write /org/gnome/shell/extensions/set-columns/columns-max 7
 # Set some automa themely settings
 sudo sed -i '3s/custom/gnome/' ~/.config/automathemely/user_settings.json
 sudo sed -i '7s/""/"Ant-Nebula"/' ~/.config/automathemely/user_settings.json
