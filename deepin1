@@ -9,15 +9,16 @@ echo
 # Update system
 sudo pacman -Syu
 # Install packages for deepin desktop environment and other cool stuff
-sudo pacman -S --needed deepin deepin-terminal deepin-screenshot deepin-editor ntfs-3g base-devel git
+sudo pacman -S --needed deepin deepin-terminal 
+#deepin-screenshot deepin-editor ntfs-3g base-devel git
 #gnome-disk-utility adobe-source-code-pro-fonts xorg-server xorg-xinit xorg-xprop gnome-shell gdm nautilus gnome-system-monitor gnome-screenshot gnome-control-center gnome-terminal gnome-backgrounds gnome-power-manager eog gnome-tweak-tool chrome-gnome-shell xdg-user-dirs base-devel git bash curl dbus perl less wget bluez-utils gtk-engine-murrine gtk-engines xdotool wmctrl synergy qt5-base chromium plank tree neofetch reflector gparted
 # Install pikaur: an aur helper
 git clone https://aur.archlinux.org/pikaur.git
 cd pikaur
 makepkg -fsri
 cd /home/$USER
-pikaur -S 
-#chromium-widevine ttf-clear-sans pamac-aur nautilus-admin sublime-text-dev libinput-gestures automathemely la-capitaine-icon-theme capitaine-cursors
+pikaur -S pamac-aur sublime-text-dev
+#chromium-widevine ttf-clear-sans  nautilus-admin  libinput-gestures automathemely la-capitaine-icon-theme capitaine-cursors
 echo
 # Enable display manager
 echo "Enabling display manager service..."
