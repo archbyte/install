@@ -64,11 +64,13 @@ cat /mnt/etc/fstab
 # Copy remaining installation files to /mnt, make them executable,
 # and remove the cloned install folder
 cp /root/install/chroot /mnt
-cp /root/install/de /mnt
-cp /root/install/post /mnt
+cp /root/install/gnome1 /mnt
+cp /root/install/gnome2 /mnt
+cp /root/install/deepin1 /mnt
 chmod +x /mnt/chroot
-chmod +x /mnt/de
-chmod +x /mnt/post
+chmod +x /mnt/gnome1
+chmod +x /mnt/gnome2
+chmod +x /mnt/deepin1
 rm -r /root/install
 #
 #--------------------------------------------------------------------
