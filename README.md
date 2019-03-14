@@ -16,6 +16,10 @@ git clone https://github.com/archbyte/install --branch fastinstall
 
 **Login by entering your username and password.**
 
-./de
+./gnome1
+
+OR
+
+./deepin1
 
 **Enjoy.**
