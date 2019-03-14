@@ -73,8 +73,9 @@ echo
 echo "Uncommenting the wheel group line."
 sudo sed -i '/# %wheel ALL=(ALL) ALL/s/^#//g' /etc/sudoers
 # Move remaining setup files to user home directory
-mv /de /home/$username
-mv /post /home/$username
+mv /gnome1 /home/$username
+mv /gnome2 /home/$username
+mv /deepin1 /home/$username
 # Exit from chroot (or chroot script?)
 #umount /run/lvm
 exit
