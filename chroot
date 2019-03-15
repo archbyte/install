@@ -7,18 +7,6 @@ fi
 #--------------------------------------------------------------------
 #ln -s /hostlvm /run/lvm
 #--------------------------------------------------------------------
-# Input bootloader id
-read -p "Enter your preferred bootloader-id: " bootloaderid
-echo $bootloaderid
-echo
-# Input hostname
-read -p "Enter your hostname: " hostname
-echo $hostname
-echo
-# Input username
-read -p "Enter your preferred username: " username
-echo $username
-echo
 # Set the timezone to US-Pacific
 ln -sf /usr/share/zoneinfo/US/Pacific /etc/localtime
 # Generate /etc/adjtime
@@ -70,7 +58,7 @@ sudo sed -i '/# %wheel ALL=(ALL) ALL/s/^#//g' /etc/sudoers
 # Move remaining setup files to user home directory
 mv /gnome1 /home/$username
 mv /gnome2 /home/$username
-mv /deepin1 /home/$username
+mv /kde1 /home/$username
 # Exit from chroot (or chroot script?)
 #umount /run/lvm
 exit
