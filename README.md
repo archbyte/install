@@ -20,6 +20,6 @@ git clone https://github.com/archbyte/install --branch fastinstall
 
 OR
 
-./deepin1
+./kde1 ~ IN PROGRESS
 
 **Enjoy.**
