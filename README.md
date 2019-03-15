@@ -1,4 +1,4 @@
-## Use at your own risk. 
+## USE AT YOUR OWN RISK. 
 
 **My setup: Lenovo X1 Carbon 120GB SSD (GPT-UEFI)**
 
