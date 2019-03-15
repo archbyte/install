@@ -1,4 +1,4 @@
-## Use only if you understand how to manually install Arch. 
+## USE AT YOUR OWN RISK. 
 
 **My setup: Lenovo X1 Carbon 120GB SSD (GPT-UEFI)**
 
