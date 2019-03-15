@@ -22,7 +22,7 @@ echo "LANG=en_US.UTF-8"  > /etc/locale.conf
 locale-gen
 echo
 # Set hostname
-echo "$hostname" > /etc/hostname
+echo inputhostname > /etc/hostname
 # Input root password
 echo "Enter root password."
 passwd
@@ -30,13 +30,13 @@ echo
 # Create /boot/efi directory
 mkdir /boot/efi
 # Mount efi partition to the /boot/efi directory
-mount $efipartition /boot/efi
+mount inputefipartition /boot/efi
 echo
 # Install some required packages for booting and stuff
 pacman -S --needed intel-ucode grub efibootmgr sudo networkmanager os-prober wget
 echo
 # Install grub to /boot/efi
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=$bootloaderid
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=inputbootloaderid
 echo
 # Change grub timeout to 3
 sudo sed -i '4s/5/0/' /etc/default/grub
@@ -46,19 +46,19 @@ echo
 # Enable network manager
 systemctl enable NetworkManager
 # Create user
-useradd -m -g users -G wheel -s /bin/bash $username
+useradd -m -g users -G wheel -s /bin/bash inputusername
 echo
 # Input user password
 echo Enter your user password.
-passwd $username
+passwd inputusername
 echo
 # Set admin priviliges
 echo "Uncommenting the wheel group line."
 sudo sed -i '/# %wheel ALL=(ALL) ALL/s/^#//g' /etc/sudoers
 # Move remaining setup files to user home directory
-mv /gnome1 /home/$username
-mv /gnome2 /home/$username
-mv /kde1 /home/$username
+mv /gnome1 /home/inputusername
+mv /gnome2 /home/inputusername
+mv /kde1 /home/inputusername
 # Exit from chroot (or chroot script?)
 #umount /run/lvm
 exit
