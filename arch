@@ -55,15 +55,15 @@ read -p "Enter your preferred username: " username
 echo $username
 echo
 # Enter input into chroot file
-sudo sed -i "33s@$efipartition@$efipartition@" /root/install/chroot
-sudo sed -i "39s@$bootloaderid@$bootloaderid@" /root/install/chroot
-sudo sed -i "25s@$hostname@$hostname@" /root/install/chroot
+sudo sed -i "33s@inputefipartition@$efipartition@" /root/install/chroot
+sudo sed -i "39s@inputbootloaderid@$bootloaderid@" /root/install/chroot
+sudo sed -i "25s@inputhostname@$hostname@" /root/install/chroot
 #
-sudo sed -i "49s@$username@$username@" /root/install/chroot
-sudo sed -i "53s@$username@$username@" /root/install/chroot
-sudo sed -i "59s@$username@$username@" /root/install/chroot
-sudo sed -i "60s@$username@$username@" /root/install/chroot
-sudo sed -i "61s@$username@$username@" /root/install/chroot
+sudo sed -i "49s@inputusername@$username@" /root/install/chroot
+sudo sed -i "53s@inputusername@$username@" /root/install/chroot
+sudo sed -i "59s@inputusername@$username@" /root/install/chroot
+sudo sed -i "60s@inputusername@$username@" /root/install/chroot
+sudo sed -i "61s@inputusername@$username@" /root/install/chroot
 # Format efi partition as fat32
 echo mkfs.fat -F32 $efipartition
 mkfs.fat -F32 $efipartition
