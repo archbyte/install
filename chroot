@@ -7,11 +7,6 @@ fi
 #--------------------------------------------------------------------
 #ln -s /hostlvm /run/lvm
 #--------------------------------------------------------------------
-# List partitions and input location of efipartition
-lsblk
-read -p "efipartition (/dev/sdax) = " efipartition
-echo $efipartition
-echo
 # Input bootloader id
 read -p "Enter your preferred bootloader-id: " bootloaderid
 echo $bootloaderid
