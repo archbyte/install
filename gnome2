@@ -50,6 +50,7 @@ dconf write /org/gnome/gnome-system-monitor/current-tab "'resources'"
 dconf write /org/gnome/nautilus/window-state/sidebar-width 151
 dconf write /org/gnome/nautilus/icon-view/default-zoom-level "'standard'"
 dconf write /org/gtk/settings/file-chooser/show-hidden true
+dconf write /org/gtk/settings/file-chooser/sort-directories-first true
 #dconf write /org/gnome/nautilus/window-state/initial-size (727, 409)
 dconf write /org/gnome/shell/extensions/set-columns/columns-max 7
 # Set some automa themely settings
