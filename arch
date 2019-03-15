@@ -42,6 +42,28 @@ echo
 read -p "ospartition (/dev/sdax) = " ospartition
 echo $ospartition
 echo
+# Input bootloader id
+read -p "Enter your preferred bootloader-id: " bootloaderid
+echo $bootloaderid
+echo
+# Input hostname
+read -p "Enter your hostname: " hostname
+echo $hostname
+echo
+# Input username
+read -p "Enter your preferred username: " username
+echo $username
+echo
+# Enter input into chroot file
+sudo sed -i "33s@$efipartition@$efipartition@" /root/install/chroot
+sudo sed -i "39s@$bootloaderid@$bootloaderid@" /root/install/chroot
+sudo sed -i "25s@$hostname@$hostname@" /root/install/chroot
+#
+sudo sed -i "49s@$username@$username@" /root/install/chroot
+sudo sed -i "53s@$username@$username@" /root/install/chroot
+sudo sed -i "59s@$username@$username@" /root/install/chroot
+sudo sed -i "60s@$username@$username@" /root/install/chroot
+sudo sed -i "61s@$username@$username@" /root/install/chroot
 # Format efi partition as fat32
 echo mkfs.fat -F32 $efipartition
 mkfs.fat -F32 $efipartition
@@ -66,11 +88,11 @@ cat /mnt/etc/fstab
 cp /root/install/chroot /mnt
 cp /root/install/gnome1 /mnt
 cp /root/install/gnome2 /mnt
-cp /root/install/deepin1 /mnt
+cp /root/install/kde1 /mnt
 chmod +x /mnt/chroot
 chmod +x /mnt/gnome1
 chmod +x /mnt/gnome2
-chmod +x /mnt/deepin1
+chmod +x /mnt/kde1
 rm -r /root/install
 #
 #--------------------------------------------------------------------
