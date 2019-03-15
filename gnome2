@@ -98,7 +98,7 @@ echo
 # Remove installation files
 sudo rm /home/$USER/gnome1
 sudo rm /home/$USER/gnome2
-sudo rm /home/$USER/deepin1
+sudo rm /home/$USER/kde1
 sudo rm /home/$USER/.config/autostart/gnomepostinstallscript.desktop
 # Reboot
 sudo reboot
