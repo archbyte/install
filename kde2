@@ -1,4 +1,8 @@
 #!/bin/bash
+echo " 1. Close Gnome-Disk-Utility." 
+echo " 2. Press 'Enter' to continue."
+gnome-disks
+read
 # Edit makepkg.conf to stop recompression and make installing software faster
 sudo sed -i '144s/.xz//' /etc/makepkg.conf
 # Install grub theme
@@ -13,6 +17,6 @@ sudo rm /home/$USER/gnome1
 sudo rm /home/$USER/gnome2
 sudo rm /home/$USER/kde1
 sudo rm /home/$USER/kde2
-sudo rm /home/$USER/.config/autostart/gnomepostinstallscript.desktop
+sudo rm /home/$USER/.config/autostart/kdepostinstallscript.desktop
 # Reboot
 sudo reboot
