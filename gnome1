@@ -116,7 +116,7 @@ EOT
 # Enable tap to click
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 # Script to make the post script run after reboot
-cat << EOT >> /home/$USER/.config/autostart/gnomepostinstallscript.desktop
+cat << EOT >> /home/$USER/.config/autostart/postinstallscript.desktop
 [Desktop Entry]
 #
 Type=Application
@@ -129,7 +129,7 @@ Exec=/home/$USER/gnome2
 #
 Terminal=true
 EOT
-chmod +x /home/$USER/.config/autostart/gnomepostinstallscript.desktop
+chmod +x /home/$USER/.config/autostart/postinstallscript.desktop
 #
 # Remove the pikaur folder and the chroot file
 cd /home/$USER
