@@ -114,7 +114,7 @@ sudo timedatectl set-ntp 1
 #------ END LICENSE ------
 #EOT
 # Script to make the post script run after reboot
-cat << EOT >> /home/$USER/.config/autostart/kdepostinstallscript.desktop
+cat << EOT >> /home/$USER/.config/autostart/postinstallscript.desktop
 [Desktop Entry]
 Type=Application
 Version=1.0
@@ -122,7 +122,7 @@ Name=postinstallscript
 Exec=/home/$USER/kde2
 Terminal=true
 EOT
-chmod +x /home/$USER/.config/autostart/kdepostinstallscript.desktop
+chmod +x /home/$USER/.config/autostart/postinstallscript.desktop
 #
 # Remove the pikaur folder and the chroot file
 cd /home/$USER
