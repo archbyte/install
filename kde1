@@ -10,7 +10,7 @@ echo
 sudo pacman -Syu
 # Install packages for kde desktop environment and other cool stuff
 # Extra: plank synergy bluez-utils # deepin-session-ui: TOO MUCH EXTRA STUFF NEEDED TO INSTALL
-sudo pacman -S --needed gnome-disk-utility base-devel git wget ntfs-3g xorg-server xorg-server xorg-xinit xorg-xprop xdg-user-dirs xdotool wmctrl tree neofetch reflector adobe-source-code-pro-fonts plasma-desktop konsole dolphin ark gwenview kate lightdm lightdm-gtk-greeter user-manager plasma-pa kdegraphics-thumbnailers ffmpegthumbs libappindicator-gtk2 libappindicator-gtk3 libappindicator-sharp alsa-utils powerdevil chromium
+sudo pacman -S --needed gnome-disk-utility base-devel git wget unzip ntfs-3g xorg-server xorg-server xorg-xinit xorg-xprop xdg-user-dirs xdotool wmctrl tree neofetch reflector adobe-source-code-pro-fonts plasma-desktop konsole dolphin ark gwenview kate lightdm lightdm-gtk-greeter user-manager plasma-pa kdegraphics-thumbnailers ffmpegthumbs libappindicator-gtk2 libappindicator-gtk3 libappindicator-sharp alsa-utils powerdevil chromium
 # Install pikaur: an aur helper
 git clone https://aur.archlinux.org/pikaur.git
 cd pikaur
