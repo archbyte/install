@@ -59,6 +59,9 @@ sudo sed -i '/# %wheel ALL=(ALL) ALL/s/^#//g' /etc/sudoers
 mv /gnome1 /home/inputusername
 mv /gnome2 /home/inputusername
 mv /kde1 /home/inputusername
+mv /kde2 /home/inputusername
+mv /i3xfce1 /home/inputusername
+mv /i3xfce2 /home/inputusername
 # Exit from chroot (or chroot script?)
 #umount /run/lvm
 exit
