@@ -9,16 +9,15 @@ echo
 # Update system
 sudo pacman -Syu
 # Install packages for deepin desktop environment and other cool stuff
-sudo pacman -S --needed deepin deepin-terminal 
-#deepin-screenshot deepin-editor ntfs-3g base-devel git
-#gnome-disk-utility adobe-source-code-pro-fonts xorg-server xorg-xinit xorg-xprop gnome-shell gdm nautilus gnome-system-monitor gnome-screenshot gnome-control-center gnome-terminal gnome-backgrounds gnome-power-manager eog gnome-tweak-tool chrome-gnome-shell xdg-user-dirs base-devel git bash curl dbus perl less wget bluez-utils gtk-engine-murrine gtk-engines xdotool wmctrl synergy qt5-base chromium plank tree neofetch reflector gparted
+sudo pacman -S --needed base-devel git wget ntfs-3g xorg-server xorg-server xorg-xinit xorg-xprop xdg-user-dirs xdotool wmctrl tree neofetch reflector adobe-source-code-pro-fonts
+# plank synergy bluez-utils
 # Install pikaur: an aur helper
 git clone https://aur.archlinux.org/pikaur.git
 cd pikaur
 makepkg -fsri
 cd /home/$USER
 pikaur -S pamac-aur sublime-text-dev
-#chromium-widevine ttf-clear-sans  nautilus-admin  libinput-gestures automathemely la-capitaine-icon-theme capitaine-cursors
+#chromium-widevine ttf-clear-sans libinput-gestures la-capitaine-icon-theme capitaine-cursors
 echo
 # Enable display manager
 echo "Enabling display manager service..."
@@ -28,20 +27,7 @@ echo
 echo "Enabling bluetooth service..."
 sudo systemctl enable bluetooth
 echo
-# Disable wayland
-sudo sed -i '/WaylandEnable=false/s/^#//' /etc/gdm/custom.conf
-# For automatic login use the built in gnome settings
-#echo '# Enable automatic login for user' | sudo tee --append /etc/gdm/custom.conf
-#echo '# [daemon]' | sudo tee --append /etc/gdm/custom.conf
-#echo '# AutomaticLogin=navtoj' | sudo tee --append /etc/gdm/custom.conf
-#echo '# AutomaticLoginEnable=True' | sudo tee --append /etc/gdm/custom.conf
-#echo
 #
-#echo Replace "navtoj" with your username in the following file.
-#echo
-#echo Press ENTER to continue.
-#read
-#sudo nano /etc/gdm/custom.conf
 # Edit hosts file for sublime text
 echo "Editing /etc/hosts file for sublime text..."
 echo '127.0.0.1       www.sublimetext.com' | sudo tee --append /etc/hosts
@@ -62,7 +48,7 @@ subl3
 sudo gpasswd -a $USER input
 mkdir /home/$USER/.config/autostart
 cp /usr/share/applications/libinput-gestures.desktop /home/$USER/.config/autostart
-cp /usr/share/applications/plank.desktop /home/$USER/.config/autostart
+#cp /usr/share/applications/plank.desktop /home/$USER/.config/autostart
 #cp /usr/share/applications/synergy.desktop /home/$USER/.config/autostart
 # Set plank theme
 sudo cp /usr/share/plank/themes/Default/dock.theme /usr/share/plank/themes/Default/dockbackup.theme && sudo cp /usr/share/plank/themes/Transparent/dock.theme /usr/share/plank/themes/Default/dock.theme
@@ -88,26 +74,24 @@ sudo bash -c "echo 'NoDisplay=true' >> /usr/share/applications/bvnc.desktop"
 sudo update-desktop-database
 # Do something related to time?
 timedatectl set-ntp 1
-# Enter sublime license
-cat << EOT >> /home/$USER/.config/sublime-text-3/Local/License.sublime_license
------ BEGIN LICENSE -----
-sgbteam
-Single User License
-EA7E-1153259
-8891CBB9 F1513E4F 1A3405C1 A865D53F
-115F202E 7B91AB2D 0D2A40ED 352B269B
-76E84F0B CD69BFC7 59F2DFEF E267328F
-215652A3 E88F9D8F 4C38E3BA 5B2DAAE4
-969624E7 DC9CD4D5 717FB40C 1B9738CF
-20B3C4F1 E917B5B3 87C38D9C ACCE7DD8
-5F7EF854 86B9743C FADC04AA FB0DA5C0
-F913BE58 42FEA319 F954EFDD AE881E0B
------- END LICENSE ------
-EOT
-# Enable tap to click
-gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+# Enter sublime license ### NO LONGER WORKING SINCE VERSION 3200 ###
+#cat << EOT >> /home/$USER/.config/sublime-text-3/Local/License.sublime_license
+#----- BEGIN LICENSE -----
+#sgbteam
+#Single User License
+#EA7E-1153259
+#8891CBB9 F1513E4F 1A3405C1 A865D53F
+#115F202E 7B91AB2D 0D2A40ED 352B269B
+#76E84F0B CD69BFC7 59F2DFEF E267328F
+#215652A3 E88F9D8F 4C38E3BA 5B2DAAE4
+#969624E7 DC9CD4D5 717FB40C 1B9738CF
+#20B3C4F1 E917B5B3 87C38D9C ACCE7DD8
+#5F7EF854 86B9743C FADC04AA FB0DA5C0
+#F913BE58 42FEA319 F954EFDD AE881E0B
+#------ END LICENSE ------
+#EOT
 # Script to make the post script run after reboot
-cat << EOT >> /home/$USER/.config/autostart/gnomepostinstallscript.desktop
+cat << EOT >> /home/$USER/.config/autostart/kdepostinstallscript.desktop
 [Desktop Entry]
 #
 Type=Application
@@ -116,7 +100,7 @@ Version=1.0
 #
 Name=postinstallscript
 #
-Exec=/home/$USER/gnome2
+Exec=/home/$USER/kde2
 #
 Terminal=true
 EOT
