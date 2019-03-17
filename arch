@@ -89,10 +89,16 @@ cp /root/install/chroot /mnt
 cp /root/install/gnome1 /mnt
 cp /root/install/gnome2 /mnt
 cp /root/install/kde1 /mnt
+cp /root/install/kde2 /mnt
+cp /root/install/i3xfce1 /mnt
+cp /root/install/i3xfce2 /mnt
 chmod +x /mnt/chroot
 chmod +x /mnt/gnome1
 chmod +x /mnt/gnome2
 chmod +x /mnt/kde1
+chmod +x /mnt/kde2
+chmod +x /mnt/i3xfce1
+chmod +x /mnt/i3xfce2
 rm -r /root/install
 #
 #--------------------------------------------------------------------
