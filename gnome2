@@ -100,6 +100,9 @@ echo
 sudo rm /home/$USER/gnome1
 sudo rm /home/$USER/gnome2
 sudo rm /home/$USER/kde1
-sudo rm /home/$USER/.config/autostart/gnomepostinstallscript.desktop
+sudo rm /home/$USER/kde2
+sudo rm /home/$USER/i3xfce1
+sudo rm /home/$USER/i3xfce2
+sudo rm /home/$USER/.config/autostart/postinstallscript.desktop
 # Reboot
 sudo reboot
