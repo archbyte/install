@@ -10,7 +10,7 @@ echo
 sudo pacman -Syu
 # Install packages for gnome desktop environment and other cool stuff
 #-Package-Info------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--pikaur--|~~~|--gnome-extension-installer--|-bluetooth-|--------darkside-theme--------|touch-gestures|----synergy-----|browser-|dock-|dir-|-system-|mirrors--|-disks-|
-sudo pacman -S --needed gnome-disk-utility adobe-source-code-pro-fonts ntfs-3g xorg-server xorg-xinit xorg-xprop gnome-shell gdm nautilus gnome-system-monitor gnome-screenshot gnome-control-center gnome-terminal gnome-backgrounds gnome-power-manager eog gnome-tweak-tool chrome-gnome-shell xdg-user-dirs base-devel git bash curl dbus perl less wget bluez-utils gtk-engine-murrine gtk-engines xdotool wmctrl synergy qt5-base chromium plank tree neofetch reflector gparted
+sudo pacman -S --needed gnome-disk-utility adobe-source-code-pro-fonts ntfs-3g xorg-server xorg-xinit xorg-xprop gnome-shell gdm nautilus gnome-system-monitor gnome-screenshot gnome-control-center gnome-terminal gnome-backgrounds gnome-power-manager eog gnome-tweak-tool chrome-gnome-shell xdg-user-dirs base-devel git bash curl dbus perl less wget bluez-utils gtk-engine-murrine gtk-engines xdotool wmctrl synergy qt5-base chromium plank tree neofetch reflector gparted unzip
 # Install pikaur: an aur helper
 git clone https://aur.archlinux.org/pikaur.git
 cd pikaur
