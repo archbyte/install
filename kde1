@@ -8,8 +8,8 @@ nmcli device wifi connect $ssid password $wifipass
 echo
 # Update system
 sudo pacman -Syu
-# Install packages for deepin desktop environment and other cool stuff
-sudo pacman -S --needed base-devel git wget ntfs-3g xorg-server xorg-server xorg-xinit xorg-xprop xdg-user-dirs xdotool wmctrl tree neofetch reflector adobe-source-code-pro-fonts plasma-desktop konsole dolphin ark gwenview kate lightdm lightdm-gtk-greeter
+# Install packages for kde desktop environment and other cool stuff
+sudo pacman -S --needed base-devel git wget ntfs-3g xorg-server xorg-server xorg-xinit xorg-xprop xdg-user-dirs xdotool wmctrl tree neofetch reflector adobe-source-code-pro-fonts plasma-desktop konsole dolphin ark gwenview kate lightdm lightdm-gtk-greeter user-manager plasma-pa kdegraphics-thumbnailers ffmpegthumbs libappindicator-gtk2 libappindicator-gtk3 libappindicator-sharp alsa-utils powerdevil chromium
 # plank synergy bluez-utils
 # deepin-session-ui ### TOO MUCH EXTRA STUFF NEEDED TO INSTALL
 #
@@ -18,13 +18,15 @@ git clone https://aur.archlinux.org/pikaur.git
 cd pikaur
 makepkg -fsri
 cd /home/$USER
-pikaur -S pamac-aur 
-# sublime-text-dev chromium-widevine ttf-clear-sans libinput-gestures la-capitaine-icon-theme capitaine-cursors
+pikaur -S libinput-gestures
+# pamac-aur sublime-text-dev chromium-widevine ttf-clear-sans la-capitaine-icon-theme capitaine-cursors
 echo
 # Customize display manager
 # -> Check for available greeters
-ls -1 /usr/share/xgreeters/
-sudo nano /etc/lightdm/lightdm.conf # greeter-session=lightdm-gtk-greeter
+# ls -1 /usr/share/xgreeters/
+# sudo nano /etc/lightdm/lightdm.conf # greeter-session=lightdm-gtk-greeter
+sudo sed -i '108s/example-gtk-gnome/lightdm-gtk-greeter/' /etc/lightdm/lightdm.conf
+sudo nano /etc/lightdm/lightdm.conf
 # Enable display manager
 echo "Enabling display manager service..."
 sudo systemctl enable lightdm
@@ -58,7 +60,7 @@ libinput-gestures-setup autostart
 #cp /usr/share/applications/plank.desktop /home/$USER/.config/autostart
 #cp /usr/share/applications/synergy.desktop /home/$USER/.config/autostart
 # Set plank theme
-sudo cp /usr/share/plank/themes/Default/dock.theme /usr/share/plank/themes/Default/dockbackup.theme && sudo cp /usr/share/plank/themes/Transparent/dock.theme /usr/share/plank/themes/Default/dock.theme
+#sudo cp /usr/share/plank/themes/Default/dock.theme /usr/share/plank/themes/Default/dockbackup.theme && sudo cp /usr/share/plank/themes/Transparent/dock.theme /usr/share/plank/themes/Default/dock.theme
 # Set desktop and lock screen wallpaper to mojave
 #sudo rm -r /usr/share/backgrounds/gnome
 #sudo rm -r /usr/share/gnome-background-properties
@@ -98,15 +100,15 @@ sudo timedatectl set-ntp 1
 #------ END LICENSE ------
 #EOT
 # Script to make the post script run after reboot
-cat << EOT >> /home/$USER/.config/autostart/kdepostinstallscript.desktop
-[Desktop Entry]
-Type=Application
-Version=1.0
-Name=postinstallscript
-Exec=/home/$USER/kde2
-Terminal=true
-EOT
-chmod +x /home/$USER/.config/autostart/gnomepostinstallscript.desktop
+#cat << EOT >> /home/$USER/.config/autostart/kdepostinstallscript.desktop
+#[Desktop Entry]
+#Type=Application
+#Version=1.0
+#Name=postinstallscript
+#Exec=/home/$USER/kde2
+#Terminal=true
+#EOT
+#chmod +x /home/$USER/.config/autostart/gnomepostinstallscript.desktop
 #
 # Remove the pikaur folder and the chroot file
 cd /home/$USER
