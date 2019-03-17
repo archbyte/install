@@ -9,32 +9,47 @@ echo
 # Update system
 sudo pacman -Syu
 # Install packages for kde desktop environment and other cool stuff
+# Extra: plank synergy bluez-utils # deepin-session-ui: TOO MUCH EXTRA STUFF NEEDED TO INSTALL
 sudo pacman -S --needed base-devel git wget ntfs-3g xorg-server xorg-server xorg-xinit xorg-xprop xdg-user-dirs xdotool wmctrl tree neofetch reflector adobe-source-code-pro-fonts plasma-desktop konsole dolphin ark gwenview kate lightdm lightdm-gtk-greeter user-manager plasma-pa kdegraphics-thumbnailers ffmpegthumbs libappindicator-gtk2 libappindicator-gtk3 libappindicator-sharp alsa-utils powerdevil chromium
-# plank synergy bluez-utils
-# deepin-session-ui ### TOO MUCH EXTRA STUFF NEEDED TO INSTALL
-#
 # Install pikaur: an aur helper
 git clone https://aur.archlinux.org/pikaur.git
 cd pikaur
 makepkg -fsri
 cd /home/$USER
 pikaur -S libinput-gestures
-# pamac-aur sublime-text-dev chromium-widevine ttf-clear-sans la-capitaine-icon-theme capitaine-cursors
 echo
-# Customize display manager
-# -> Check for available greeters
-# ls -1 /usr/share/xgreeters/
+# pamac-aur sublime-text-dev chromium-widevine ttf-clear-sans la-capitaine-icon-theme capitaine-cursors
+#
+#
+#
+#
+#
+##
+# Customize display manager -> Check for available greeters: ls -1 /usr/share/xgreeters/
 # sudo nano /etc/lightdm/lightdm.conf # greeter-session=lightdm-gtk-greeter
 sudo sed -i '108s/example-gtk-gnome/lightdm-gtk-greeter/' /etc/lightdm/lightdm.conf
 sudo nano /etc/lightdm/lightdm.conf
-# Enable display manager
-echo "Enabling display manager service..."
+# Enable light(dm) display manager
+echo "Enabling lightdm service..."
 sudo systemctl enable lightdm
 echo
 # Enable the bluetooth service
 #echo "Enabling bluetooth service..."
 #sudo systemctl enable bluetooth
 #echo
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 # Edit hosts file for sublime text
 #echo "Editing /etc/hosts file for sublime text..."
@@ -58,7 +73,6 @@ libinput-gestures-setup autostart
 #mkdir /home/$USER/.config/autostart
 #cp /usr/share/applications/libinput-gestures.desktop /home/$USER/.config/autostart
 #cp /usr/share/applications/plank.desktop /home/$USER/.config/autostart
-#cp /usr/share/applications/synergy.desktop /home/$USER/.config/autostart
 # Set plank theme
 #sudo cp /usr/share/plank/themes/Default/dock.theme /usr/share/plank/themes/Default/dockbackup.theme && sudo cp /usr/share/plank/themes/Transparent/dock.theme /usr/share/plank/themes/Default/dock.theme
 # Set desktop and lock screen wallpaper to mojave
