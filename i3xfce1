@@ -1,0 +1,12 @@
+#!/bin/bash
+# Connect to wifi
+nmcli device wifi list
+echo
+read -p "Enter your wifi SSID: " ssid
+read -p "Enter your wifi password: " wifipass
+nmcli device wifi connect $ssid password $wifipass
+echo
+# Update system
+sudo pacman -Syu
+# Install packages for the desktop environment and other cool stuff
+sudo pacman -S --needed chromium gnome-disk-utility base-devel git wget unzip ntfs-3g xorg-server xorg-server xorg-xinit xorg-xprop xdg-user-dirs xdotool wmctrl tree reflector neofetch adobe-source-code-pro-fonts lightdm lightdm-gtk-greeter xfce4 xorg-xkill xfce4-power-manager xfce4-screenshooter mousepad ristretto thunar-archive-plugin xfce4-datetime-plugin xfce4-notifyd xfce4-pulseaudio-plugin xfce4-taskmanager xfce4-wavelan-plugin xfce4-whiskermenu-plugin
