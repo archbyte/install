@@ -9,4 +9,42 @@ echo
 # Update system
 sudo pacman -Syu
 # Install packages for the desktop environment and other cool stuff
-sudo pacman -S --needed chromium gnome-disk-utility base-devel git wget unzip ntfs-3g xorg-server xorg-server xorg-xinit xorg-xprop xdg-user-dirs xdotool wmctrl tree reflector neofetch adobe-source-code-pro-fonts lightdm lightdm-gtk-greeter xfce4 xorg-xkill xfce4-power-manager xfce4-screenshooter mousepad ristretto thunar-archive-plugin xfce4-datetime-plugin xfce4-notifyd xfce4-pulseaudio-plugin xfce4-taskmanager xfce4-wavelan-plugin xfce4-whiskermenu-plugin
+# Not installing the full xfce4-goodies group, only some useful packages
+sudo pacman -S --needed chromium gnome-disk-utility base-devel bash git wget unzip tree ntfs-3g xorg-server xorg-server xorg-xinit xorg-xprop xdg-user-dirs xdotool wmctrl tree reflector neofetch adobe-source-code-pro-fonts lightdm lightdm-gtk-greeter xfce4 xorg-xkill xfce4-power-manager xfce4-screenshooter mousepad ristretto thunar-archive-plugin xfce4-datetime-plugin xfce4-notifyd xfce4-pulseaudio-plugin xfce4-taskmanager xfce4-wavelan-plugin xfce4-whiskermenu-plugin
+# Install pikaur: an aur helper
+git clone https://aur.archlinux.org/pikaur.git
+cd pikaur
+makepkg -fsri
+cd /home/$USER
+pikaur -S libinput-gestures
+echo
+# Customize display manager -> Check for available greeters: ls -1 /usr/share/xgreeters/
+# sudo nano /etc/lightdm/lightdm.conf # greeter-session=lightdm-gtk-greeter
+sudo sed -i '108s/example-gtk-gnome/lightdm-gtk-greeter/' /etc/lightdm/lightdm.conf
+sudo sed -i '/greeter-session=lightdm-gtk-greeter/s/^#//' /etc/lightdm/lightdm.conf
+sudo nano /etc/lightdm/lightdm.conf
+# Enable light(dm) display manager
+echo "Enabling lightdm service..."
+sudo systemctl enable lightdm
+echo
+# Set custom touchpad gestures
+cp /etc/libinput-gestures.conf ~/.config/libinput-gestures.conf
+libinput-gestures-setup autostart
+# Do something related to time?
+sudo timedatectl set-ntp 1
+# Script to make the post script run after reboot
+cat << EOT >> /home/$USER/.config/autostart/postinstallscript.desktop
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=postinstallscript
+Exec=/home/$USER/i3xfce2
+Terminal=true
+EOT
+chmod +x /home/$USER/.config/autostart/postinstallscript.desktop
+# Remove the pikaur folder and the chroot file
+cd /home/$USER
+sudo rm -r pikaur
+sudo rm /chroot
+# Reboot
+sudo reboot
