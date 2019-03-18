@@ -20,6 +20,10 @@ git clone https://github.com/archbyte/install --branch fastinstall
 
 OR
 
+./i3xfce1 ~ IN PROGRESS
+
+OR
+
 ./kde1 ~ IN PROGRESS
 
 **Enjoy.**
