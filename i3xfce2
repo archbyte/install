@@ -1,0 +1,24 @@
+#!/bin/bash
+echo " 1. Close Gnome-Disk-Utility."
+echo " 2. Press 'Enter' to continue."
+gnome-disks
+read
+# Edit makepkg.conf to stop recompression and make installing software faster
+sudo sed -i '144s/.xz//' /etc/makepkg.conf
+# Install grub theme
+wget -O - https://github.com/shvchk/poly-light/raw/master/install.sh | bash
+# Change grub timeout to 3
+sudo sed -i '4s/0/3/' /etc/default/grub
+# Generate grub configuration file
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+echo
+# Remove installation files
+sudo rm /home/$USER/gnome1
+sudo rm /home/$USER/gnome2
+sudo rm /home/$USER/kde1
+sudo rm /home/$USER/kde2
+sudo rm /home/$USER/i3xfce1
+sudo rm /home/$USER/i3xfce2
+sudo rm /home/$USER/.config/autostart/postinstallscript.desktop
+# Reboot
+sudo reboot
