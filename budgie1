@@ -1,13 +1,72 @@
+#!/bin/bash
+# Connect to wifi
+nmcli device wifi list
+echo
+read -p "Enter your wifi SSID: " ssid
+read -p "Enter your wifi password: " wifipass
+nmcli device wifi connect $ssid password $wifipass
+echo
+# Update system
 sudo pacman -Syu
-sudo pacman -S --needed budgie-desktop budgie-extras gnome-terminal gnome-backgrounds gnome-control-center gnome-screensaver network-manager-applet autoconf-archive git gobject-introspection intltool meson sassc vala
-sudo sed -i '108s/example-gtk-gnome/lightdm-gtk-greeter/' /etc/lightdm/lightdm.conf
-sudo nano /etc/lightdm/lightdm.conf # Uncomment line
-sudo systemctl enable lightdm
+# Install packages for the desktop environment and other cool stuff
+sudo pacman -S --needed gnome-disk-utility ttf-hack ntfs-3g xorg-server xorg-xinit xorg-xprop budgie-desktop budgie-extras gdm nautilus gnome-terminal gnome-backgrounds gnome-control-center gnome-screensaver network-manager-applet autoconf-archive git gobject-introspection intltool meson sassc vala gnome-system-monitor gnome-screenshot gnome-power-manager eog gnome-tweak-tool xdg-user-dirs base-devel git bash curl dbus perl less wget bluez-utils gtk-engine-murrine gtk-engines xdotool wmctrl chromium plank tree neofetch reflector gparted unzip
+# Install pikaur: an aur helper
 git clone https://aur.archlinux.org/pikaur.git
 cd pikaur
 makepkg -fsri
 cd /home/$USER
-pikaur -S libinput-gestures
+pikaur -S chromium-widevine ttf-clear-sans pamac-aur nautilus-admin libinput-gestures la-capitaine-icon-theme capitaine-cursors
+echo
+# Enable gnome display manager
+echo "Enabling gdm service..."
+sudo systemctl enable gdm
+echo
+# Enable the bluetooth service
+echo "Enabling bluetooth service..."
+sudo systemctl enable bluetooth
+echo
+# Disable wayland
+sudo sed -i '/WaylandEnable=false/s/^#//' /etc/gdm/custom.conf
+echo
+# Set custom touchpad gestures
 cp /etc/libinput-gestures.conf ~/.config/libinput-gestures.conf
+# Set apps to autostart
 sudo gpasswd -a $USER input
 libinput-gestures-setup autostart
+# Install some shell themes
+sudo git clone https://github.com/EliverLara/Ant-Nebula --branch slim /usr/share/themes/Ant-Nebula
+sudo git clone https://github.com/paullinuxthemer/Dark-Side /usr/share/themes/Dark-Side
+# Keep the avahi apps from showing up in the apps view
+sudo ln -sf /dev/null /etc/systemd/system/avahi-daemon.service
+sudo ln -sf /dev/null /etc/systemd/system/avahi-daemon.socket
+sudo ln -sf /dev/null /etc/systemd/system/dbus-org.freedesktop.Avahi.service
+sudo bash -c "echo 'NoDisplay=true' >> /usr/share/applications/avahi-discover.desktop"
+sudo bash -c "echo 'NoDisplay=true' >> /usr/share/applications/bssh.desktop"
+sudo bash -c "echo 'NoDisplay=true' >> /usr/share/applications/bvnc.desktop"
+sudo update-desktop-database
+# Do something related to time?
+timedatectl set-ntp 1
+# Enable tap to click
+gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+# Script to make the post script run after reboot
+cat << EOT >> /home/$USER/.config/autostart/postinstallscript.desktop
+[Desktop Entry]
+#
+Type=Application
+#
+Version=1.0
+#
+Name=postinstallscript
+#
+Exec=/home/$USER/budgie2
+#
+Terminal=true
+EOT
+chmod +x /home/$USER/.config/autostart/postinstallscript.desktop
+#
+# Remove the pikaur folder and the chroot file
+cd /home/$USER
+sudo rm -r pikaur
+sudo rm /chroot
+# Reboot
+sudo reboot
