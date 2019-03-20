@@ -1,0 +1,13 @@
+sudo pacman -Syu
+sudo pacman -S --needed budgie-desktop budgie-extras gnome-terminal gnome-backgrounds gnome-control-center gnome-screensaver network-manager-applet autoconf-archive git gobject-introspection intltool meson sassc vala
+sudo sed -i '108s/example-gtk-gnome/lightdm-gtk-greeter/' /etc/lightdm/lightdm.conf
+sudo nano /etc/lightdm/lightdm.conf # Uncomment line
+sudo systemctl enable lightdm
+git clone https://aur.archlinux.org/pikaur.git
+cd pikaur
+makepkg -fsri
+cd /home/$USER
+pikaur -S libinput-gestures
+cp /etc/libinput-gestures.conf ~/.config/libinput-gestures.conf
+sudo gpasswd -a $USER input
+libinput-gestures-setup autostart
