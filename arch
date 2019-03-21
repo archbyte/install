@@ -1,5 +1,4 @@
 #!/bin/bash
-echo
 # Check if user is root
 if [[ $EUID -ne 0 ]]; then
     echo "You must be a root user to run this." 2>&1
@@ -55,15 +54,23 @@ read -p "Enter your preferred username: " username
 echo $username
 echo
 # Enter input into chroot file
+sudo sed -i "25s@inputhostname@$hostname@" /root/install/chroot
 sudo sed -i "33s@inputefipartition@$efipartition@" /root/install/chroot
 sudo sed -i "39s@inputbootloaderid@$bootloaderid@" /root/install/chroot
-sudo sed -i "25s@inputhostname@$hostname@" /root/install/chroot
-#booted
 sudo sed -i "49s@inputusername@$username@" /root/install/chroot
 sudo sed -i "53s@inputusername@$username@" /root/install/chroot
+#
 sudo sed -i "59s@inputusername@$username@" /root/install/chroot
 sudo sed -i "60s@inputusername@$username@" /root/install/chroot
 sudo sed -i "61s@inputusername@$username@" /root/install/chroot
+sudo sed -i "62s@inputusername@$username@" /root/install/chroot
+sudo sed -i "63s@inputusername@$username@" /root/install/chroot
+sudo sed -i "64s@inputusername@$username@" /root/install/chroot
+sudo sed -i "65s@inputusername@$username@" /root/install/chroot
+sudo sed -i "66s@inputusername@$username@" /root/install/chroot
+# sudo sed -i "67s@inputusername@$username@" /root/install/chroot
+# sudo sed -i "68s@inputusername@$username@" /root/install/chroot
+#
 # Format efi partition as fat32
 echo mkfs.fat -F32 $efipartition
 mkfs.fat -F32 $efipartition
@@ -92,6 +99,8 @@ cp /root/install/kde1 /mnt
 cp /root/install/kde2 /mnt
 cp /root/install/i3xfce1 /mnt
 cp /root/install/i3xfce2 /mnt
+cp /root/install/budgie1 /mnt
+cp /root/install/budgie2 /mnt
 chmod +x /mnt/chroot
 chmod +x /mnt/gnome1
 chmod +x /mnt/gnome2
@@ -99,6 +108,8 @@ chmod +x /mnt/kde1
 chmod +x /mnt/kde2
 chmod +x /mnt/i3xfce1
 chmod +x /mnt/i3xfce2
+chmod +x /mnt/budgie1
+chmod +x /mnt/budgie2
 rm -r /root/install
 #
 #--------------------------------------------------------------------
