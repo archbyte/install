@@ -62,6 +62,11 @@ mv /kde1 /home/inputusername
 mv /kde2 /home/inputusername
 mv /i3xfce1 /home/inputusername
 mv /i3xfce2 /home/inputusername
+mv /budgie1 /home/inputusername
+mv /budgie2 /home/inputusername
+# mv /de1 /home/inputusername
+# mv /de2 /home/inputusername
+#
 # Exit from chroot (or chroot script?)
 #umount /run/lvm
 exit
