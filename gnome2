@@ -103,6 +103,8 @@ sudo rm /home/$USER/kde1
 sudo rm /home/$USER/kde2
 sudo rm /home/$USER/i3xfce1
 sudo rm /home/$USER/i3xfce2
+sudo rm /home/$USER/budgie1
+sudo rm /home/$USER/budgie2
 sudo rm /home/$USER/.config/autostart/postinstallscript.desktop
 # Reboot
 sudo reboot
