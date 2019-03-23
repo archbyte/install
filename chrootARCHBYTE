@@ -53,6 +53,6 @@ echo "Uncommenting the wheel group line."
 sudo sed -i '/# %wheel ALL=(ALL) ALL/s/^#//g' /etc/sudoers
 # Move remaining setup files to user home directory
 rm /chrootARCHBYTE
-mv /*ARCHBYTE /home/inputusername
+mv /*ARCHBYTE /home/USERNAME
 # Exit from chroot (or chroot script?)
 exit
