@@ -166,6 +166,7 @@ sudo rm /home/$USER/.config/autostart/postinstallscriptARCHBYTE.desktop
 # Reboot
 sudo reboot
 EOT
+chmod +x /home/$USER/.config/autostart/postinstallARCHBYTE
 #--------------------------------------------------------------------
 # Enable tap to click
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
