@@ -53,27 +53,27 @@ dconf write /org/gtk/settings/file-chooser/show-hidden true
 dconf write /org/gtk/settings/file-chooser/sort-directories-first true
 #dconf write /org/gnome/nautilus/window-state/initial-size (727, 409)
 dconf write /org/gnome/shell/extensions/set-columns/columns-max 7
-# Set some automa themely settings
-sudo sed -i '3s/custom/gnome/' ~/.config/automathemely/user_settings.json
-sudo sed -i '7s/""/"Ant-Nebula"/' ~/.config/automathemely/user_settings.json
-sudo sed -i '8s/""/"la-capitaine"/' ~/.config/automathemely/user_settings.json
-sudo sed -i '9s/""/"Ant-Nebula"/' ~/.config/automathemely/user_settings.json
-sudo sed -i '12s/""/"Dark-Side"/' ~/.config/automathemely/user_settings.json
-sudo sed -i '13s/""/"la-capitaine"/' ~/.config/automathemely/user_settings.json
-sudo sed -i '14s/""/"Ant-Nebula"/' ~/.config/automathemely/user_settings.json
-sudo sed -i '65s/true/false/' ~/.config/automathemely/user_settings.json
-#
-#automathemely --setting desktop_environment=gnome
-#automathemely --setting themes.gnome.light.gtk=Ant-Nebula
-#automathemely --setting themes.gnome.light.icons=la-capitaine
-#automathemely --setting themes.gnome.light.shell=Ant-Nebula
-#automathemely --setting themes.gnome.dark.gtk=Dark-Side
-#automathemely --setting themes.gnome.dark.icons=la-capitaine
-#automathemely --setting themes.gnome.dark.shell=Ant-Nebula
+# Configure automa themely
+automathemely --setting desktop_environment=gnome
+automathemely --setting themes.gnome.light.gtk=Ant-Nebula
+automathemely --setting themes.gnome.light.icons=la-capitaine
+automathemely --setting themes.gnome.light.shell=Ant-Nebula
+automathemely --setting themes.gnome.dark.gtk=Dark-Side
+automathemely --setting themes.gnome.dark.icons=la-capitaine
+automathemely --setting themes.gnome.dark.shell=Ant-Nebula
 #automathemely --setting location.auto_enabled=True
-#automathemely --setting misc.notifications=False
-# Update and restart automa themely
-automathemely --update
+automathemely --setting misc.notifications=False
+#
+#sudo sed -i '3s/custom/gnome/' ~/.config/automathemely/user_settings.json
+#sudo sed -i '7s/""/"Ant-Nebula"/' ~/.config/automathemely/user_settings.json
+#sudo sed -i '8s/""/"la-capitaine"/' ~/.config/automathemely/user_settings.json
+#sudo sed -i '9s/""/"Ant-Nebula"/' ~/.config/automathemely/user_settings.json
+#sudo sed -i '12s/""/"Dark-Side"/' ~/.config/automathemely/user_settings.json
+#sudo sed -i '13s/""/"la-capitaine"/' ~/.config/automathemely/user_settings.json
+#sudo sed -i '14s/""/"Ant-Nebula"/' ~/.config/automathemely/user_settings.json
+sudo sed -i 's/"auto_enabled": false/"auto_enabled": true/' ~/.config/automathemely/user_settings.json
+#sudo sed -i '65s/true/false/' ~/.config/automathemely/user_settings.json
+#
 automathemely --restart
 automathemely
 # Autostart script to make automathemely run everytime (normal way showed the gui)
