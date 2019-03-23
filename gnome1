@@ -10,7 +10,7 @@ echo
 sudo pacman -Syu
 # Install packages for gnome desktop environment and other cool stuff
 #-Package-Info------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--pikaur--|~~~|--gnome-extension-installer--|-bluetooth-|--------darkside-theme--------|touch-gestures|----synergy-----|browser-|dock-|dir-|-system-|mirrors--|-disks-|
-sudo pacman -S --needed gnome-disk-utility adobe-source-code-pro-fonts ntfs-3g xorg-server xorg-xinit xorg-xprop gnome-shell gdm nautilus gnome-system-monitor gnome-screenshot gnome-control-center gnome-terminal gnome-backgrounds gnome-power-manager eog gnome-tweak-tool chrome-gnome-shell xdg-user-dirs base-devel git bash curl dbus perl less wget bluez-utils gtk-engine-murrine gtk-engines xdotool wmctrl synergy qt5-base chromium plank tree neofetch reflector gparted unzip
+sudo pacman -S --needed gnome-disk-utility ttf-hack ntfs-3g xorg-server xorg-xinit xorg-xprop gnome-shell gdm nautilus gnome-system-monitor gnome-screenshot gnome-control-center gnome-terminal gnome-backgrounds gnome-power-manager eog gnome-tweak-tool chrome-gnome-shell xdg-user-dirs base-devel git bash curl dbus perl less wget bluez-utils gtk-engine-murrine gtk-engines xdotool wmctrl chromium plank tree neofetch reflector gparted unzip
 # Install pikaur: an aur helper
 git clone https://aur.archlinux.org/pikaur.git
 cd pikaur
@@ -52,9 +52,9 @@ sudo sed -i '/WaylandEnable=false/s/^#//' /etc/gdm/custom.conf
 #read
 #sudo nano /etc/gdm/custom.conf
 # Edit hosts file for sublime text
-echo "Editing /etc/hosts file for sublime text..."
-echo '127.0.0.1       www.sublimetext.com' | sudo tee --append /etc/hosts
-echo '127.0.0.1       license.sublimehq.com'| sudo tee --append /etc/hosts
+#echo "Editing /etc/hosts file for sublime text..."
+#echo '127.0.0.1       www.sublimetext.com' | sudo tee --append /etc/hosts
+#echo '127.0.0.1       license.sublimehq.com'| sudo tee --append /etc/hosts
 # Set custom touchpad gestures
 cp /etc/libinput-gestures.conf ~/.config/libinput-gestures.conf
 sed -i '50s/.*/gesture swipe up 3 _internal ws_up/' ~/.config/libinput-gestures.conf
@@ -66,11 +66,12 @@ sed -i '119s/.*/gesture swipe left_down 3 xdotool key super+s/' ~/.config/libinp
 sed -i '132s/.*/gesture pinch clockwise xdotool key super+Right/' ~/.config/libinput-gestures.conf
 sed -i '133s/.*/gesture pinch anticlockwise xdotool key super+Left/' ~/.config/libinput-gestures.conf
 # Run sublime-text to generate some config data
-subl3
+#subl3
 # Set apps to autostart
 sudo gpasswd -a $USER input
-mkdir /home/$USER/.config/autostart
-cp /usr/share/applications/libinput-gestures.desktop /home/$USER/.config/autostart
+#mkdir /home/$USER/.config/autostart
+libinput-gestures-setup autostart
+#cp /usr/share/applications/libinput-gestures.desktop /home/$USER/.config/autostart
 cp /usr/share/applications/plank.desktop /home/$USER/.config/autostart
 #cp /usr/share/applications/synergy.desktop /home/$USER/.config/autostart
 # Set plank theme
@@ -98,21 +99,21 @@ sudo update-desktop-database
 # Do something related to time?
 timedatectl set-ntp 1
 # Enter sublime license
-cat << EOT >> /home/$USER/.config/sublime-text-3/Local/License.sublime_license
------ BEGIN LICENSE -----
-sgbteam
-Single User License
-EA7E-1153259
-8891CBB9 F1513E4F 1A3405C1 A865D53F
-115F202E 7B91AB2D 0D2A40ED 352B269B
-76E84F0B CD69BFC7 59F2DFEF E267328F
-215652A3 E88F9D8F 4C38E3BA 5B2DAAE4
-969624E7 DC9CD4D5 717FB40C 1B9738CF
-20B3C4F1 E917B5B3 87C38D9C ACCE7DD8
-5F7EF854 86B9743C FADC04AA FB0DA5C0
-F913BE58 42FEA319 F954EFDD AE881E0B
------- END LICENSE ------
-EOT
+#cat << EOT >> /home/$USER/.config/sublime-text-3/Local/License.sublime_license
+#----- BEGIN LICENSE -----
+#sgbteam
+#Single User License
+#EA7E-1153259
+#8891CBB9 F1513E4F 1A3405C1 A865D53F
+#115F202E 7B91AB2D 0D2A40ED 352B269B
+#76E84F0B CD69BFC7 59F2DFEF E267328F
+#215652A3 E88F9D8F 4C38E3BA 5B2DAAE4
+#969624E7 DC9CD4D5 717FB40C 1B9738CF
+#20B3C4F1 E917B5B3 87C38D9C ACCE7DD8
+#5F7EF854 86B9743C FADC04AA FB0DA5C0
+#F913BE58 42FEA319 F954EFDD AE881E0B
+#------ END LICENSE ------
+#EOT
 # Enable tap to click
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 # Script to make the post script run after reboot
