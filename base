@@ -27,21 +27,21 @@ lsblk
 echo
 # Input locations of efi partition and root partition
 read -p "efipartition (/dev/sdax) = " efipartition
-sudo sed -i "s@EFIPARTITION@$efipartition@g" /root/install/chroot
+sudo sed -i "s@EFIPARTITION@$efipartition@g" /root/install/chrootARCHBYTE
 echo
 read -p "ospartition (/dev/sdax) = " ospartition
 echo
 # Input bootloader id
 read -p "Enter your preferred bootloader-id: " bootloaderid
-sudo sed -i "s@BOOTLOADERID@$bootloaderid@g" /root/install/chroot
+sudo sed -i "s@BOOTLOADERID@$bootloaderid@g" /root/install/chrootARCHBYTE
 echo
 # Input hostname
 read -p "Enter your hostname: " hostname
-sudo sed -i "s@HOSTNAME@$hostname@g" /root/install/chroot
+sudo sed -i "s@HOSTNAME@$hostname@g" /root/install/chrootARCHBYTE
 echo
 # Input username
 read -p "Enter your preferred username: " username
-sudo sed -i "s@USERNAME@$username@g" /root/install/chroot
+sudo sed -i "s@USERNAME@$username@g" /root/install/chrootARCHBYTE
 echo
 # Format efi partition as fat32
 mkfs.fat -F32 $efipartition
