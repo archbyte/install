@@ -4,16 +4,12 @@ if [[ $EUID -ne 0 ]]; then
     echo "You must be a root user to run this." 2>&1
     exit 1
 fi
-#--------------------------------------------------------------------
-#ln -s /hostlvm /run/lvm
-#--------------------------------------------------------------------
 # Set the timezone to US-Pacific
 ln -sf /usr/share/zoneinfo/US/Pacific /etc/localtime
 # Generate /etc/adjtime
 hwclock --systohc --utc
 # Uncomment locale
-echo "nano /etc/locale.gen"
-echo "Setting locale: en_US.UTF-8 UTF-8 for American-English."
+echo "nano /etc/locale.gen - Setting locale: en_US.UTF-8 UTF-8 for American-English."
 sed -i '/#en_US.UTF-8 UTF-8/s/^#//g' /etc/locale.gen
 echo
 # Set the LANG variable
@@ -56,17 +52,7 @@ echo
 echo "Uncommenting the wheel group line."
 sudo sed -i '/# %wheel ALL=(ALL) ALL/s/^#//g' /etc/sudoers
 # Move remaining setup files to user home directory
-mv /gnome1 /home/inputusername
-mv /gnome2 /home/inputusername
-mv /kde1 /home/inputusername
-mv /kde2 /home/inputusername
-mv /i3xfce1 /home/inputusername
-mv /i3xfce2 /home/inputusername
-mv /budgie1 /home/inputusername
-mv /budgie2 /home/inputusername
-# mv /de1 /home/inputusername
-# mv /de2 /home/inputusername
-#
+rm /chrootARCHBYTE
+mv /*ARCHBYTE /home/inputusername
 # Exit from chroot (or chroot script?)
-#umount /run/lvm
 exit
