@@ -18,6 +18,6 @@ git clone https://github.com/archbyte/install --branch fast1
 
 ls
 
-./name_of_desktop_environment_to_install
+./name_of_desktop_environmentARCHBYTE
 
 **Enjoy.**
