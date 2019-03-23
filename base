@@ -24,16 +24,16 @@ cfdisk
 fdisk -l
 echo
 lsblk
+echo
 # Input locations of efi partition and root partition
 read -p "efipartition (/dev/sdax) = " efipartition
-sudo sed -i "s@HOSTNAME@$hostname@g" /root/install/chroot
+sudo sed -i "s@EFIPARTITION@$efipartition@g" /root/install/chroot
 echo
 read -p "ospartition (/dev/sdax) = " ospartition
-sudo sed -i "s@HOSTNAME@$hostname@g" /root/install/chroot
 echo
 # Input bootloader id
 read -p "Enter your preferred bootloader-id: " bootloaderid
-sudo sed -i "s@HOSTNAME@$hostname@g" /root/install/chroot
+sudo sed -i "s@BOOTLOADERID@$bootloaderid@g" /root/install/chroot
 echo
 # Input hostname
 read -p "Enter your hostname: " hostname
@@ -41,64 +41,31 @@ sudo sed -i "s@HOSTNAME@$hostname@g" /root/install/chroot
 echo
 # Input username
 read -p "Enter your preferred username: " username
-sudo sed -i "s@HOSTNAME@$hostname@g" /root/install/chroot
+sudo sed -i "s@USERNAME@$username@g" /root/install/chroot
 echo
 # Format efi partition as fat32
-echo mkfs.fat -F32 $efipartition
 mkfs.fat -F32 $efipartition
 echo
 # Format root partition as ext4
-echo mkfs.ext4 $ospartition
 mkfs.ext4 $ospartition
 echo
 # Mount root partition to /mnt
 mount $ospartition /mnt
 # Install the base and base-devel package groups using pacstrap
-echo "pacstrap /mnt base base-devel"
 pacstrap /mnt base base-devel
 echo
 # Generate fstab
-echo "Generate fstab."
 genfstab -U /mnt >> /mnt/etc/fstab
 echo
 cat /mnt/etc/fstab
 # Copy remaining installation files to /mnt, make them executable,
-# and remove the cloned install folder
-cp /root/install/chroot /mnt
-cp /root/install/gnome1 /mnt
-cp /root/install/gnome2 /mnt
-cp /root/install/kde1 /mnt
-cp /root/install/kde2 /mnt
-cp /root/install/i3xfce1 /mnt
-cp /root/install/i3xfce2 /mnt
-cp /root/install/budgie1 /mnt
-cp /root/install/budgie2 /mnt
-chmod +x /mnt/chroot
-chmod +x /mnt/gnome1
-chmod +x /mnt/gnome2
-chmod +x /mnt/kde1
-chmod +x /mnt/kde2
-chmod +x /mnt/i3xfce1
-chmod +x /mnt/i3xfce2
-chmod +x /mnt/budgie1
-chmod +x /mnt/budgie2
+cp /root/install/*ARCHBYTE /mnt
+chmod +x /mnt/*ARCHBYTE
+# Remove the cloned install folder
 rm -r /root/install
-#
-#--------------------------------------------------------------------
-#mkdir /mnt/hostlvm
-#mount --bind /run/lvm /mnt/hostlvm
-#--------------------------------------------------------------------
-# echo "arch-chroot /mnt"
-# arch-chroot /mnt
 #--------------------------------------------------------------------
 # Run the chroot script in the new system through chroot 
-arch-chroot /mnt ./chroot
-# Run below commands in the new system through chroot to exit
-# -
-#arch-chroot /mnt /bin/bash <<EOF
-#exit
-#EOF
-# -
+arch-chroot /mnt ./chrootARCHBYTE
 # Unmount and reboot
 umount -a
 reboot
