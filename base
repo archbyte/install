@@ -5,7 +5,6 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 # Check if system is booted in efi mode
-echo "ls /sys/firmware/efi/efivars"
 ls /sys/firmware/efi/efivars
 echo
 echo "Press 'Ctrl+c' to exit OR 'Enter' to continue"
@@ -25,52 +24,25 @@ cfdisk
 fdisk -l
 echo
 lsblk
-# Edit partitions
-echo "cfdisk"
-read
-cfdisk
-# List partitions
-fdisk -l
-echo
-lsblk
-echo
 # Input locations of efi partition and root partition
 read -p "efipartition (/dev/sdax) = " efipartition
-echo $efipartition
+sudo sed -i "s@HOSTNAME@$hostname@g" /root/install/chroot
 echo
 read -p "ospartition (/dev/sdax) = " ospartition
-echo $ospartition
+sudo sed -i "s@HOSTNAME@$hostname@g" /root/install/chroot
 echo
 # Input bootloader id
 read -p "Enter your preferred bootloader-id: " bootloaderid
-echo $bootloaderid
+sudo sed -i "s@HOSTNAME@$hostname@g" /root/install/chroot
 echo
 # Input hostname
 read -p "Enter your hostname: " hostname
-echo $hostname
+sudo sed -i "s@HOSTNAME@$hostname@g" /root/install/chroot
 echo
 # Input username
 read -p "Enter your preferred username: " username
-echo $username
+sudo sed -i "s@HOSTNAME@$hostname@g" /root/install/chroot
 echo
-# Enter input into chroot file
-sudo sed -i "25s@inputhostname@$hostname@" /root/install/chroot
-sudo sed -i "33s@inputefipartition@$efipartition@" /root/install/chroot
-sudo sed -i "39s@inputbootloaderid@$bootloaderid@" /root/install/chroot
-sudo sed -i "49s@inputusername@$username@" /root/install/chroot
-sudo sed -i "53s@inputusername@$username@" /root/install/chroot
-#
-sudo sed -i "59s@inputusername@$username@" /root/install/chroot
-sudo sed -i "60s@inputusername@$username@" /root/install/chroot
-sudo sed -i "61s@inputusername@$username@" /root/install/chroot
-sudo sed -i "62s@inputusername@$username@" /root/install/chroot
-sudo sed -i "63s@inputusername@$username@" /root/install/chroot
-sudo sed -i "64s@inputusername@$username@" /root/install/chroot
-sudo sed -i "65s@inputusername@$username@" /root/install/chroot
-sudo sed -i "66s@inputusername@$username@" /root/install/chroot
-# sudo sed -i "67s@inputusername@$username@" /root/install/chroot
-# sudo sed -i "68s@inputusername@$username@" /root/install/chroot
-#
 # Format efi partition as fat32
 echo mkfs.fat -F32 $efipartition
 mkfs.fat -F32 $efipartition
