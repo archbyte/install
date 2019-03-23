@@ -16,10 +16,10 @@ git clone https://github.com/archbyte/install --branch fast1
 
 **Login by entering your username and password.**
 
-# To list available desktop environments
+/# To list available desktop environments
 ls
 
 ./name_of_desktop_environment
-# Example: ./gnomeARCHBYTE
+/# Example: ./gnomeARCHBYTE
 
 **Enjoy.**
