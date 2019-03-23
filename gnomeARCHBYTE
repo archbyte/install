@@ -28,7 +28,7 @@ gnome-shell-extension-installer 1328 1128 277 36 1305 1303 118 1236 258 1297 800
 # Hide Top Bar: 545 (not fully stable)
 # TopIcons Plus: 1031 (not maintained | last checked 23/02/2019)
 # caffeine: 517 (not maintained | last checked 23/02/2019)
-# bottom panel: 949
+# Bottom panel: 949 (not fully stable)
 # Enable gnome display manager
 sudo systemctl enable gdm
 echo
@@ -143,7 +143,6 @@ sudo sed -i 's/"auto_enabled": false/"auto_enabled": true/' ~/.config/automathem
 automathemely --setting misc.notifications=False
 #
 automathemely --restart
-automathemely
 # Autostart script to make automathemely run everytime (normal way showed the gui)
 cat << EOT1 >> /home/$USER/.config/autostart/automathemelyrunner.desktop
 [Desktop Entry]
