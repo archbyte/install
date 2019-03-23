@@ -128,12 +128,16 @@ dconf write /org/gnome/shell/extensions/set-columns/columns-max 7
 dconf write /org/gnome/system/location/enabled true
 # Configure automa themely
 automathemely --setting desktop_environment=gnome
-automathemely --setting themes.gnome.light.gtk=Ant-Nebula
-automathemely --setting themes.gnome.light.icons=la-capitaine
-automathemely --setting themes.gnome.light.shell=Ant-Nebula
-automathemely --setting themes.gnome.dark.gtk=Dark-Side
-automathemely --setting themes.gnome.dark.icons=la-capitaine
-automathemely --setting themes.gnome.dark.shell=Ant-Nebula
+##automathemely --setting themes.gnome.light.gtk=Ant-Nebula
+sudo sed -i '7s/""/"Ant-Nebula"/' ~/.config/automathemely/user_settings.json
+##automathemely --setting themes.gnome.light.icons=la-capitaine
+sudo sed -i 's/"icons": ""/"icons": "la-capitaine"/g' ~/.config/automathemely/user_settings.json
+##automathemely --setting themes.gnome.light.shell=Ant-Nebula
+sudo sed -i 's/"shell": ""/"shell": "Ant-Nebula"/g' ~/.config/automathemely/user_settings.json
+##automathemely --setting themes.gnome.dark.gtk=Dark-Side
+sudo sed -i '12s/""/"Dark-Side"/' ~/.config/automathemely/user_settings.json
+##automathemely --setting themes.gnome.dark.icons=la-capitaine
+##automathemely --setting themes.gnome.dark.shell=Ant-Nebula
 #automathemely --setting location.auto_enabled=True
 sudo sed -i 's/"auto_enabled": false/"auto_enabled": true/' ~/.config/automathemely/user_settings.json
 automathemely --setting misc.notifications=False
@@ -166,7 +170,7 @@ sudo rm /home/$USER/.config/autostart/postinstallscriptARCHBYTE.desktop
 # Reboot
 sudo reboot
 EOT
-chmod +x /home/$USER/.config/autostart/postinstallARCHBYTE
+chmod +x /home/$USER/postinstallARCHBYTE
 #--------------------------------------------------------------------
 # Enable tap to click
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
