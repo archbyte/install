@@ -159,7 +159,7 @@ sudo sed -i '144s/.xz//' /etc/makepkg.conf
 # Install grub theme
 wget -O - https://github.com/shvchk/poly-light/raw/master/install.sh | bash
 # Change grub timeout to 3
-sudo sed -i '4s/0/3/' /etc/default/grub
+sudo sed -i '4s/0/2/' /etc/default/grub
 # Generate grub configuration file
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 echo
