@@ -29,12 +29,12 @@ mkdir /boot/efi
 mount EFIPARTITION /boot/efi
 echo
 # Install some required packages for booting and stuff
-pacman -S --needed intel-ucode grub efibootmgr sudo networkmanager os-prober wget
+pacman -S --needed --noconfirm intel-ucode grub efibootmgr sudo networkmanager os-prober wget
 echo
 # Install grub to /boot/efi
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=BOOTLOADERID
 echo
-# Change grub timeout to 3
+# Change grub timeout to 0
 sudo sed -i '4s/5/0/' /etc/default/grub
 # Generate grub config file
 sudo grub-mkconfig -o /boot/grub/grub.cfg
