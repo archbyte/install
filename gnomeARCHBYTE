@@ -6,6 +6,7 @@ read -p "Enter your wifi SSID: " ssid
 read -p "Enter your wifi password: " wifipass
 nmcli device wifi connect $ssid password $wifipass
 echo
+#--------------------------------------------------------------------
 # Update system
 sudo pacman -Syu
 # Install packages for gnome desktop environment and other cool stuff
@@ -183,6 +184,7 @@ Exec=/home/$USER/postinstallARCHBYTE
 Terminal=true
 EOT
 chmod +x /home/$USER/.config/autostart/postinstallscriptARCHBYTE.desktop
+#--------------------------------------------------------------------
 # Remove the pikaur folder and the chroot file
 cd /home/$USER
 sudo rm -r pikaur
