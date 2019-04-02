@@ -4,6 +4,7 @@ if [[ $EUID -ne 0 ]]; then
     echo "You must be a root user to run this." 2>&1
     exit 1
 fi
+#--------------------------------------------------------------------
 # Set the timezone to US-Pacific
 ln -sf /usr/share/zoneinfo/US/Pacific /etc/localtime
 # Generate /etc/adjtime
@@ -51,6 +52,7 @@ echo
 # Set admin priviliges
 echo "Uncommenting the wheel group line."
 sudo sed -i '/# %wheel ALL=(ALL) ALL/s/^#//g' /etc/sudoers
+#--------------------------------------------------------------------
 # Move remaining setup files to user home directory
 rm /chrootARCHBYTE
 mv /*ARCHBYTE /home/USERNAME
