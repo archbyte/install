@@ -1,1 +1,77 @@
-
+#!/bin/bash
+# Connect to wifi
+nmcli device wifi list
+echo
+read -p "Enter your wifi SSID: " ssid
+read -p "Enter your wifi password: " wifipass
+nmcli device wifi connect $ssid password $wifipass
+echo
+#--------------------------------------------------------------------
+# Update system
+sudo pacman -Syu
+# Do something related to time?
+timedatectl set-ntp true
+# Install packages for gnome desktop environment and other cool stuff
+# Package Info: Don't reinstall|Don't Confirm (y/n)|Development Tools|Gnome Requirements               |Terminal|Fast Updated Mirrors|Github|Retrieving Files|Extract|Terminal OS Info|NTFS Filesystem Support|Disk-Partition Utility|Gnome      |Display Manager|Terminal      |System Settings     |System Monitor      |Power Management   |Wallpapers       |Tweak Tool      |Screenshot      |View Images|Default Home Directories|Disk-Partition Utility|Bluetooth(ctl) Utility|Gnome Extensions  |Web Browser |Monospace Font|Touchpad Gestures|Dock |Dark-Side Theme               |Terminal Directory View|Unknown            |
+sudo pacman -S --needed         --noconfirm         base-devel        xorg-server xorg-xinit xorg-xprop bash     reflector            git    wget             unzip   neofetch         ntfs-3g                 gparted                gnome-shell gdm nautilus    gnome-terminal gnome-control-center gnome-system-monitor gnome-power-manager gnome-backgrounds gnome-tweak-tool gnome-screenshot eog         xdg-user-dirs            gnome-disk-utility     bluez-utils            chrome-gnome-shell chromium     ttf-hack       xdotool wmctrl    plank gtk-engine-murrine gtk-engines tree                    curl dbus perl less
+# Install pikaur: an aur helper
+git clone https://aur.archlinux.org/pikaur.git
+cd pikaur
+makepkg -fsri
+cd /home/$USER
+pikaur -S --needed --noconfirm chromium-widevine ttf-clear-sans pamac-aur nautilus-admin sublime-text-dev libinput-gestures automathemely la-capitaine-icon-theme capitaine-cursors
+echo
+# Enable gnome display manager
+sudo systemctl enable gdm
+echo
+# Enable the bluetooth service
+sudo systemctl enable bluetooth
+echo
+# Disable wayland
+sudo sed -i '/WaylandEnable=false/s/^#//' /etc/gdm/custom.conf
+# Set apps to autostart
+sudo gpasswd -a $USER input
+#mkdir /home/$USER/.config/autostart
+libinput-gestures-setup autostart
+cp /usr/share/applications/plank.desktop /home/$USER/.config/autostart
+# Set plank theme
+sudo cp /usr/share/plank/themes/Default/dock.theme /usr/share/plank/themes/Default/dockbackup.theme && sudo cp /usr/share/plank/themes/Transparent/dock.theme /usr/share/plank/themes/Default/dock.theme
+#--------------------------------------------------------------------
+# Create Post-Install Script
+cat << EOT >> /home/$USER/postinstallARCHBYTE
+#!/bin/bash
+echo "Press 'Enter' to continue"
+read
+# Edit makepkg.conf to stop recompression and make installing software faster
+sudo sed -i '144s/.xz//' /etc/makepkg.conf
+# Install grub theme
+wget -O - https://github.com/shvchk/poly-light/raw/master/install.sh | bash
+# Change grub timeout to 3
+sudo sed -i '4s/0/2/' /etc/default/grub
+# Generate grub configuration file
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+echo
+# Remove installation files
+sudo rm /home/$USER/*ARCHBYTE
+sudo rm /home/$USER/.config/autostart/postinstallscriptARCHBYTE.desktop
+# Reboot
+sudo reboot
+EOT
+chmod +x /home/$USER/postinstallARCHBYTE
+#--------------------------------------------------------------------
+# Script to make the post script run after reboot
+cat << EOT >> /home/$USER/.config/autostart/postinstallscriptARCHBYTE.desktop
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=postinstallscript
+Exec=/home/$USER/postinstallARCHBYTE
+Terminal=true
+EOT
+chmod +x /home/$USER/.config/autostart/postinstallscriptARCHBYTE.desktop
+#--------------------------------------------------------------------
+# Remove the pikaur folder and the chroot file
+cd /home/$USER
+sudo rm -r pikaur
+# Reboot
+sudo reboot
