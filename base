@@ -9,6 +9,7 @@ ls /sys/firmware/efi/efivars
 echo
 echo "Press 'Ctrl+c' to exit OR 'Enter' to continue"
 read
+#--------------------------------------------------------------------
 # Update system clock
 timedatectl set-ntp true
 # List partitions
@@ -58,7 +59,7 @@ echo
 genfstab -U /mnt >> /mnt/etc/fstab
 echo
 cat /mnt/etc/fstab
-# Copy remaining installation files to /mnt, make them executable,
+# Copy remaining installation files to /mnt & make them executable
 cp /root/install/*ARCHBYTE /mnt
 chmod +x /mnt/*ARCHBYTE
 # Remove the cloned install folder
