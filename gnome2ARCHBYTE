@@ -43,14 +43,25 @@ echo
 sudo sed -i '/WaylandEnable=false/s/^#//' /etc/gdm/custom.conf
 # Set custom touchpad gestures
 cp /etc/libinput-gestures.conf ~/.config/
-sed -i '50s/.*/gesture swipe up 3 _internal ws_up/' ~/.config/libinput-gestures.conf
-sed -i '63s/.*/gesture swipe down 3 _internal ws_down/' ~/.config/libinput-gestures.conf
-sed -i '67s/.*/gesture swipe left 3 xdotool key alt+Right/' ~/.config/libinput-gestures.conf
-sed -i '70s/.*/gesture swipe right 3 xdotool key alt+Left/' ~/.config/libinput-gestures.conf
-sed -i '118s/.*/gesture swipe left_up 3 xdotool key super+a/' ~/.config/libinput-gestures.conf
-sed -i '119s/.*/gesture swipe left_down 3 xdotool key super+s/' ~/.config/libinput-gestures.conf
-sed -i '132s/.*/gesture pinch clockwise xdotool key super+Right/' ~/.config/libinput-gestures.conf
-sed -i '133s/.*/gesture pinch anticlockwise xdotool key super+Left/' ~/.config/libinput-gestures.conf
+sed -i '/^#/!s/\(.*\)/# \1/g' ~/.config/libinput-gestures.conf
+cat << EOT >> /home/$USER/.config/libinput-gestures.conf
+# Go to workspace above
+gesture swipe up 3 _internal ws_up
+# Go to workspace below
+gesture swipe down 3 _internal ws_down
+# Go forward
+gesture swipe left 3 xdotool key alt+Right
+# Go back
+gesture swipe right 3 xdotool key alt+Left
+# Open applications view
+gesture swipe left_up 3 xdotool key super+a
+# Open workspaces view
+gesture swipe left_down 3 xdotool key super+s
+# Tile window to the right
+gesture pinch clockwise xdotool key super+Right
+# Tile window to the left
+gesture pinch anticlockwise xdotool key super+Left
+EOT
 # Set apps to autostart
 sudo gpasswd -a $USER input
 #mkdir /home/$USER/.config/autostart
