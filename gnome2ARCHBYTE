@@ -1,12 +1,90 @@
 #!/bin/bash
+# Connect to wifi
+nmcli device wifi list
+echo
+read -p "Enter your wifi SSID: " ssid
+read -p "Enter your wifi password: " wifipass
+nmcli device wifi connect $ssid password $wifipass
+echo
+#--------------------------------------------------------------------
+# Update system
+sudo pacman -Syu
+# Install packages for gnome desktop environment and other cool stuff
+# Package Info: Don't reinstall|Don't Confirm (y/n)|Development Tools|Gnome Requirements               |Terminal|Fast Updated Mirrors|Github|Retrieving Files|Extract|Terminal OS Info|NTFS Filesystem Support|Disk-Partition Utility|Gnome      |Display Manager|Terminal      |System Settings     |System Monitor      |Power Management   |Wallpapers       |Tweak Tool      |Screenshot      |View Images|Default Home Directories|Disk-Partition Utility|Bluetooth(ctl) Utility|Gnome Extensions  |Web Browser |Monospace Font|Touchpad Gestures|Dock |Dark-Side Theme               |Terminal Directory View|Unknown            |
+sudo pacman -S --needed         --noconfirm         base-devel        xorg-server xorg-xinit xorg-xprop bash     reflector            git    wget             unzip   neofetch         ntfs-3g                 gparted                gnome-shell gdm nautilus    gnome-terminal gnome-control-center gnome-system-monitor gnome-power-manager gnome-backgrounds gnome-tweak-tool gnome-screenshot eog         xdg-user-dirs            gnome-disk-utility     bluez-utils            chrome-gnome-shell chromium     ttf-hack       xdotool wmctrl    plank gtk-engine-murrine gtk-engines tree                    curl dbus perl less
+# Install pikaur: an aur helper
+git clone https://aur.archlinux.org/pikaur.git
+cd pikaur
+makepkg -fsri
+cd /home/$USER
+pikaur -S --needed --noconfirm chromium-widevine ttf-clear-sans pamac-aur nautilus-admin sublime-text-dev libinput-gestures automathemely la-capitaine-icon-theme capitaine-cursors
+echo
+# Install the gnome shell extension installer
+cd /home/$USER
+wget -O gnome-shell-extension-installer "https://github.com/brunelli/gnome-shell-extension-installer/raw/master/gnome-shell-extension-installer"
+chmod +x gnome-shell-extension-installer
+sudo mv gnome-shell-extension-installer /usr/bin/
+# Install some useful gnome extensions
+gnome-shell-extension-installer 1328 1128 277 36 1305 1303 118 1236 258 1297 800 826 1497 19 21 
+# Hide Top Bar: 545 (not fully stable)
+# TopIcons Plus: 1031 (not maintained | last checked 23/02/2019)
+# caffeine: 517 (not maintained | last checked 23/02/2019)
+# Bottom panel: 949 (not fully stable)
+# Enable gnome display manager
+sudo systemctl enable gdm
+echo
+# Enable the bluetooth service
+sudo systemctl enable bluetooth
+echo
+# Disable wayland
+sudo sed -i '/WaylandEnable=false/s/^#//' /etc/gdm/custom.conf
+# Set custom touchpad gestures
+cp /etc/libinput-gestures.conf ~/.config/libinput-gestures.conf
+sed -i '50s/.*/gesture swipe up 3 _internal ws_up/' ~/.config/libinput-gestures.conf
+sed -i '63s/.*/gesture swipe down 3 _internal ws_down/' ~/.config/libinput-gestures.conf
+sed -i '67s/.*/gesture swipe left 3 xdotool key alt+Right/' ~/.config/libinput-gestures.conf
+sed -i '70s/.*/gesture swipe right 3 xdotool key alt+Left/' ~/.config/libinput-gestures.conf
+sed -i '118s/.*/gesture swipe left_up 3 xdotool key super+a/' ~/.config/libinput-gestures.conf
+sed -i '119s/.*/gesture swipe left_down 3 xdotool key super+s/' ~/.config/libinput-gestures.conf
+sed -i '132s/.*/gesture pinch clockwise xdotool key super+Right/' ~/.config/libinput-gestures.conf
+sed -i '133s/.*/gesture pinch anticlockwise xdotool key super+Left/' ~/.config/libinput-gestures.conf
+# Set apps to autostart
+sudo gpasswd -a $USER input
+#mkdir /home/$USER/.config/autostart
+libinput-gestures-setup autostart
+cp /usr/share/applications/plank.desktop /home/$USER/.config/autostart
+# Set plank theme
+sudo cp /usr/share/plank/themes/Default/dock.theme /usr/share/plank/themes/Default/dockbackup.theme && sudo cp /usr/share/plank/themes/Transparent/dock.theme /usr/share/plank/themes/Default/dock.theme
+# Set desktop and lock screen wallpaper to mojave
+sudo rm -r /usr/share/backgrounds/gnome
+sudo rm -r /usr/share/gnome-background-properties
+# ^
+sudo git clone https://github.com/archbyte/mojave /usr/share/backgrounds/gnome
+sudo rm -r /usr/share/backgrounds/gnome/.git
+# ^
+sudo mkdir /usr/share/gnome-background-properties
+sudo mv /usr/share/backgrounds/gnome/gnome-backgrounds.xml /usr/share/gnome-background-properties
+# Install some shell themes
+sudo git clone https://github.com/EliverLara/Ant-Nebula --branch slim /usr/share/themes/Ant-Nebula
+sudo git clone https://github.com/paullinuxthemer/Dark-Side /usr/share/themes/Dark-Side
+# Keep the avahi apps from showing up in the apps view
+sudo ln -sf /dev/null /etc/systemd/system/avahi-daemon.service
+sudo ln -sf /dev/null /etc/systemd/system/avahi-daemon.socket
+sudo ln -sf /dev/null /etc/systemd/system/dbus-org.freedesktop.Avahi.service
+sudo bash -c "echo 'NoDisplay=true' >> /usr/share/applications/avahi-discover.desktop"
+sudo bash -c "echo 'NoDisplay=true' >> /usr/share/applications/bssh.desktop"
+sudo bash -c "echo 'NoDisplay=true' >> /usr/share/applications/bvnc.desktop"
+sudo update-desktop-database
+# Do something related to time?
+timedatectl set-ntp true
+#--------------------------------------------------------------------
+# Create Post-Install Script
+cat << EOT >> /home/$USER/postinstallARCHBYTE
+#!/bin/bash
 echo "Press 'Enter' to continue"
 gnome-disks
 read
 automathemely
-#--------------------------------------------------------------------
-#sudo pacman -S --needed util-linux
-#sudo systemctl enable fstrim.timer
-#--------------------------------------------------------------------
 # Some useful gsettings
 gsettings set org.gnome.Terminal.Legacy.Settings default-show-menubar false
 gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing 'rgba'
@@ -15,8 +93,6 @@ gsettings set org.gnome.mutter attach-modal-dialogs false
 gsettings set org.gnome.mutter center-new-windows true
 gsettings set org.gnome.mutter edge-tiling true
 gsettings set org.gnome.desktop.wm.preferences resize-with-right-button false
-#gsettings set org.gnome.nautilus.window-state sidebar-width 157
-#gsettings set org.gnome.nautilus.window-state initial-size '(794, 485)'
 gsettings set org.gnome.desktop.interface show-battery-percentage true
 gsettings set org.gnome.desktop.interface clock-show-date true
 gsettings set org.gnome.desktop.interface clock-show-seconds true
@@ -43,42 +119,33 @@ dconf write /org/gnome/terminal/legacy/keybindings/toggle-menubar "'<Alt>m'"
 dconf write /org/gnome/shell/extensions/notifications-alert/color "'#00b1ff'"
 dconf write /org/gnome/shell/extensions/notifications-alert/blinkrate 0
 dconf write /net/launchpad/plank/docks/dock1/monitor "'eDP-1'"
-#dconf write /net/launchpad/plank/docks/dock1/lock-items true
 dconf write /net/launchpad/plank/docks/dock1/hide-mode "'window-dodge'"
-# dconf write /net/launchpad/plank/docks/dock1/dock-items ['org.gnome.Nautilus.dockitem', 'chromium.dockitem', 'org.gnome.Terminal.dockitem', 'org.gnome.tweaks.dockitem', 'pamac-manager.dockitem', 'gnome-system-monitor.dockitem']
 dconf write /org/gnome/gnome-system-monitor/current-tab "'resources'"
 dconf write /org/gnome/nautilus/window-state/sidebar-width 157
 dconf write /org/gnome/nautilus/icon-view/default-zoom-level "'standard'"
 dconf write /org/gtk/settings/file-chooser/show-hidden true
 dconf write /org/gtk/settings/file-chooser/sort-directories-first true
-#dconf write /org/gnome/nautilus/window-state/initial-size (727, 409)
 dconf write /org/gnome/shell/extensions/set-columns/columns-max 7
 dconf write /org/gnome/system/location/enabled true
 # Configure automa themely
 automathemely --setting desktop_environment=gnome
-automathemely --setting themes.gnome.light.gtk=Ant-Nebula
-automathemely --setting themes.gnome.light.icons=la-capitaine
-automathemely --setting themes.gnome.light.shell=Ant-Nebula
-automathemely --setting themes.gnome.dark.gtk=Dark-Side
-automathemely --setting themes.gnome.dark.icons=la-capitaine
-automathemely --setting themes.gnome.dark.shell=Ant-Nebula
+##automathemely --setting themes.gnome.light.gtk=Ant-Nebula
+sudo sed -i '7s/""/"Ant-Nebula"/' ~/.config/automathemely/user_settings.json
+##automathemely --setting themes.gnome.light.icons=la-capitaine
+sudo sed -i 's/"icons": ""/"icons": "la-capitaine"/g' ~/.config/automathemely/user_settings.json
+##automathemely --setting themes.gnome.light.shell=Ant-Nebula
+sudo sed -i 's/"shell": ""/"shell": "Ant-Nebula"/g' ~/.config/automathemely/user_settings.json
+##automathemely --setting themes.gnome.dark.gtk=Dark-Side
+sudo sed -i '12s/""/"Dark-Side"/' ~/.config/automathemely/user_settings.json
+##automathemely --setting themes.gnome.dark.icons=la-capitaine
+##automathemely --setting themes.gnome.dark.shell=Ant-Nebula
 #automathemely --setting location.auto_enabled=True
+sudo sed -i 's/"auto_enabled": false/"auto_enabled": true/' ~/.config/automathemely/user_settings.json
 automathemely --setting misc.notifications=False
 #
-#sudo sed -i '3s/custom/gnome/' ~/.config/automathemely/user_settings.json
-#sudo sed -i '7s/""/"Ant-Nebula"/' ~/.config/automathemely/user_settings.json
-#sudo sed -i '8s/""/"la-capitaine"/' ~/.config/automathemely/user_settings.json
-#sudo sed -i '9s/""/"Ant-Nebula"/' ~/.config/automathemely/user_settings.json
-#sudo sed -i '12s/""/"Dark-Side"/' ~/.config/automathemely/user_settings.json
-#sudo sed -i '13s/""/"la-capitaine"/' ~/.config/automathemely/user_settings.json
-#sudo sed -i '14s/""/"Ant-Nebula"/' ~/.config/automathemely/user_settings.json
-sudo sed -i 's/"auto_enabled": false/"auto_enabled": true/' ~/.config/automathemely/user_settings.json
-#sudo sed -i '65s/true/false/' ~/.config/automathemely/user_settings.json
-#
 automathemely --restart
-automathemely
 # Autostart script to make automathemely run everytime (normal way showed the gui)
-cat << EOT >> /home/$USER/.config/autostart/automathemelyrunner.desktop
+cat << EOT1 >> /home/$USER/.config/autostart/automathemelyrunner.desktop
 [Desktop Entry]
 Name=automathemelyrunner
 Type=Application
@@ -86,26 +153,40 @@ Exec=python3 /usr/lib/python3.7/site-packages/automathemely/bin/autothscheduler.
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
-EOT
+EOT1
 chmod +x /home/$USER/.config/autostart/automathemelyrunner.desktop
 # Edit makepkg.conf to stop recompression and make installing software faster
 sudo sed -i '144s/.xz//' /etc/makepkg.conf
 # Install grub theme
 wget -O - https://github.com/shvchk/poly-light/raw/master/install.sh | bash
 # Change grub timeout to 3
-sudo sed -i '4s/0/3/' /etc/default/grub
+sudo sed -i '4s/0/2/' /etc/default/grub
 # Generate grub configuration file
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 echo
 # Remove installation files
-sudo rm /home/$USER/gnome1
-sudo rm /home/$USER/gnome2
-sudo rm /home/$USER/kde1
-sudo rm /home/$USER/kde2
-sudo rm /home/$USER/i3xfce1
-sudo rm /home/$USER/i3xfce2
-sudo rm /home/$USER/budgie1
-sudo rm /home/$USER/budgie2
-sudo rm /home/$USER/.config/autostart/postinstallscript.desktop
+sudo rm /home/$USER/*ARCHBYTE
+sudo rm /home/$USER/.config/autostart/postinstallscriptARCHBYTE.desktop
+# Reboot
+sudo reboot
+EOT
+chmod +x /home/$USER/postinstallARCHBYTE
+#--------------------------------------------------------------------
+# Enable tap to click
+gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+# Script to make the post script run after reboot
+cat << EOT >> /home/$USER/.config/autostart/postinstallscriptARCHBYTE.desktop
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=postinstallscript
+Exec=/home/$USER/postinstallARCHBYTE
+Terminal=true
+EOT
+chmod +x /home/$USER/.config/autostart/postinstallscriptARCHBYTE.desktop
+#--------------------------------------------------------------------
+# Remove the pikaur folder and the chroot file
+cd /home/$USER
+sudo rm -r pikaur
 # Reboot
 sudo reboot
