@@ -8,15 +8,16 @@ nmcli device wifi connect $ssid password $wifipass
 echo
 #--------------------------------------------------------------------
 # Update system
-sudo pacman -Syu
+sudo pacman -Syu --noconfirm
 # Install packages for gnome desktop environment and other cool stuff
 # Package Info: Don't reinstall|Don't Confirm (y/n)|Development Tools|Fast Updated Mirrors|Github|Terminal OS Info|NTFS Filesystem Support|Disk-Partition Utility|Gnome DE & DM  |File Manager|Terminal      |System Settings     |System Monitor      |Power Management   |Wallpapers       |Tweak Tool      |Screenshot      |View Images|Default Home Directories|Disk-Partition Utility|Gnome Extensions  |Web Browser |Monospace Font|Touchpad Gestures|Dock |Dark-Side Theme               |Terminal Directory View|Unknown            |
 sudo pacman -S --needed         --noconfirm         base-devel        reflector            git    neofetch         ntfs-3g                 gparted                gnome-shell gdm nautilus     gnome-terminal gnome-control-center gnome-system-monitor gnome-power-manager gnome-backgrounds gnome-tweak-tool gnome-screenshot eog         xdg-user-dirs            gnome-disk-utility     chrome-gnome-shell chromium     ttf-hack       xdotool wmctrl    plank gtk-engine-murrine gtk-engines tree                    #curl dbus perl less
 # Install pikaur: an aur helper
 git clone https://aur.archlinux.org/pikaur.git
 cd pikaur
-makepkg -fsri
+makepkg -fsri --noconfirm
 cd /home/$USER
+sudo rm -r pikaur
 pikaur -S --needed --noconfirm chromium-widevine ttf-clear-sans pamac-aur nautilus-admin sublime-text-dev libinput-gestures automathemely la-capitaine-icon-theme capitaine-cursors
 echo
 # Install the gnome shell extension installer
@@ -25,7 +26,9 @@ wget -O gnome-shell-extension-installer "https://github.com/brunelli/gnome-shell
 chmod +x gnome-shell-extension-installer
 sudo mv gnome-shell-extension-installer /usr/bin/
 # Install some useful gnome extensions
-gnome-shell-extension-installer 1328 1128 277 36 1305 1303 118 1236 258 1297 800 826 1497 19 21 
+gnome-shell-extension-installer 1328 1128 277 36 1305 1303 118 1236 258 1297 800 826 1497 19 21
+# Gnome Shell Extensions:      |User Themes|Impatience|No Top-Left Hot Corner|Suspend Button|No Spring|Remove Dash|No Annoyance|Remove Dropdown Arrows|Workspace Indicator|Columns in Apps View|Disable Workspace Switch Animation|Notifications Alert Color|Lock Keys|Hide Activities Button|Top Icons
+gnome-shell-extension-installer 19          277        118                    826            1303      1297        1236         800                    21                  1305                 1328                               258                       36       # 1128                   1497
 # Hide Top Bar: 545 (not fully stable)
 # TopIcons Plus: 1031 (not maintained | last checked 23/02/2019)
 # caffeine: 517 (not maintained | last checked 23/02/2019)
@@ -185,8 +188,5 @@ Terminal=true
 EOT
 chmod +x /home/$USER/.config/autostart/postinstallscriptARCHBYTE.desktop
 #--------------------------------------------------------------------
-# Remove the pikaur folder and the chroot file
-cd /home/$USER
-sudo rm -r pikaur
 # Reboot
 sudo reboot
