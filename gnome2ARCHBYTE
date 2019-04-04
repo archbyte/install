@@ -33,16 +33,16 @@ gnome-shell-extension-installer 19          277        118                    82
 # TopIcons Plus: 1031 (not maintained | last checked 23/02/2019)
 # caffeine: 517 (not maintained | last checked 23/02/2019)
 # Bottom panel: 949 (not fully stable)
-# Enable gnome display manager
-sudo systemctl enable gdm
-echo
 # Enable the bluetooth service
 sudo systemctl enable bluetooth
+echo
+# Enable gnome display manager
+sudo systemctl enable gdm
 echo
 # Disable wayland
 sudo sed -i '/WaylandEnable=false/s/^#//' /etc/gdm/custom.conf
 # Set custom touchpad gestures
-cp /etc/libinput-gestures.conf ~/.config/libinput-gestures.conf
+cp /etc/libinput-gestures.conf ~/.config/
 sed -i '50s/.*/gesture swipe up 3 _internal ws_up/' ~/.config/libinput-gestures.conf
 sed -i '63s/.*/gesture swipe down 3 _internal ws_down/' ~/.config/libinput-gestures.conf
 sed -i '67s/.*/gesture swipe left 3 xdotool key alt+Right/' ~/.config/libinput-gestures.conf
