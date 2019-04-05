@@ -85,7 +85,8 @@ sudo mv /usr/share/backgrounds/gnome/gnome-backgrounds.xml /usr/share/gnome-back
 # Install some shell themes
 sudo git clone https://github.com/EliverLara/Ant-Nebula --branch slim /usr/share/themes/Ant-Nebula
 #sudo git clone https://github.com/EliverLara/Ant-Dracula --branch slim /usr/share/themes/Ant-Dracula
-sudo git clone https://github.com/paullinuxthemer/Dark-Side /usr/share/themes/Dark-Side
+#sudo git clone https://github.com/paullinuxthemer/Dark-Side /usr/share/themes/Dark-Side
+sudo git clone https://github.com/archbyte/Adwaita-Slim --branch dark /usr/share/themes/Adwaita-Slim-Dark/gtk-3.0/
 # Keep the avahi apps from showing up in the apps view
 sudo ln -sf /dev/null /etc/systemd/system/avahi-daemon.service
 sudo ln -sf /dev/null /etc/systemd/system/avahi-daemon.socket
