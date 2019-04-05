@@ -6,6 +6,8 @@ read -p "Enter your wifi SSID: " ssid
 read -p "Enter your wifi password: " wifipass
 nmcli device wifi connect $ssid password $wifipass
 echo
+# TimeDateCTL: activate NTP service
+timedatectl set-ntp true
 #--------------------------------------------------------------------
 # Update system
 sudo pacman -Syu --noconfirm
@@ -45,6 +47,7 @@ sudo sed -i '/WaylandEnable=false/s/^#//' /etc/gdm/custom.conf
 cp /etc/libinput-gestures.conf ~/.config/
 sed -i '/^#/!s/\(.*\)/# \1/g' ~/.config/libinput-gestures.conf
 cat << EOT >> /home/$USER/.config/libinput-gestures.conf
+#
 # Go to workspace above
 gesture swipe up 3 _internal ws_up
 # Go to workspace below
@@ -62,9 +65,9 @@ gesture pinch clockwise xdotool key super+Right
 # Tile window to the left
 gesture pinch anticlockwise xdotool key super+Left
 EOT
-# Set apps to autostart
+# Add user to "input" group
 sudo gpasswd -a $USER input
-#mkdir /home/$USER/.config/autostart
+# Set apps to autostart
 libinput-gestures-setup autostart
 cp /usr/share/applications/plank.desktop /home/$USER/.config/autostart
 # Set plank theme
@@ -80,6 +83,7 @@ sudo mkdir /usr/share/gnome-background-properties
 sudo mv /usr/share/backgrounds/gnome/gnome-backgrounds.xml /usr/share/gnome-background-properties
 # Install some shell themes
 sudo git clone https://github.com/EliverLara/Ant-Nebula --branch slim /usr/share/themes/Ant-Nebula
+#sudo git clone https://github.com/EliverLara/Ant-Dracula --branch slim /usr/share/themes/Ant-Dracula
 sudo git clone https://github.com/paullinuxthemer/Dark-Side /usr/share/themes/Dark-Side
 # Keep the avahi apps from showing up in the apps view
 sudo ln -sf /dev/null /etc/systemd/system/avahi-daemon.service
@@ -89,8 +93,6 @@ sudo bash -c "echo 'NoDisplay=true' >> /usr/share/applications/avahi-discover.de
 sudo bash -c "echo 'NoDisplay=true' >> /usr/share/applications/bssh.desktop"
 sudo bash -c "echo 'NoDisplay=true' >> /usr/share/applications/bvnc.desktop"
 sudo update-desktop-database
-# Do something related to time?
-timedatectl set-ntp true
 #--------------------------------------------------------------------
 # Create Post-Install Script
 cat << EOT >> /home/$USER/postinstallARCHBYTE
