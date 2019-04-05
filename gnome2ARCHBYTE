@@ -146,19 +146,21 @@ dconf write /org/gnome/system/location/enabled true
 # Configure automa themely
 automathemely --setting desktop_environment=gnome
 ##automathemely --setting themes.gnome.light.gtk=Ant-Nebula
-sudo sed -i '7s/""/"Ant-Nebula"/' ~/.config/automathemely/user_settings.json
+#sudo sed -i '7s/""/"Ant-Nebula"/' ~/.config/automathemely/user_settings.json
 ##automathemely --setting themes.gnome.light.icons=la-capitaine
-sudo sed -i 's/"icons": ""/"icons": "la-capitaine"/g' ~/.config/automathemely/user_settings.json
+#sudo sed -i 's/"icons": ""/"icons": "la-capitaine"/g' ~/.config/automathemely/user_settings.json
 ##automathemely --setting themes.gnome.light.shell=Ant-Nebula
-sudo sed -i 's/"shell": ""/"shell": "Ant-Nebula"/g' ~/.config/automathemely/user_settings.json
+#sudo sed -i 's/"shell": ""/"shell": "Ant-Nebula"/g' ~/.config/automathemely/user_settings.json
 ##automathemely --setting themes.gnome.dark.gtk=Dark-Side
-sudo sed -i '12s/""/"Dark-Side"/' ~/.config/automathemely/user_settings.json
+#sudo sed -i '12s/""/"Dark-Side"/' ~/.config/automathemely/user_settings.json
 ##automathemely --setting themes.gnome.dark.icons=la-capitaine
 ##automathemely --setting themes.gnome.dark.shell=Ant-Nebula
 #automathemely --setting location.auto_enabled=True
 sudo sed -i 's/"auto_enabled": false/"auto_enabled": true/' ~/.config/automathemely/user_settings.json
 automathemely --setting misc.notifications=False
-#
+# AutomaThemely Settings GUI
+automathemely -m
+# ^
 automathemely --restart
 # Autostart script to make automathemely run everytime (normal way showed the gui)
 cat << EOT1 >> /home/$USER/.config/autostart/automathemelyrunner.desktop
@@ -177,6 +179,9 @@ sudo sed -i '144s/.xz//' /etc/makepkg.conf
 wget -O - https://github.com/shvchk/poly-light/raw/master/install.sh | bash
 # Change grub timeout to 3
 sudo sed -i '4s/0/2/' /etc/default/grub
+# Change grub settings
+sudo sed -i 's/GRUB_DEFAULT=0/GRUB_DEFAULT=saved/g' /etc/default/grub
+sudo sed -i '/GRUB_SAVEDEFAULT/s/^#//g' /etc/default/grub
 # Generate grub configuration file
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 echo
