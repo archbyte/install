@@ -146,6 +146,7 @@ dconf write /org/gnome/shell/extensions/set-columns/columns-max 7
 dconf write /org/gnome/system/location/enabled true
 dconf write /org/gnome/desktop/search-providers/disable-external true
 # ^ gsettings set org.gnome.desktop.search-providers disabled "['org.gnome.Nautilus.desktop', 'org.manjaro.pamac.manager.desktop', 'org.gnome.Terminal.desktop']"
+dconf write /org/gnome/shell/extensions/lockkeys/notifications false
 # Configure automa themely
 automathemely --setting desktop_environment=gnome
 ##automathemely --setting themes.gnome.light.gtk=Ant-Nebula
