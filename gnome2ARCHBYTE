@@ -28,7 +28,6 @@ wget -O gnome-shell-extension-installer "https://github.com/brunelli/gnome-shell
 chmod +x gnome-shell-extension-installer
 sudo mv gnome-shell-extension-installer /usr/bin/
 # Install some useful gnome extensions
-gnome-shell-extension-installer 1328 1128 277 36 1305 1303 118 1236 258 1297 800 826 1497 19 21
 # Gnome Shell Extensions:      |User Themes|Impatience|No Top-Left Hot Corner|Suspend Button|No Spring|Remove Dash|No Annoyance|Remove Dropdown Arrows|Workspace Indicator|Columns in Apps View|Disable Workspace Switch Animation|Notifications Alert Color|Lock Keys|Hide Activities Button|Top Icons
 gnome-shell-extension-installer 19          277        118                    826            1303      1297        1236         800                    21                  1305                 1328                               258                       36       # 1128                   1497
 # Hide Top Bar: 545 (not fully stable)
