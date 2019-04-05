@@ -195,15 +195,15 @@ chmod +x /home/$USER/postinstallARCHBYTE
 # Enable tap to click
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 # Script to make the post script run after reboot
-#cat << EOT >> /home/$USER/.config/autostart/postinstallscriptARCHBYTE.desktop
-#[Desktop Entry]
-#Type=Application
-#Version=1.0
-#Name=postinstallscript
-#Exec=/home/$USER/postinstallARCHBYTE
-#Terminal=true
-#EOT
-#chmod +x /home/$USER/.config/autostart/postinstallscriptARCHBYTE.desktop
+cat << EOT >> /home/$USER/.config/autostart/postinstallscriptARCHBYTE.desktop
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=postinstallscript
+Exec=/home/$USER/postinstallARCHBYTE
+Terminal=true
+EOT
+chmod +x /home/$USER/.config/autostart/postinstallscriptARCHBYTE.desktop
 #--------------------------------------------------------------------
 # Reboot
 sudo reboot
